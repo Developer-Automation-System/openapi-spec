@@ -1,0 +1,475 @@
+openapi: 3.0.0
+info:
+  title: DigiSign API
+  version: 1.0.0
+  description: ''
+servers:
+  - url: '{{BASE_URL}}'
+paths:
+  /v1/templates:
+    parameters: []
+    get:
+      summary: Get All Templates
+      parameters:
+        - name: X-O10N-Identifier
+          in: header
+          required: false
+          example: '{{ORGANISATION_ID}}'
+          schema:
+            type: string
+        - name: X-WS-Identifier
+          in: header
+          required: false
+          example: '{{WORKSPACE_ID}}'
+          schema:
+            type: string
+      responses: {}
+  /v1/templates/{id}/transform:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: c6089da2-cf74-446c-bc63-d3680e7bb123
+        example: c954aa9d-016f-4a2a-aae2-9daa44e91d67
+        schema:
+          type: string
+    put:
+      summary: Transform to Request
+      parameters:
+        - name: X-O10N-Identifier
+          in: header
+          required: false
+          example: '{{ORGANISATION_ID}}'
+          schema:
+            type: string
+        - name: X-WS-Identifier
+          in: header
+          required: false
+          example: '{{WORKSPACE_ID}}'
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recipients:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      email:
+                        type: string
+                        format: email
+                      private_message:
+                        type: string
+                message:
+                  type: object
+                  properties:
+                    subject:
+                      type: string
+                    body:
+                      type: string
+            example:
+              recipients:
+                - id: ':rc-16958895-0e39-4ad4-ba6b-765ace3635ea'
+                  name: Levine Cmion
+                  email: levine.cmion@gmail.com
+                  private_message: >-
+                    Jide, please check this document ASAP, for your container.
+                    This is just a test document tho. Good testing!!!
+              message:
+                subject: Avocado Replublic Export v1.8.2
+                body: >-
+                  Please review and sign this document as soon as you can.
+                  Thanks
+  /v1/keys/session:
+    parameters: []
+    post:
+      summary: Create Session
+      parameters:
+        - name: X-API-Key
+          in: header
+          required: false
+          example: '{{API_KEY}}'
+          schema:
+            type: string
+      responses: {}
+  /v1/keys:
+    parameters: []
+    get:
+      summary: Get All Keys
+      parameters:
+        - name: X-O10N-Identifier
+          in: header
+          required: false
+          example: fd1a1bee-9ee6-4c7f-9ad1-b8ad084287ca
+          schema:
+            type: string
+      responses: {}
+  /v1/keys/{key}:
+    parameters:
+      - name: key
+        in: path
+        required: true
+        example: ds_UXYLMX9eZCW1GS75tiKG52KeMclaXcvP5
+        schema:
+          type: string
+    delete:
+      summary: Delete Key
+      parameters:
+        - name: X-O10N-Identifier
+          in: header
+          required: false
+          example: fd1a1bee-9ee6-4c7f-9ad1-b8ad084287ca
+          schema:
+            type: string
+      responses: {}
+  /v1/workspaces:
+    parameters: []
+    get:
+      summary: Get All Workspaces
+      parameters:
+        - name: X-O10N-Identifier
+          in: header
+          required: false
+          example: '{{ORGANISATION_ID}}'
+          schema:
+            type: string
+        - name: X-WS-Identifier
+          in: header
+          required: false
+          example: '{{WORKSPACE_ID}}'
+          schema:
+            type: string
+      responses: {}
+  /v1/requests:
+    parameters: []
+    get:
+      summary: Get All Request
+      parameters:
+        - name: population
+          in: query
+          required: false
+          example: '["recipients", "documents"]'
+          schema:
+            type: string
+        - name: filter
+          in: query
+          required: false
+          example: '[{ "path": "status", "$eq": "completed" }]'
+          schema:
+            type: string
+        - name: X-O10N-Identifier
+          in: header
+          required: false
+          example: '{{ORGANISATION_ID}}'
+          schema:
+            type: string
+        - name: X-WS-Identifier
+          in: header
+          required: false
+          example: '{{WORKSPACE_ID}}'
+          schema:
+            type: string
+      responses: {}
+  /v1/requests/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: 12061d0a-98d0-4ae8-a48d-e83bcf043ad9
+        schema:
+          type: integer
+    get:
+      summary: Get One Request
+      parameters:
+        - name: X-O10N-Identifier
+          in: header
+          required: false
+          example: '{{ORGANISATION_ID}}'
+          schema:
+            type: string
+        - name: X-WS-Identifier
+          in: header
+          required: false
+          example: '{{WORKSPACE_ID}}'
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '352'
+            ETag:
+              schema:
+                type: string
+              example: W/"160-f5kelPT69hPqPcFAsS27c4HssUc"
+            Date:
+              schema:
+                type: string
+              example: Thu, 03 Apr 2025 14:33:58 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Get One Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                  data:
+                    type: object
+                    properties:
+                      utm_medium:
+                        type: string
+                      status:
+                        type: string
+                      expiration:
+                        nullable: true
+                      tags:
+                        type: array
+                        items: {}
+                      follow_recipient_order:
+                        type: boolean
+                      public_id:
+                        type: string
+                      created_at:
+                        type: string
+                        format: date-time
+                      updated_at:
+                        type: string
+                        format: date-time
+                      additional_fields:
+                        type: object
+                        properties:
+                          agreement:
+                            nullable: true
+                      message:
+                        type: object
+                        properties:
+                          subject:
+                            type: string
+              example:
+                meta:
+                  code: 200
+                data:
+                  utm_medium: web
+                  status: do_not_trust
+                  expiration: null
+                  tags: []
+                  follow_recipient_order: false
+                  public_id: 4f0b4ff0-acab-453c-82ea-aa53d25bd513
+                  created_at: '2025-03-06T17:05:01.728Z'
+                  updated_at: '2025-03-06T17:22:26.718Z'
+                  additional_fields:
+                    agreement: null
+                  message:
+                    subject: Sign with Digisign (Test)
+  /v1/requests/{id}/resolve/{recipientId}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: 12061d0a-98d0-4ae8-a48d-e83bcf043ad9
+        schema:
+          type: integer
+      - name: recipientId
+        in: path
+        required: true
+        example: 4ff30275-1a66-4e72-9916-ffb1dac308a5
+        schema:
+          type: integer
+    post:
+      summary: Resolve Request
+      parameters:
+        - name: X-O10N-Identifier
+          in: header
+          required: false
+          example: '{{ORGANISATION_ID}}'
+          schema:
+            type: string
+        - name: X-WS-Identifier
+          in: header
+          required: false
+          example: '{{WORKSPACE_ID}}'
+          schema:
+            type: string
+      responses:
+        '201':
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '40'
+            ETag:
+              schema:
+                type: string
+              example: W/"28-HFF/Kwo8WaU89AzjQJwcZyRQJL0"
+            Date:
+              schema:
+                type: string
+              example: Thu, 03 Apr 2025 15:13:25 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Resolve Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                  data:
+                    type: object
+                    properties:
+                      ok:
+                        type: boolean
+              example:
+                meta:
+                  code: 200
+                data:
+                  ok: true
+        '403':
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+              example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+              example: '*'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+              example: '145'
+            ETag:
+              schema:
+                type: string
+              example: W/"91-wZs1GJQYXT4rBlco1ZlyR/FbSrY"
+            Date:
+              schema:
+                type: string
+              example: Thu, 03 Apr 2025 15:39:28 GMT
+            Connection:
+              schema:
+                type: string
+              example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+              example: timeout=5
+          description: Resolving Request with status not set to (DO NOT TRUST)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  error:
+                    type: string
+                  statusCode:
+                    type: integer
+              example:
+                message: >-
+                  Request is not in a valid state to be resolved. Ensure the
+                  document is in a do not trust state
+                error: Forbidden
+                statusCode: 403
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+            example:
+              action: complete
+  /v1/webhooks:
+    parameters: []
+    get:
+      summary: Get All Webhooks
+      parameters:
+        - name: population
+          in: query
+          required: false
+          example: '["recipients", "documents"]'
+          schema:
+            type: string
+        - name: filter
+          in: query
+          required: false
+          example: '[{ "path": "status", "$eq": "completed" }]'
+          schema:
+            type: string
+        - name: X-O10N-Identifier
+          in: header
+          required: false
+          example: fd1a1bee-9ee6-4c7f-9ad1-b8ad084287ca
+          schema:
+            type: string
+        - name: X-WS-Identifier
+          in: header
+          required: false
+          example: fd259248-0527-40ea-adbb-3c23a9ce353a
+          schema:
+            type: string
+      responses: {}

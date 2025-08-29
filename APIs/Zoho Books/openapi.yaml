@@ -1,0 +1,1592 @@
+openapi: 3.0.0
+info:
+  title: Zoho Books Global
+  version: 1.0.0
+  description: ''
+servers:
+  - url: books.zoho.com
+paths:
+  /api/v3/bankaccounts:
+    parameters: []
+    post:
+      summary: Create a bank account
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List view of accounts
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/bankaccounts/${Bank.Account_ID}:
+    parameters: []
+    put:
+      summary: Update bank account
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/x-www-form-urlencoded
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: Get account details
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    delete:
+      summary: Delete an account
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/bankaccounts/${Bank.Account_ID}/inactive:
+    parameters: []
+    post:
+      summary: Deactivate account
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/bankaccounts/${Bank.Account_ID}/active:
+    parameters: []
+    post:
+      summary: Activate account
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/bankaccounts/${Bank.Account_ID}/statement/lastimported:
+    parameters: []
+    get:
+      summary: Get last imported statement
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/bankaccounts/${Accounts.Account_ID}/statement/${Statements.Statement_ID}:
+    parameters: []
+    delete:
+      summary: Delete last imported statement
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/bankaccounts/rules:
+    parameters: []
+    post:
+      summary: Create a rule
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/x-www-form-urlencoded
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: Get Rules List
+      parameters:
+        - name: account_id
+          in: query
+          required: false
+          example: ${Bank.Account_ID}
+          schema:
+            type: string
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/bankaccounts/rules/${Rule.Rule_ID}:
+    parameters: []
+    put:
+      summary: Update a rule
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/bankaccounts/rules/{Rule.Rule_ID}:
+    parameters: []
+    get:
+      summary: Get a rule
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/bankaccounts/rules/${Rules.Rule_ID}:
+    parameters: []
+    delete:
+      summary: Delete a rule
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/banktransactions:
+    parameters: []
+    get:
+      summary: List of Bank Transactions
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create a Bank Transaction
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/basecurrencyadjustment:
+    parameters: []
+    post:
+      summary: Create a Base Currency Adjustment
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: account_ids
+          in: query
+          required: false
+          example: ${Accounts.Account_ID}
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Base Currency Adjustments
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/bills:
+    parameters: []
+    post:
+      summary: Create a Bill
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Bills
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/chartofaccounts:
+    parameters: []
+    post:
+      summary: Create a Chart Of Account
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Chart of Accounts
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/contacts/contactpersons:
+    parameters: []
+    post:
+      summary: Create a Contact Persons
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Contact Persons
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/contacts:
+    parameters: []
+    post:
+      summary: Create a Contact
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Contacts
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/creditnotes:
+    parameters: []
+    post:
+      summary: Create a Credit Notes
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Credit Notes
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/settings/currencies:
+    parameters: []
+    post:
+      summary: Create a Currency
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Currencies
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/customerpayments:
+    parameters: []
+    post:
+      summary: Create a Customer Payment
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Customer Payments
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/estimates:
+    parameters: []
+    post:
+      summary: Create an Estimate
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Estimates
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/expenses:
+    parameters: []
+    post:
+      summary: Create an Expense
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Expenses
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/invoices:
+    parameters: []
+    post:
+      summary: Create an Invoice
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Invoices
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/items:
+    parameters: []
+    post:
+      summary: Create an Item
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Items
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/journals:
+    parameters: []
+    post:
+      summary: Create a Journal
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Journals
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/settings/openingbalances:
+    parameters: []
+    post:
+      summary: Create Opening Balance
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: Get Opening Balance
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/organizations:
+    parameters: []
+    get:
+      summary: List of Organizations
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create an Organization
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/projects:
+    parameters: []
+    post:
+      summary: Create a Project
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Projects
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/purchaseorders:
+    parameters: []
+    get:
+      summary: List of Purchase Orders
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create a Purchase Order
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/recurringexpenses:
+    parameters: []
+    post:
+      summary: Create a Recurring Expenses
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Recurring Expenses
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/recurringinvoices:
+    parameters: []
+    post:
+      summary: Create a Recurring Invoice
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Recurring Invoices
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/retainerinvoices:
+    parameters: []
+    post:
+      summary: Create a Retainer Invoice
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Retainer Invoices
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders:
+    parameters: []
+    post:
+      summary: Create sales order
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update Sales Order
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Sales Orders
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/${SalesOrder.Sales_Order_ID}:
+    parameters: []
+    get:
+      summary: Get a Sales Order
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    delete:
+      summary: Delete a Sales Order
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/${SalesOrder.Sales_Order_ID}/status/open:
+    parameters: []
+    post:
+      summary: Mark a Sales Order as Open
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/${SalesOrder.Sales_Order_ID}/status/void:
+    parameters: []
+    post:
+      summary: Mark a Sales Order as Void
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/${SalesOrder.Sales_Order_ID}/email:
+    parameters: []
+    get:
+      summary: 'Get Sales Order Email Content '
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Email a Sales Order
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/pdf:
+    parameters: []
+    get:
+      summary: Bulk Export Sales Orders
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: salesorder_ids
+          in: query
+          required: false
+          example: ${SalesOrder.Sales_Order_IDs}
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/print:
+    parameters: []
+    get:
+      summary: Bulk Print Sales Orders
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: salesorder_ids
+          in: query
+          required: false
+          example: ${SalesOrder.Sales_Order_IDs}
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/${SalesOrders.Sales_Order_ID}/address/billing:
+    parameters: []
+    put:
+      summary: Update Billing Address
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/${SalesOrders.Sales_Order_ID}/address/shipping:
+    parameters: []
+    put:
+      summary: Update Shipping Address
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/templates:
+    parameters: []
+    get:
+      summary: List Sales Orders Templates
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/${SalesOrder.Sales_Order_ID}/templates/${Template.Template_ID}:
+    parameters: []
+    put:
+      summary: Update Sales Order Template
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/${SalesOrder.Sales_Order_ID}/attachment:
+    parameters: []
+    get:
+      summary: Get a Sales Order Attachment
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Add Attachment to a Sales Order
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update Attachment Preference
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    delete:
+      summary: Delete an Attachment
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/${SalesOrder.Sales_Order_ID}/comments:
+    parameters: []
+    get:
+      summary: List Sales Order Commens & History
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Add Comment
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/salesorders/${SalesOrder.Sales_Order_ID}/comments/${Comments.Comment_ID}:
+    parameters: []
+    put:
+      summary: Update Comment
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    delete:
+      summary: Delete a Comment
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/projects/${Project.Project_ID}/tasks:
+    parameters: []
+    post:
+      summary: Create a Task
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/projects/${Projects.Project_ID}/tasks:
+    parameters: []
+    get:
+      summary: List of tasks
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/settings/taxes:
+    parameters: []
+    get:
+      summary: List of taxes
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create a tax
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/projects/timeentries:
+    parameters: []
+    post:
+      summary: Create a Time Entry
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Time Entries
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/users:
+    parameters: []
+    post:
+      summary: Create a User
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Users
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/vendorcredits:
+    parameters: []
+    post:
+      summary: Create a Vendor Credit
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Vendor Credits
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+  /api/v3/vendorpayments:
+    parameters: []
+    post:
+      summary: Create a Vendor Payment
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List of Vendor Payments
+      parameters:
+        - name: organization_id
+          in: query
+          required: false
+          example: '{{Organization.Organization_ID}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Zoho-authtoken {{User.Auth_Token}}
+          schema:
+            type: string
+      responses: {}

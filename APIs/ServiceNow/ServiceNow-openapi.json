@@ -1,0 +1,2581 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Service for Service-Now",
+        "title": "Service-Now Service",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/change/standard/{sysid}": {
+            "get": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Get Standard change",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "change"
+                ],
+                "summary": "Get Standard change",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "sysid",
+                        "name": "template",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Change Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.ChangeRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.ChangeResult"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Create Standard change",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "change"
+                ],
+                "summary": "Create Standard change",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "sysid",
+                        "name": "template",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Change Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.ChangeRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.ChangeResult"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Update Standard change",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "change"
+                ],
+                "summary": "Update Standard change",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "sysid",
+                        "name": "template",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Change Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.ChangeRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.ChangeResult"
+                        }
+                    }
+                }
+            }
+        },
+        "/incidents": {
+            "get": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Get Service Now Incidents",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Get Service Now Incidents",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Incident Number in the form INC123456",
+                        "name": "number",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "page (zero-based)",
+                        "name": "page",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/servicenow.IncidentResponse"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Create a Service Now Incident",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Create a Service Now Incident",
+                "parameters": [
+                    {
+                        "description": "Incident Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.IncidentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.IncidentResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/incidents/{sysid}": {
+            "get": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Get Service Now Incidents by sysid",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Get Service Now Incidents by sysid",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "sysid",
+                        "name": "sysid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.IncidentResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/incidents/{sysid}/worknotes": {
+            "patch": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Add a Worknote to a Service Now Incident",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Incidents"
+                ],
+                "summary": "Add a Worknote to a Service Now Incident",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "sysid",
+                        "name": "sysid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Work Note",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Worknote Added"
+                    }
+                }
+            }
+        },
+        "/requests/merge": {
+            "post": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Submit a Merge Request through Service Now",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Requests"
+                ],
+                "summary": "Submit a Merge Request through Service Now",
+                "parameters": [
+                    {
+                        "description": "Merge Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.MergeRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.MergeResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/requests/sponsoredaccount": {
+            "post": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Submit a Sponsored Account Request through Service Now",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Requests"
+                ],
+                "summary": "Submit a Sponsored Account Request through Service Now",
+                "parameters": [
+                    {
+                        "description": "Sponsored Account Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.SponsoredAccountRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.FormResult"
+                        }
+                    }
+                }
+            }
+        },
+        "/ritms/{number}": {
+            "get": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Get Service Now RITM by number",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "RITM"
+                ],
+                "summary": "Get Service Now RITM by number",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "RITM number",
+                        "name": "number",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/servicenow.RITM"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{userid}": {
+            "get": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Get Service Now User by username",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get Service Now User by username",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "userid",
+                        "name": "userid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/servicenow.UserResult"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{userid}/.sync": {
+            "post": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Sync Service Now User by username",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Sync a Service Now User by username",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "userid",
+                        "name": "userid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "force sync of limited or unchanged user",
+                        "name": "force",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            }
+        },
+        "/users/{userid}/incidents": {
+            "get": {
+                "security": [
+                    {
+                        "psuOAuth2": [
+                            "full:access"
+                        ]
+                    }
+                ],
+                "description": "Get Service Now Incidents for Contact",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get Service Now Incidents by Contact",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "userid",
+                        "name": "userid",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "page (zero-based)",
+                        "name": "page",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/servicenow.IncidentResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "servicenow.AccountAction": {
+            "type": "string",
+            "enum": [
+                "add"
+            ],
+            "x-enum-varnames": [
+                "AccountActionAdd"
+            ]
+        },
+        "servicenow.Active": {
+            "type": "object",
+            "properties": {
+                "display_value": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "servicenow.ActivityDue": {
+            "type": "object",
+            "properties": {
+                "display_value": {
+                    "type": "string"
+                },
+                "display_value_internal": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicenow.ChangeRequest": {
+            "type": "object",
+            "properties": {
+                "__status": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "string",
+                    "example": "false"
+                },
+                "activity_due": {
+                    "type": "string"
+                },
+                "additional_assignee_list": {
+                    "type": "string"
+                },
+                "approval": {
+                    "type": "string"
+                },
+                "approval_history": {
+                    "type": "string"
+                },
+                "approval_set": {
+                    "type": "string"
+                },
+                "assigned_to": {
+                    "type": "string"
+                },
+                "assignment_group": {
+                    "type": "string"
+                },
+                "backout_plan": {
+                    "type": "string"
+                },
+                "business_duration": {
+                    "type": "string"
+                },
+                "cab_date": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "cab_delegate": {
+                    "type": "string"
+                },
+                "cab_recommendation": {
+                    "type": "string"
+                },
+                "cab_required": {
+                    "type": "string",
+                    "example": "false"
+                },
+                "calendar_duration": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "change_plan": {
+                    "type": "string"
+                },
+                "close_code": {
+                    "type": "string"
+                },
+                "close_notes": {
+                    "type": "string"
+                },
+                "closed_at": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "closed_by": {
+                    "type": "string"
+                },
+                "cmdb_ci": {
+                    "type": "string"
+                },
+                "comments": {
+                    "type": "string"
+                },
+                "comments_and_work_notes": {
+                    "type": "string"
+                },
+                "company": {
+                    "type": "string"
+                },
+                "conflict_last_run": {
+                    "type": "string"
+                },
+                "conflict_status": {
+                    "type": "string"
+                },
+                "contact_type": {
+                    "type": "string"
+                },
+                "correlation_display": {
+                    "type": "string"
+                },
+                "correlation_id": {
+                    "type": "string"
+                },
+                "delivery_plan": {
+                    "type": "string"
+                },
+                "delivery_task": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "due_date": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "end_date": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "escalation": {
+                    "type": "string"
+                },
+                "expected_start": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "follow_up": {
+                    "type": "string"
+                },
+                "group_list": {
+                    "type": "string"
+                },
+                "impact": {
+                    "type": "string"
+                },
+                "implementation_plan": {
+                    "type": "string"
+                },
+                "justification": {
+                    "type": "string"
+                },
+                "knowledge": {
+                    "type": "string",
+                    "example": "false"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "made_sla": {
+                    "type": "string",
+                    "example": "false"
+                },
+                "number": {
+                    "type": "string"
+                },
+                "on_hold": {
+                    "type": "string",
+                    "example": "false"
+                },
+                "on_hold_reason": {
+                    "type": "string"
+                },
+                "opened_at": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "opened_by": {
+                    "type": "string"
+                },
+                "order": {
+                    "type": "string"
+                },
+                "outside_maintenance_schedule": {
+                    "type": "string",
+                    "example": "false"
+                },
+                "parent": {
+                    "type": "string"
+                },
+                "phase": {
+                    "type": "string"
+                },
+                "phase_state": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "string"
+                },
+                "production_system": {
+                    "type": "string",
+                    "example": "false"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "reassignment_count": {
+                    "type": "string"
+                },
+                "requested_by": {
+                    "type": "string"
+                },
+                "requested_by_date": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "review_comments": {
+                    "type": "string"
+                },
+                "review_date": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "review_status": {
+                    "type": "string"
+                },
+                "risk": {
+                    "type": "string"
+                },
+                "risk_impact_analysis": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "service_offering": {
+                    "type": "string"
+                },
+                "short_description": {
+                    "type": "string"
+                },
+                "sla_due": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "state": {
+                    "type": "integer"
+                },
+                "std_change_producer_version": {
+                    "type": "string"
+                },
+                "sys_class_name": {
+                    "type": "string"
+                },
+                "sys_created_by": {
+                    "type": "string"
+                },
+                "sys_created_on": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "sys_domain": {
+                    "type": "string"
+                },
+                "sys_domain_path": {
+                    "type": "string"
+                },
+                "sys_id": {
+                    "type": "string"
+                },
+                "sys_mod_count": {
+                    "type": "string"
+                },
+                "sys_tags": {
+                    "type": "string"
+                },
+                "sys_updated_by": {
+                    "type": "string"
+                },
+                "sys_updated_on": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "test_plan": {
+                    "type": "string"
+                },
+                "time_worked": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "u_implementation_code": {
+                    "type": "string"
+                },
+                "u_implementation_notes": {
+                    "type": "string"
+                },
+                "u_implementation_plan": {
+                    "type": "string"
+                },
+                "upon_approval": {
+                    "type": "string"
+                },
+                "upon_reject": {
+                    "type": "string"
+                },
+                "urgency": {
+                    "type": "string"
+                },
+                "user_input": {
+                    "type": "string"
+                },
+                "watch_list": {
+                    "type": "string"
+                },
+                "work_end": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "work_notes": {
+                    "type": "string"
+                },
+                "work_notes_list": {
+                    "type": "string"
+                },
+                "work_start": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                }
+            }
+        },
+        "servicenow.ChangeResult": {
+            "type": "object",
+            "properties": {
+                "__meta": {
+                    "$ref": "#/definitions/servicenow.Meta"
+                },
+                "active": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "activity_due": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "additional_assignee_list": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "approval": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "approval_history": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "approval_set": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "assigned_to": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "assignment_group": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "backout_plan": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "business_duration": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "cab_date": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "cab_delegate": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "cab_recommendation": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "cab_required": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "calendar_duration": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "category": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "change_plan": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "close_code": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "close_notes": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "closed_at": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "closed_by": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "cmdb_ci": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "comments": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "comments_and_work_notes": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "company": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "conflict_last_run": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "conflict_status": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "contact_type": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "contract": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "correlation_display": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "correlation_id": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "description": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "due_date": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "end_date": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "escalation": {
+                    "$ref": "#/definitions/servicenow.Escalation"
+                },
+                "expected_start": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "follow_up": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "group_list": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "impact": {
+                    "$ref": "#/definitions/servicenow.Escalation"
+                },
+                "implementation_plan": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "justification": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "knowledge": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "location": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "made_sla": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "number": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "on_hold": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "on_hold_reason": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "on_hold_task": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "opened_at": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "opened_by": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "order": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "outside_maintenance_schedule": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "parent": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "phase": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "phase_state": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "priority": {
+                    "$ref": "#/definitions/servicenow.Escalation"
+                },
+                "production_system": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "reason": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "reassignment_count": {
+                    "$ref": "#/definitions/servicenow.Escalation"
+                },
+                "rejection_goto": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "requested_by": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "requested_by_date": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "review_comments": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "review_date": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "review_status": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "risk": {
+                    "$ref": "#/definitions/servicenow.Escalation"
+                },
+                "risk_impact_analysis": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "risk_value": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "scope": {
+                    "$ref": "#/definitions/servicenow.Escalation"
+                },
+                "service_offering": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "short_description": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "skills": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "sla_due": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "start_date": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "state": {
+                    "$ref": "#/definitions/servicenow.Escalation"
+                },
+                "std_change_producer_version": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "sys_class_name": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "sys_created_by": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "sys_created_on": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "sys_domain": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "sys_id": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "sys_tags": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "sys_updated_by": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "sys_updated_on": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "test_plan": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "time_worked": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "type": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_access_groups": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_access_users": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_affects_level_3_4_data": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "u_api_field_1": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_api_field_2": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_api_field_3": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_api_field_4": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_api_field_5": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_attachment_changes": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_building_number": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_campus": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_cancelled": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "u_communication_plan": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_emergency_pir_comm_prior_imp": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_emergency_pir_follow_up_comm": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_emergency_pir_impl_plan_followed": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_emergency_pir_risk_vetted": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_emergency_pir_rollback_documented": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_emergency_pir_tested": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_implementation_code": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_implementation_notes": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_normal_pir_comm_feedback": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_normal_pir_comm_plan_followed": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_normal_pir_implementation_plan": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_normal_pir_risk_level_appropriate": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_normal_pir_rollback_plan": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_normal_pir_test_plan_followed": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_normal_pir_unforseen_impact": {
+                    "description": "nolint - ignore misspelling",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/servicenow.LinkValue"
+                        }
+                    ]
+                },
+                "u_outcome": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_pir_feedback": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_probability_of_success": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_processed_state": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_ra_complete": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "u_ra_taken": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "u_restrict_access": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "u_risk_assessment_counter": {
+                    "$ref": "#/definitions/servicenow.Escalation"
+                },
+                "u_sat_survey_key": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_service": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_unit": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_urgent": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "u_url": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "unauthorized": {
+                    "$ref": "#/definitions/servicenow.Active"
+                },
+                "upon_approval": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "upon_reject": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "urgency": {
+                    "$ref": "#/definitions/servicenow.Escalation"
+                },
+                "user_input": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "variables": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "watch_list": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "work_end": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                },
+                "work_notes": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "work_notes_list": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "work_start": {
+                    "$ref": "#/definitions/servicenow.ActivityDue"
+                }
+            }
+        },
+        "servicenow.Escalation": {
+            "type": "object",
+            "properties": {
+                "display_value": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicenow.FormResult": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "string"
+                },
+                "parent_id": {
+                    "type": "string"
+                },
+                "parent_table": {
+                    "type": "string"
+                },
+                "request_id": {
+                    "type": "string"
+                },
+                "request_number": {
+                    "description": "UINotification []interface{} `json:\"$$uiNotification\"` // type",
+                    "type": "string"
+                },
+                "sys_id": {
+                    "type": "string"
+                },
+                "table": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicenow.IncidentRequest": {
+            "type": "object",
+            "properties": {
+                "assignment_group": {
+                    "type": "string"
+                },
+                "caller_id": {
+                    "type": "string"
+                },
+                "comments": {
+                    "type": "string"
+                },
+                "contact_type": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "impact": {
+                    "type": "string"
+                },
+                "service_offering": {
+                    "type": "string"
+                },
+                "short_description": {
+                    "type": "string"
+                },
+                "skills": {
+                    "type": "string"
+                },
+                "sys_id": {
+                    "type": "string"
+                },
+                "u_external_id": {
+                    "type": "string"
+                },
+                "u_external_url": {
+                    "type": "string"
+                },
+                "u_type": {
+                    "type": "string"
+                },
+                "urgency": {
+                    "type": "string"
+                },
+                "watch_list": {
+                    "type": "string"
+                },
+                "work_notes": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicenow.IncidentResponse": {
+            "type": "object",
+            "properties": {
+                "actions_taken": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "string"
+                },
+                "activity_due": {
+                    "type": "string"
+                },
+                "additional_assignee_list": {
+                    "type": "string"
+                },
+                "approval": {
+                    "type": "string"
+                },
+                "approval_history": {
+                    "type": "string"
+                },
+                "approval_set": {
+                    "type": "string"
+                },
+                "assigned_to": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "assignment_group": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "business_duration": {
+                    "type": "string"
+                },
+                "business_impact": {
+                    "type": "string"
+                },
+                "business_service": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "business_stc": {
+                    "type": "string"
+                },
+                "calendar_duration": {
+                    "type": "string"
+                },
+                "calendar_stc": {
+                    "type": "string"
+                },
+                "caller_id": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "cause": {
+                    "type": "string"
+                },
+                "caused_by": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "child_incidents": {
+                    "type": "string"
+                },
+                "close_code": {
+                    "type": "string"
+                },
+                "close_notes": {
+                    "type": "string"
+                },
+                "closed_at": {
+                    "type": "string"
+                },
+                "closed_by": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "cmdb_ci": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "comments": {
+                    "type": "string"
+                },
+                "comments_and_work_notes": {
+                    "type": "string"
+                },
+                "company": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "contact_type": {
+                    "type": "string"
+                },
+                "contract": {
+                    "type": "string"
+                },
+                "correlation_display": {
+                    "type": "string"
+                },
+                "correlation_id": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "due_date": {
+                    "type": "string"
+                },
+                "escalation": {
+                    "type": "string"
+                },
+                "expected_start": {
+                    "type": "string"
+                },
+                "follow_up": {
+                    "type": "string"
+                },
+                "group_list": {
+                    "type": "string"
+                },
+                "hold_reason": {
+                    "type": "string"
+                },
+                "impact": {
+                    "type": "string"
+                },
+                "incident_state": {
+                    "type": "string"
+                },
+                "knowledge": {
+                    "type": "string"
+                },
+                "lessons_learned": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "made_sla": {
+                    "type": "string"
+                },
+                "major_incident_state": {
+                    "type": "string"
+                },
+                "notify": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "string"
+                },
+                "opened_at": {
+                    "type": "string"
+                },
+                "opened_by": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "order": {
+                    "type": "string"
+                },
+                "overview": {
+                    "type": "string"
+                },
+                "parent": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "parent_incident": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "priority": {
+                    "type": "string"
+                },
+                "problem_id": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "promoted_by": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "promoted_on": {
+                    "type": "string"
+                },
+                "proposed_by": {
+                    "type": "string"
+                },
+                "proposed_on": {
+                    "type": "string"
+                },
+                "reassignment_count": {
+                    "type": "string"
+                },
+                "reopen_count": {
+                    "type": "string"
+                },
+                "reopened_by": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "reopened_time": {
+                    "type": "string"
+                },
+                "resolved_at": {
+                    "type": "string"
+                },
+                "resolved_by": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "rfc": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "service_offering": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "severity": {
+                    "type": "string"
+                },
+                "short_description": {
+                    "type": "string"
+                },
+                "skills": {
+                    "type": "string"
+                },
+                "sla_due": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "subcategory": {
+                    "type": "string"
+                },
+                "sys_class_name": {
+                    "type": "string"
+                },
+                "sys_created_by": {
+                    "type": "string"
+                },
+                "sys_created_on": {
+                    "type": "string"
+                },
+                "sys_domain": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "sys_id": {
+                    "type": "string"
+                },
+                "sys_mod_count": {
+                    "type": "string"
+                },
+                "sys_tags": {
+                    "type": "string"
+                },
+                "sys_updated_by": {
+                    "type": "string"
+                },
+                "sys_updated_on": {
+                    "type": "string"
+                },
+                "time_worked": {
+                    "type": "string"
+                },
+                "timeline": {
+                    "type": "string"
+                },
+                "u_access_groups": {
+                    "type": "string"
+                },
+                "u_access_users": {
+                    "type": "string"
+                },
+                "u_assignment_group_with_priori": {
+                    "type": "string"
+                },
+                "u_attachment_changes": {
+                    "type": "string"
+                },
+                "u_bridge": {
+                    "type": "string"
+                },
+                "u_building": {
+                    "type": "string"
+                },
+                "u_building_number": {
+                    "type": "string"
+                },
+                "u_business_service": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_campus": {
+                    "type": "string"
+                },
+                "u_cancelled": {
+                    "type": "string"
+                },
+                "u_category": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_ci_case_number": {
+                    "type": "string"
+                },
+                "u_civil": {
+                    "type": "string"
+                },
+                "u_comment": {
+                    "type": "string"
+                },
+                "u_complaint_date_time": {
+                    "type": "string"
+                },
+                "u_connection_type": {
+                    "type": "string"
+                },
+                "u_contact_location": {
+                    "type": "string"
+                },
+                "u_contacts_location": {
+                    "type": "string"
+                },
+                "u_copyright_holder": {
+                    "type": "string"
+                },
+                "u_copyright_holder_email_address": {
+                    "type": "string"
+                },
+                "u_cust_bus_impact": {
+                    "type": "string"
+                },
+                "u_device_type": {
+                    "type": "string"
+                },
+                "u_duplicate": {
+                    "type": "string"
+                },
+                "u_email": {
+                    "type": "string"
+                },
+                "u_environment": {
+                    "type": "string"
+                },
+                "u_external_id": {
+                    "type": "string"
+                },
+                "u_external_url": {
+                    "type": "string"
+                },
+                "u_file_hash": {
+                    "type": "string"
+                },
+                "u_file_name": {
+                    "type": "string"
+                },
+                "u_file_type": {
+                    "type": "string"
+                },
+                "u_first_assignment_group": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_follow_up": {
+                    "type": "string"
+                },
+                "u_group_watch_list": {
+                    "type": "string"
+                },
+                "u_groups_involved": {
+                    "type": "string"
+                },
+                "u_initial_assignment": {
+                    "type": "string"
+                },
+                "u_ip_address": {
+                    "type": "string"
+                },
+                "u_itil_updated": {
+                    "type": "string"
+                },
+                "u_locations_involved": {
+                    "type": "string"
+                },
+                "u_log": {
+                    "type": "string"
+                },
+                "u_log_request": {
+                    "type": "string"
+                },
+                "u_mac_address": {
+                    "type": "string"
+                },
+                "u_major": {
+                    "type": "string"
+                },
+                "u_need_to_create_knowledge_article": {
+                    "type": "string"
+                },
+                "u_network_contacts": {
+                    "type": "string"
+                },
+                "u_network_contacts_email_address": {
+                    "type": "string"
+                },
+                "u_notifications": {
+                    "type": "string"
+                },
+                "u_office_to_notify": {
+                    "type": "string"
+                },
+                "u_original_complaint": {
+                    "type": "string"
+                },
+                "u_other": {
+                    "type": "string"
+                },
+                "u_path": {
+                    "type": "string"
+                },
+                "u_phone": {
+                    "type": "string"
+                },
+                "u_pinnacle_pre_order_number": {
+                    "type": "string"
+                },
+                "u_platform": {
+                    "type": "string"
+                },
+                "u_protocol": {
+                    "type": "string"
+                },
+                "u_request": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_resolution_code": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_resolution_count": {
+                    "type": "string"
+                },
+                "u_resolve_group_with_priority": {
+                    "type": "string"
+                },
+                "u_restrict": {
+                    "type": "string"
+                },
+                "u_room": {
+                    "type": "string"
+                },
+                "u_sat_survey_key": {
+                    "type": "string"
+                },
+                "u_services_impacted": {
+                    "type": "string"
+                },
+                "u_show_service": {
+                    "type": "string"
+                },
+                "u_spam": {
+                    "type": "string"
+                },
+                "u_special_email_address": {
+                    "type": "string"
+                },
+                "u_story_id": {
+                    "type": "string"
+                },
+                "u_summary": {
+                    "type": "string"
+                },
+                "u_technical_component": {
+                    "type": "string"
+                },
+                "u_test_field": {
+                    "type": "string"
+                },
+                "u_time_spent": {
+                    "type": "string"
+                },
+                "u_transferred_from": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_type": {
+                    "type": "string"
+                },
+                "u_unit": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_url_path": {
+                    "type": "string"
+                },
+                "u_user_campus": {
+                    "type": "string"
+                },
+                "u_user_ip_address": {
+                    "type": "string"
+                },
+                "u_user_mac_address": {
+                    "type": "string"
+                },
+                "u_user_type": {
+                    "type": "string"
+                },
+                "u_userid": {
+                    "type": "string"
+                },
+                "u_vendor": {
+                    "type": "string"
+                },
+                "u_version": {
+                    "type": "string"
+                },
+                "u_vm_name": {
+                    "type": "string"
+                },
+                "upon_approval": {
+                    "type": "string"
+                },
+                "upon_reject": {
+                    "type": "string"
+                },
+                "urgency": {
+                    "type": "string"
+                },
+                "user_input": {
+                    "type": "string"
+                },
+                "watch_list": {
+                    "type": "string"
+                },
+                "work_end": {
+                    "type": "string"
+                },
+                "work_notes": {
+                    "type": "string"
+                },
+                "work_notes_list": {
+                    "type": "string"
+                },
+                "work_start": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicenow.LinkValue": {
+            "type": "object",
+            "properties": {
+                "display_value": {
+                    "type": "string"
+                },
+                "link": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicenow.MergeRequest": {
+            "type": "object",
+            "properties": {
+                "comments": {
+                    "type": "string"
+                },
+                "dateOfBirth": {
+                    "$ref": "#/definitions/time.LocalDate"
+                },
+                "duplicateIDs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/servicenow.MergeRequestPsuid"
+                    }
+                },
+                "emailAddress": {
+                    "type": "string"
+                },
+                "familyName": {
+                    "type": "string"
+                },
+                "givenName": {
+                    "type": "string"
+                },
+                "middleName": {
+                    "type": "string"
+                },
+                "previousFamilyName": {
+                    "type": "string"
+                },
+                "servicesDenied": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicenow.MergeRequestPsuid": {
+            "type": "object",
+            "properties": {
+                "otherSystem": {
+                    "description": "OtherSystem is only displayed when UsedInSystem is `Other`",
+                    "type": "string"
+                },
+                "psuid": {
+                    "type": "string"
+                },
+                "usedInSystem": {
+                    "$ref": "#/definitions/servicenow.SystemOfUse"
+                }
+            }
+        },
+        "servicenow.MergeResponse": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "string"
+                },
+                "parent_id": {
+                    "type": "string"
+                },
+                "parent_table": {
+                    "type": "string"
+                },
+                "request_id": {
+                    "type": "string"
+                },
+                "request_number": {
+                    "description": "UINotification []interface{} `json:\"$$uiNotification\"` // type",
+                    "type": "string"
+                },
+                "sys_id": {
+                    "type": "string"
+                },
+                "table": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicenow.Meta": {
+            "type": "object",
+            "properties": {
+                "ignoredFields": {
+                    "type": "array",
+                    "items": {}
+                }
+            }
+        },
+        "servicenow.O365Entitlement": {
+            "type": "string",
+            "enum": [
+                "faculty",
+                "student"
+            ],
+            "x-enum-comments": {
+                "O365EntitlementStudent": "TODO: verify"
+            },
+            "x-enum-varnames": [
+                "O365EntitlementFaculty",
+                "O365EntitlementStudent"
+            ]
+        },
+        "servicenow.O365Service": {
+            "type": "string",
+            "enum": [
+                "none",
+                "o365 suite",
+                "o365 email"
+            ],
+            "x-enum-varnames": [
+                "O365ServiceNone",
+                "O365ServiceFull",
+                "O365ServiceEmail"
+            ]
+        },
+        "servicenow.PASSService": {
+            "type": "string",
+            "enum": [
+                "N/A",
+                "PASS",
+                "PASS_WEBSPACE"
+            ],
+            "x-enum-varnames": [
+                "PASSServiceNone",
+                "PASSServicePASS",
+                "PASSServicePASSWeb"
+            ]
+        },
+        "servicenow.RITM": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "description": "Number is the RITM1234567 value",
+                    "type": "string"
+                },
+                "request": {
+                    "description": "Request _should_ contain the parent request's number (e.g. REQ1234567) in `display_value`",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/servicenow.LinkValue"
+                        }
+                    ]
+                }
+            }
+        },
+        "servicenow.SNTime": {
+            "type": "object",
+            "properties": {
+                "time.Time": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicenow.SponsoredAccountRequest": {
+            "type": "object",
+            "properties": {
+                "accessid": {
+                    "description": "PssaCoaValidationError string                   `json:\"pssa_coa_validation_error\"`\nCostObject             string                   `json:\"cost_object\"`",
+                    "type": "string"
+                },
+                "account_action": {
+                    "description": "\"add\"",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/servicenow.AccountAction"
+                        }
+                    ]
+                },
+                "account_end_date": {
+                    "type": "string"
+                },
+                "cost_object_text": {
+                    "description": "Use this one to fill out the cost object",
+                    "type": "string"
+                },
+                "entitlement": {
+                    "description": "InstructionText        BooleanString            `json:\"instruction_text\"`\nUFinancialCostObjects  BooleanString            `json:\"u_financial_cost_objects\"`\nAccountInfo            string                   `json:\"account_info\"`\nBusinessArea           string                   `json:\"business_area\"`",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/servicenow.O365Entitlement"
+                        }
+                    ]
+                },
+                "i_agree": {
+                    "type": "boolean"
+                },
+                "lab_printing": {
+                    "description": "\"Yes\" or \"No\"",
+                    "type": "boolean"
+                },
+                "pssa_pass_service": {
+                    "description": "\"PASS\"",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/servicenow.PASSService"
+                        }
+                    ]
+                },
+                "requested_service": {
+                    "description": "\"o365 suite\"",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/servicenow.O365Service"
+                        }
+                    ]
+                },
+                "short_description": {
+                    "description": "ModifyAccountInfo      string                   `json:\"modify_account_info\"`",
+                    "type": "string"
+                },
+                "show_cost_object_text": {
+                    "description": "\"true\"",
+                    "type": "boolean"
+                },
+                "validate_cost_object": {
+                    "type": "boolean"
+                },
+                "vs_requested_for": {
+                    "type": "string"
+                }
+            }
+        },
+        "servicenow.SystemOfUse": {
+            "type": "string",
+            "enum": [
+                "",
+                "other",
+                "canvas",
+                "lionpath",
+                "job application",
+                "library",
+                "lrn",
+                "student application",
+                "workday"
+            ],
+            "x-enum-varnames": [
+                "None",
+                "Other",
+                "Canvas",
+                "LionPATH",
+                "JobApplication",
+                "Library",
+                "LRN",
+                "StudentApplication",
+                "Workday"
+            ]
+        },
+        "servicenow.UserResult": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "string"
+                },
+                "agent_status": {
+                    "type": "string"
+                },
+                "avatar": {
+                    "type": "string"
+                },
+                "average_daily_fte": {
+                    "type": "string"
+                },
+                "building": {
+                    "type": "string"
+                },
+                "calendar_integration": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "company": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "date_format": {
+                    "type": "string"
+                },
+                "department": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "employee_number": {
+                    "type": "string"
+                },
+                "enable_multifactor_authn": {
+                    "type": "string"
+                },
+                "failed_attempts": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "geolocation_tracked": {
+                    "type": "string"
+                },
+                "home_phone": {
+                    "type": "string"
+                },
+                "internal_integration_user": {
+                    "type": "string"
+                },
+                "introduction": {
+                    "type": "string"
+                },
+                "last_login": {
+                    "type": "string"
+                },
+                "last_login_time": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "last_position_update": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "string"
+                },
+                "ldap_server": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "limit_concurrent_sessions": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "locked_out": {
+                    "type": "string"
+                },
+                "longitude": {
+                    "type": "string"
+                },
+                "manager": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "middle_name": {
+                    "type": "string"
+                },
+                "mobile_phone": {
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Full name and userid eg.  \"FirstName LastName (abc123)\"",
+                    "type": "string"
+                },
+                "notification": {
+                    "type": "string"
+                },
+                "on_schedule": {
+                    "type": "string"
+                },
+                "password_needs_reset": {
+                    "type": "string"
+                },
+                "phone": {
+                    "description": "Employee phone eg. \"18148675309\"",
+                    "type": "string"
+                },
+                "photo": {
+                    "type": "string"
+                },
+                "preferred_language": {
+                    "type": "string"
+                },
+                "schedule": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "source": {
+                    "description": "\"ldap\"",
+                    "type": "string"
+                },
+                "sso_source": {
+                    "type": "string"
+                },
+                "state": {
+                    "description": "State Abbrev eg. \"PA\"",
+                    "type": "string"
+                },
+                "street": {
+                    "type": "string"
+                },
+                "sys_class_name": {
+                    "type": "string"
+                },
+                "sys_created_by": {
+                    "type": "string"
+                },
+                "sys_created_on": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "sys_domain": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "sys_id": {
+                    "type": "string"
+                },
+                "sys_mod_count": {
+                    "type": "string"
+                },
+                "sys_tags": {
+                    "type": "string"
+                },
+                "sys_updated_by": {
+                    "type": "string"
+                },
+                "sys_updated_on": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "time_format": {
+                    "type": "string"
+                },
+                "time_zone": {
+                    "type": "string"
+                },
+                "title": {
+                    "description": "job title eg. \"Programmer/Analyst 3\"",
+                    "type": "string"
+                },
+                "u_account_type": {
+                    "description": "Standard/Limited eg. \"STANDARD\"",
+                    "type": "string"
+                },
+                "u_address_2": {
+                    "type": "string"
+                },
+                "u_address_3": {
+                    "type": "string"
+                },
+                "u_address_4": {
+                    "type": "string"
+                },
+                "u_admin_area": {
+                    "type": "string"
+                },
+                "u_business_area_code": {
+                    "type": "string"
+                },
+                "u_campus": {
+                    "description": "eg. \"University Park\"",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/servicenow.LinkValue"
+                        }
+                    ]
+                },
+                "u_campus_address": {
+                    "type": "string"
+                },
+                "u_campus_override_lock": {
+                    "type": "string"
+                },
+                "u_company_overridelock": {
+                    "type": "string"
+                },
+                "u_current_semester_campus_code": {
+                    "type": "string"
+                },
+                "u_current_semester_campus_name": {
+                    "type": "string"
+                },
+                "u_department_code": {
+                    "type": "string"
+                },
+                "u_employee_campus_code": {
+                    "description": "eg. \"UP\"",
+                    "type": "string"
+                },
+                "u_employee_campus_name": {
+                    "description": "eg. \"University Park Campus\"",
+                    "type": "string"
+                },
+                "u_employee_status_code": {
+                    "type": "string"
+                },
+                "u_fake_cost": {
+                    "type": "string"
+                },
+                "u_hershey_email": {
+                    "type": "string"
+                },
+                "u_home_phone": {
+                    "type": "string"
+                },
+                "u_id_card_number": {
+                    "type": "string"
+                },
+                "u_ldap_refresh": {
+                    "$ref": "#/definitions/servicenow.SNTime"
+                },
+                "u_legal_first_name": {
+                    "type": "string"
+                },
+                "u_legal_last_name": {
+                    "type": "string"
+                },
+                "u_legal_name": {
+                    "description": "eg. \"FirstName LastName\"",
+                    "type": "string"
+                },
+                "u_local_vip_designation": {
+                    "type": "string"
+                },
+                "u_manager_psuid": {
+                    "type": "string"
+                },
+                "u_memo": {
+                    "type": "string"
+                },
+                "u_nickname": {
+                    "type": "string"
+                },
+                "u_office_address": {
+                    "type": "string"
+                },
+                "u_perm_address": {
+                    "type": "string"
+                },
+                "u_permanent_address_country_name": {
+                    "type": "string"
+                },
+                "u_personal_email": {
+                    "type": "string"
+                },
+                "u_preferred_last_name": {
+                    "type": "string"
+                },
+                "u_primary_address": {
+                    "type": "string"
+                },
+                "u_primary_group": {
+                    "$ref": "#/definitions/servicenow.LinkValue"
+                },
+                "u_secondary_email": {
+                    "type": "string"
+                },
+                "u_string_1": {
+                    "type": "string"
+                },
+                "u_task_count": {
+                    "type": "string"
+                },
+                "u_type": {
+                    "description": "EduPersonAffiliation eg. \"STAFF\"",
+                    "type": "string"
+                },
+                "u_unit": {
+                    "description": "eg. \"INFORMATION TECH SERVICES\"",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/servicenow.LinkValue"
+                        }
+                    ]
+                },
+                "user_name": {
+                    "type": "string"
+                },
+                "vip": {
+                    "type": "string"
+                },
+                "web_service_access_only": {
+                    "type": "string"
+                },
+                "zip": {
+                    "type": "string"
+                }
+            }
+        },
+        "time.LocalDate": {
+            "type": "object",
+            "properties": {
+                "time.Time": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "psuOAuth2": {
+            "type": "oauth2",
+            "flow": "implicit",
+            "authorizationUrl": "https://develop-hydra-auth-server.qa.k8s.psu.edu/oauth2/auth",
+            "scopes": {
+                "full:access": " Grants full access"
+            }
+        }
+    }
+}

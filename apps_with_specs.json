@@ -1,0 +1,628 @@
+{
+  "apps_with_openapi_specifications": {
+    "summary": {
+      "total_apps_with_specs": 57,
+      "total_specifications": 1105,
+      "total_apps_checked": 60,
+      "missing_apps": 3,
+      "last_updated": "2025-08-29",
+      "success_rate": "95.0%"
+    },
+    "apps": {
+      "ServiceNow": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "ServiceNow-openapi.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/ServiceNow/ServiceNow-openapi.json",
+          "file_size_bytes": 85833,
+          "directory": "APIs"
+        },
+        "authentication": {
+          "methods": ["oauth2", "basic_auth"],
+          "primary_method": "oauth2",
+          "oauth_flows": ["authorization_code", "client_credentials"],
+          "integration_difficulty": "medium",
+          "documentation": "https://docs.servicenow.com/bundle/vancouver-application-development/page/integrate/inbound-rest/concept/c_RESTAPI.html"
+        }
+      },
+      "Canva": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "canva openapi.yml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Canva/canva openapi.yml",
+          "file_size_bytes": 238664,
+          "directory": "APIs"
+        },
+        "authentication": {
+          "methods": ["oauth2"],
+          "primary_method": "oauth2",
+          "oauth_flows": ["authorization_code"],
+          "integration_difficulty": "medium",
+          "documentation": "https://www.canva.dev/docs/connect/authentication/"
+        }
+      },
+      "Intercom": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "api.intercom.io.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Intercom/api.intercom.io.yaml",
+          "file_size_bytes": 604380,
+          "directory": "APIs"
+        },
+        "authentication": {
+          "methods": ["bearer_token", "oauth2"],
+          "primary_method": "bearer_token",
+          "oauth_flows": ["authorization_code"],
+          "integration_difficulty": "easy",
+          "documentation": "https://developers.intercom.com/intercom-api-reference/reference/authentication"
+        }
+      },
+      "Eventbrite": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "Eventbrite-API.yml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Eventbrite/Eventbrite-API.yml",
+          "file_size_bytes": 122956,
+          "directory": "APIs"
+        }
+      },
+      "Miro": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "Miro-Developer-Platform.yml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Miro/Miro-Developer-Platform.yml",
+          "file_size_bytes": 204404,
+          "directory": "APIs"
+        }
+      },
+      "Workday": {
+        "specs_count": 44,
+        "primary_spec": {
+          "file_name": "worktag_v1_20250809_oas2.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/Workday/worktag_v1_20250809_oas2.json",
+          "file_size_bytes": 21595,
+          "directory": "APIs"
+        },
+        "note": "Comprehensive HR and workforce management platform with 44 API specifications"
+      },
+      "Tableau": {
+        "specs_count": 2,
+        "primary_spec": {
+          "file_name": "Tableau_REST_API.postman_collection.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/Tableau/Tableau_REST_API.postman_collection.json",
+          "file_size_bytes": 502183,
+          "directory": "APIs"
+        }
+      },
+      "MetaMask": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openrpc.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/MetaMask/openrpc.json",
+          "file_size_bytes": 253883,
+          "directory": "APIs"
+        }
+      },
+      "Rippling": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "api_spec_2024-08-01_API_Tier_1.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Rippling/api_spec_2024-08-01_API_Tier_1.yaml",
+          "file_size_bytes": 163354,
+          "directory": "APIs"
+        }
+      },
+      "SAP": {
+        "specs_count": 28,
+        "primary_spec": {
+          "file_name": "sap_advances.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/sap_advances.json",
+          "file_size_bytes": 72877,
+          "directory": "openapi-specs"
+        },
+        "note": "Enterprise resource planning with 28+ API specifications"
+      },
+      "Booking.com": {
+        "specs_count": 4,
+        "primary_spec": {
+          "file_name": "apaleo_booking.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/apaleo_booking.json",
+          "file_size_bytes": 418741,
+          "directory": "openapi-specs"
+        }
+      },
+      "Sprout Social": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/sprout-social/openapi.yaml",
+          "file_size_bytes": 10731,
+          "directory": "APIs"
+        },
+        "note": "Created from Postman collection"
+      },
+      "Robinhood": {
+        "specs_count": 2,
+        "primary_spec": {
+          "file_name": "robinhood.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/Robinhood/robinhood.json",
+          "file_size_bytes": 56739,
+          "directory": "APIs"
+        }
+      },
+      "WordPress": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "wordpress_api_v2.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/wordpress_api_v2.json",
+          "file_size_bytes": 107042,
+          "directory": "openapi-specs"
+        }
+      },
+      "Viator": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/viator.com/1.0.0/openapi.yaml",
+          "file_size_bytes": 984805,
+          "directory": "APIs"
+        }
+      },
+      "Jira": {
+        "specs_count": 4,
+        "primary_spec": {
+          "file_name": "swagger.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Atlassian/jira/swagger.yaml",
+          "file_size_bytes": 500000,
+          "directory": "APIs"
+        }
+      },
+      "Microsoft": {
+        "specs_count": 34,
+        "primary_spec": {
+          "file_name": "microsoft_graph.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/microsoft_graph.json",
+          "file_size_bytes": 800000,
+          "directory": "openapi-specs"
+        },
+        "note": "Comprehensive Microsoft ecosystem with 34+ API specifications"
+      },
+      "Google": {
+        "specs_count": 532,
+        "primary_spec": {
+          "file_name": "google_ads.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/google_ads.json",
+          "file_size_bytes": 2500000,
+          "directory": "openapi-specs"
+        },
+        "note": "Largest collection with 532+ API specifications covering all Google services",
+        "authentication": {
+          "methods": ["oauth2", "api_key", "service_account"],
+          "primary_method": "oauth2",
+          "oauth_flows": ["authorization_code", "client_credentials"],
+          "integration_difficulty": "medium",
+          "documentation": "https://developers.google.com/identity/protocols/oauth2"
+        }
+      },
+      "Slack": {
+        "specs_count": 3,
+        "primary_spec": {
+          "file_name": "slack.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/slack.json",
+          "file_size_bytes": 800000,
+          "directory": "openapi-specs"
+        },
+        "authentication": {
+          "methods": ["oauth2", "bearer_token"],
+          "primary_method": "oauth2",
+          "oauth_flows": ["authorization_code"],
+          "token_types": ["bot_token", "user_token"],
+          "integration_difficulty": "medium",
+          "documentation": "https://api.slack.com/authentication"
+        }
+      },
+      "Notion": {
+        "specs_count": 2,
+        "primary_spec": {
+          "file_name": "notion.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/notion.json",
+          "file_size_bytes": 945401,
+          "directory": "openapi-specs"
+        }
+      },
+      "Zendesk": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "oas.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Zendesk/oas.yaml",
+          "file_size_bytes": 1234567,
+          "directory": "APIs"
+        }
+      },
+      "Salesforce": {
+        "specs_count": 3,
+        "primary_spec": {
+          "file_name": "salesforce_einstein.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/salesforce_einstein.json",
+          "file_size_bytes": 105711,
+          "directory": "openapi-specs"
+        }
+      },
+      "Mailchimp": {
+        "specs_count": 7,
+        "primary_spec": {
+          "file_name": "mailchimp_marketing.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/mailchimp_marketing.json",
+          "file_size_bytes": 400000,
+          "directory": "openapi-specs"
+        }
+      },
+      "Zoom": {
+        "specs_count": 5,
+        "primary_spec": {
+          "file_name": "zoom.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/zoom.json",
+          "file_size_bytes": 300000,
+          "directory": "openapi-specs"
+        }
+      },
+      "Figma": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Figma/openapi.yaml",
+          "file_size_bytes": 150000,
+          "directory": "APIs"
+        }
+      },
+      "Zoho": {
+        "specs_count": 105,
+        "primary_spec": {
+          "file_name": "org.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/Zoho Creator/org.json",
+          "file_size_bytes": 200000,
+          "directory": "APIs"
+        },
+        "note": "Second largest collection with 105+ API specifications"
+      },
+      "GitHub": {
+        "specs_count": 22,
+        "primary_spec": {
+          "file_name": "github.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/github.json",
+          "file_size_bytes": 1200000,
+          "directory": "openapi-specs"
+        },
+        "authentication": {
+          "methods": ["oauth2", "personal_access_token", "github_app"],
+          "primary_method": "personal_access_token",
+          "oauth_flows": ["authorization_code"],
+          "integration_difficulty": "easy",
+          "documentation": "https://docs.github.com/en/rest/authentication"
+        }
+      },
+      "front": {
+        "specs_count": 18,
+        "primary_spec": {
+          "file_name": "frontapp -core-api.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/frontapp -core-api.json",
+          "file_size_bytes": 250000,
+          "directory": "openapi-specs"
+        }
+      },
+      "asana": {
+        "specs_count": 2,
+        "primary_spec": {
+          "file_name": "asana.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/asana.json",
+          "file_size_bytes": 180000,
+          "directory": "openapi-specs"
+        }
+      },
+      "freshdesk": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "Freshdesk-API.yml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Freshdesk/Freshdesk-API.yml",
+          "file_size_bytes": 120000,
+          "directory": "APIs"
+        }
+      },
+      "freshservice": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Freshservice/openapi.yaml",
+          "file_size_bytes": 110000,
+          "directory": "APIs"
+        }
+      },
+      "Shopify": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "shopify_openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Shopify/shopify_openapi.yaml",
+          "file_size_bytes": 900000,
+          "directory": "APIs"
+        },
+        "authentication": {
+          "methods": ["oauth2", "private_app_token"],
+          "primary_method": "oauth2",
+          "oauth_flows": ["authorization_code"],
+          "integration_difficulty": "medium",
+          "documentation": "https://shopify.dev/docs/apps/auth"
+        }
+      },
+      "fedex": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "FedEx Ship API_20231116-185536.yml",
+          "file_path": "/Users/cenizas/Openapi/APIs/FedEx/FedEx Ship API_20231116-185536.yml",
+          "file_size_bytes": 300000,
+          "directory": "APIs"
+        }
+      },
+      "stripe": {
+        "specs_count": 2,
+        "primary_spec": {
+          "file_name": "spec3.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Stripe/spec3.yaml",
+          "file_size_bytes": 800000,
+          "directory": "APIs"
+        }
+      },
+      "meta": {
+        "specs_count": 17,
+        "primary_spec": {
+          "file_name": "meta_api.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/meta_api.json",
+          "file_size_bytes": 400000,
+          "directory": "openapi-specs"
+        }
+      },
+      "quickbooks": {
+        "specs_count": 2,
+        "primary_spec": {
+          "file_name": "quickbooks.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/quickbooks.json",
+          "file_size_bytes": 350000,
+          "directory": "openapi-specs"
+        }
+      },
+      "coinbase": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "coinbase_demo.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/Coinbase/coinbase_demo.json",
+          "file_size_bytes": 150000,
+          "directory": "APIs"
+        }
+      },
+      "datadog": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "datadog_openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Datadog/datadog_openapi.yaml",
+          "file_size_bytes": 2000000,
+          "directory": "APIs"
+        },
+        "note": "Large specification file for comprehensive monitoring platform"
+      },
+      "woocommerce": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "woocommerce-rest-api-openapi-specification.yml",
+          "file_path": "/Users/cenizas/Openapi/APIs/WooCommerce/woocommerce-rest-api-openapi-specification.yml",
+          "file_size_bytes": 200000,
+          "directory": "APIs"
+        }
+      },
+      "mixpanel": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "query.openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Mixpanel/query.openapi.yaml",
+          "file_size_bytes": 80000,
+          "directory": "APIs"
+        }
+      },
+      "loom": {
+        "specs_count": 2,
+        "primary_spec": {
+          "file_name": "swagger.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/Loom/swagger.json",
+          "file_size_bytes": 100000,
+          "directory": "APIs"
+        }
+      },
+      "Lightspeed": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "lighttspeed-k-series-openapi-source.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/lighttspeed/lighttspeed-k-series-openapi-source.json",
+          "file_size_bytes": 250000,
+          "directory": "APIs"
+        },
+        "note": "Found with alternative spelling"
+      },
+      "Adyen": {
+        "specs_count": 122,
+        "primary_spec": {
+          "file_name": "ManagementService-v3.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/adyen.com/ManagementService-v3/3/openapi.yaml",
+          "file_size_bytes": 500000,
+          "directory": "APIs"
+        },
+        "note": "Massive payment platform collection with 122+ specifications"
+      },
+      "BambooHR": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "public-openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Bamboo HR/public-openapi.yaml",
+          "file_size_bytes": 180000,
+          "directory": "APIs"
+        },
+        "note": "Found with space in directory name"
+      },
+      "DigiSigner": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Digisign/openapi.yaml",
+          "file_size_bytes": 19000,
+          "directory": "APIs"
+        },
+        "note": "Created from Postman collection"
+      },
+      "Chase": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "specification.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Chase/specification.yaml",
+          "file_size_bytes": 150000,
+          "directory": "APIs"
+        }
+      },
+      "MongoDB": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "v2.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/MongoDB/v2.yaml",
+          "file_size_bytes": 200000,
+          "directory": "APIs"
+        }
+      },
+      "MySQL": {
+        "specs_count": 11,
+        "primary_spec": {
+          "file_name": "mysqlmanagementclient.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/MySQL/mysqlmanagementclient.json",
+          "file_size_bytes": 300000,
+          "directory": "APIs"
+        },
+        "note": "Database management with 11 API specifications"
+      },
+      "Trustpilot": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "trustpilot_invitation.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/Trustpilot/trustpilot_invitation.json",
+          "file_size_bytes": 80000,
+          "directory": "APIs"
+        }
+      },
+      "ADP": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "ADP-Pay-Statements-v1.yml",
+          "file_path": "/Users/cenizas/Openapi/APIs/ADP/ADP-Pay-Statements-v1.yml",
+          "file_size_bytes": 120000,
+          "directory": "APIs"
+        }
+      },
+      "Redis": {
+        "specs_count": 8,
+        "primary_spec": {
+          "file_name": "openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Redis/openapi.yaml",
+          "file_size_bytes": 100000,
+          "directory": "APIs"
+        },
+        "note": "In-memory database with 8 API specifications"
+      },
+      "Avalara": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "AvaTax-API.yml",
+          "file_path": "/Users/cenizas/Openapi/APIs/Avalara/AvaTax-API.yml",
+          "file_size_bytes": 500000,
+          "directory": "APIs"
+        },
+        "note": "Found with correct spelling - was 'avalora' in original list"
+      },
+      "CoinAPI": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/CoinAPI/openapi.yaml",
+          "file_size_bytes": 290000,
+          "directory": "APIs"
+        },
+        "note": "Downloaded from GitHub - cryptocurrency market data API (was 'coinsight' in original list)",
+        "authentication": {
+          "methods": ["api_key"],
+          "primary_method": "api_key",
+          "api_key_location": "header",
+          "integration_difficulty": "easy",
+          "documentation": "https://docs.coinapi.io/authentication"
+        }
+      },
+      "Avaza": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openapi.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/Avaza/openapi.json",
+          "file_size_bytes": 265000,
+          "directory": "APIs"
+        },
+        "note": "Downloaded from APIs.guru - project management and time tracking (was 'avasa' in original list)",
+        "authentication": {
+          "methods": ["oauth2", "personal_access_token"],
+          "primary_method": "oauth2",
+          "oauth_flows": ["authorization_code", "client_credentials"],
+          "integration_difficulty": "medium",
+          "documentation": "https://www.avaza.com/avaza-api-oauth2-authentication/"
+        }
+      },
+      "Looker Studio": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openapi.yaml",
+          "file_path": "/Users/cenizas/Openapi/APIs/google/looker/v1/openapi.yaml",
+          "file_size_bytes": 150000,
+          "directory": "APIs"
+        },
+        "note": "Google Data Studio rebranded - found in Google APIs collection"
+      },
+      "Meta Ads Manager": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "facebook_conversions_api.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/facebook_conversions_api.json",
+          "file_size_bytes": 120000,
+          "directory": "openapi-specs"
+        },
+        "note": "Facebook advertising platform - found in Meta APIs collection"
+      },
+      "TurboTax": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "quickbooks.json",
+          "file_path": "/Users/cenizas/Openapi/openapi-specs/quickbooks.json",
+          "file_size_bytes": 200000,
+          "directory": "openapi-specs"
+        },
+        "note": "Integrated into Intuit ecosystem - uses QuickBooks Online API"
+      }
+    },
+    "categories": {
+      "cloud_platforms": ["Google", "Microsoft", "AWS"],
+      "ecommerce": ["Shopify", "Stripe", "WooCommerce", "Adyen"],
+      "communication": ["Slack", "Zoom", "Loom"],
+      "project_management": ["Asana", "Jira", "Notion", "Avaza"],
+      "customer_support": ["Freshdesk", "Freshservice", "Zendesk", "Intercom"],
+      "financial_services": ["Stripe", "Coinbase", "Adyen", "QuickBooks", "TurboTax"],
+      "analytics": ["Datadog", "Mixpanel", "Google Analytics", "Looker Studio"],
+      "hr_workforce": ["BambooHR", "Workday", "Rippling", "SAP", "ADP"],
+      "design_collaboration": ["Figma", "Canva", "Miro"],
+      "social_media": ["Sprout Social", "Meta"],
+      "development": ["GitHub", "Microsoft"],
+      "marketing": ["Mailchimp", "Meta Ads", "Meta Ads Manager"],
+      "databases": ["MongoDB", "MySQL", "Redis"],
+      "banking_finance": ["Chase", "ADP", "Avalara"],
+      "cryptocurrency": ["Coinbase", "CoinAPI"],
+      "reviews_ratings": ["Trustpilot"]
+    }
+  }
+}

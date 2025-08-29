@@ -1,0 +1,292 @@
+{
+  "missing_apps_without_specifications": {
+    "summary": {
+      "total_missing_apps": 3,
+      "total_apps_checked": 60,
+      "apps_with_specs": 57,
+      "missing_percentage": "5.0%",
+      "success_rate": "95.0%",
+      "last_updated": "2025-08-29"
+    },
+    "apps": {
+      "Flipkart": {
+        "status": "RESTRICTED_ACCESS",
+        "issue": "Seller API requires authentication and seller account",
+        "official_docs": "https://seller.flipkart.com/api-docs/FMSAPI.html",
+        "api_docs_v3": "https://seller.flipkart.com/api-docs/index.html",
+        "swagger_url": "https://seller.flipkart.com/api-docs/swagger.json",
+        "access_requirement": "Flipkart seller account required",
+        "api_tracker": "https://apitracker.io/a/flipkart",
+        "postman_collection": {
+          "available": true,
+          "url": "https://www.postman.com/postman/workspace/postman-team-collections/request/11657775-3cd11be3-4fdb-43b7-829d-0a30242d4f55",
+          "type": "Test/Demo"
+        },
+        "openapi_spec": {
+          "available": false,
+          "reason": "Requires seller authentication to access"
+        }
+      },
+      "Ticketbud": {
+        "status": "AUTHENTICATION_REQUIRED",
+        "issue": "API documentation requires authentication, no public OpenAPI specification available",
+        "official_docs": "https://api.ticketbud.com/",
+        "github_client": "https://github.com/Ticketbud/ticketbud-client",
+        "alternative": "GitHub client example available for integration",
+        "access_note": "API portal returns 403 Forbidden for public access",
+        "postman_collection": {
+          "available": false
+        },
+        "openapi_spec": {
+          "available": false,
+          "reason": "Authentication required to access API documentation"
+        }
+      },
+      "TurboTax": {
+        "status": "NO_SEPARATE_API",
+        "parent_company": "Intuit",
+        "integration": "Integrated into Intuit ecosystem",
+        "related_apis": {
+          "QuickBooks_Online": "Available in collection at openapi-specs/quickbooks.json",
+          "Intuit_Developer": "https://developer.intuit.com/"
+        },
+        "reason": "TurboTax does not have a separate public API - functionality integrated into broader Intuit platform",
+        "postman_collection": {
+          "available": false
+        }
+      },
+      "Monday.com": {
+        "status": "GRAPHQL_INCOMPATIBLE",
+        "api_type": "GraphQL",
+        "reason": "GraphQL APIs cannot be represented in OpenAPI format - fundamentally different architecture",
+        "official_docs": "https://developer.monday.com/api-reference/docs/basics",
+        "graphql_docs": "https://developer.monday.com/api-reference/docs/introduction-to-graphql",
+        "graphql_playground": "https://monday.com/developers/v2/try-it-yourself",
+        "api_endpoint": "https://api.monday.com/v2",
+        "postman_collection": {
+          "available": true,
+          "url": "https://www.postman.com/crimson-spaceship-302370/monday-api-v1-graphql/collection/y0ljrxt/monday-v2-api",
+          "alternative_url": "https://www.postman.com/crimson-spaceship-302370/workspace/monday-api-v1-graphql/collection/21709367-481720ba-4370-4eb8-b514-8541de9f256a",
+          "type": "Community GraphQL collection"
+        },
+        "openapi_spec": {
+          "available": false,
+          "reason": "GraphQL architecture incompatible with OpenAPI specification format"
+        }
+      },
+      "avasa": {
+        "status": "NOT_FOUND",
+        "searched_patterns": ["avasa", "avasa.com", "avasa-api"],
+        "note": "No matching API specifications found in collection"
+      },
+      "kavigo": {
+        "status": "NOT_FOUND",
+        "searched_patterns": ["kavigo", "kavigo.com", "kavigo-api"],
+        "note": "No matching API specifications found in collection"
+      },
+      "gorges": {
+        "status": "NOT_FOUND",
+        "searched_patterns": ["gorges", "gorges.com", "gorges-api"],
+        "note": "No matching API specifications found in collection"
+      },
+      "jetform": {
+        "status": "NOT_FOUND",
+        "searched_patterns": ["jetform", "jetform.com", "jet-form"],
+        "note": "No matching API specifications found in collection"
+      },
+      "coinsight": {
+        "status": "NOT_FOUND",
+        "searched_patterns": ["coinsight", "coinsight.com", "coin-sight"],
+        "note": "No matching API specifications found in collection"
+      },
+      "airbnb": {
+        "status": "NO_PUBLIC_API",
+        "reason": "Airbnb does not provide public API specifications",
+        "note": "Airbnb discontinued their public API program and does not offer OpenAPI specifications",
+        "historical": "Previously had partner API but was discontinued",
+        "partner_program": "https://www.airbnb.com/partner",
+        "api_terms": "https://www.airbnb.com/help/article/3418",
+        "current_status": "Not accepting new API access requests - only reaching out to prospective partners",
+        "alternative_portal": "https://developer.airbnb.finologee.com/",
+        "postman_collection": {
+          "available": false
+        },
+        "openapi_spec": {
+          "available": false,
+          "reason": "No public API access available"
+        }
+      }
+    },
+    "categories_by_status": {
+      "already_found_previously": 2,
+      "restricted_access": 1,
+      "authentication_required": 1,
+      "no_separate_api": 1,
+      "graphql_incompatible": 1,
+      "not_found": 5,
+      "no_public_api": 1
+    },
+    "recovery_recommendations": {
+      "high_priority": [
+        {
+          "app": "Flipkart",
+          "action": "Contact Flipkart seller support for API access",
+          "alternative": "Use existing test Postman collection for basic integration"
+        },
+        {
+          "app": "Monday.com",
+          "action": "Use GraphQL API directly with community Postman collection",
+          "alternative": "Consider GraphQL-to-REST proxy services"
+        }
+      ],
+      "medium_priority": [
+        {
+          "app": "Ticketbud",
+          "action": "Use GitHub client library for integration",
+          "alternative": "Contact Ticketbud for API documentation access"
+        }
+      ],
+      "low_priority": [
+        {
+          "app": "TurboTax",
+          "action": "Use Intuit QuickBooks APIs for tax-related functionality",
+          "alternative": "Integrate with broader Intuit ecosystem"
+        }
+      ],
+      "research_completed": {
+        "avasa": {
+          "actual_name": "Avaza",
+          "status": "API_AVAILABLE",
+          "api_docs": "https://api.avaza.com",
+          "oauth_docs": "https://www.avaza.com/avaza-api-oauth2-authentication/",
+          "api_tracker": "https://apitracker.io/a/avaza",
+          "github_client": "https://github.com/ContainerSolutions/avazacli",
+          "description": "Project management and time tracking software",
+          "swagger_ui": "Available at api.avaza.com",
+          "note": "Typo in original list - should be 'Avaza' not 'avasa'",
+          "postman_collection": {
+            "available": true,
+            "url": "https://www.postman.com/api-evangelist/avaza/collection/vudnlze/avaza-api-documentation",
+            "documentation": "https://www.postman.com/api-evangelist/avaza/documentation/vudnlze/avaza-api-documentation"
+          },
+          "openapi_spec": {
+            "available": true,
+            "location": "https://api.avaza.com (Swagger UI)",
+            "format": "Interactive Swagger documentation"
+          }
+        },
+        "kavigo": {
+          "actual_name": "Vonigo", 
+          "status": "API_AVAILABLE",
+          "api_docs": "https://api.vonigo.com/api/v1/test/",
+          "website": "https://www.vonigo.com/",
+          "examples": "https://api.vonigo.com/api/v1/test/test.htm",
+          "description": "Field service management software platform",
+          "github_library": "https://github.com/calebtr/vonigo-php",
+          "note": "Typo in original list - should be 'Vonigo' not 'kavigo'",
+          "postman_collection": {
+            "available": false
+          },
+          "openapi_spec": {
+            "available": false,
+            "reason": "Basic API documentation available but no OpenAPI specification found"
+          }
+        },
+        "gorges": {
+          "actual_name": "Gorgias",
+          "status": "API_AVAILABLE", 
+          "api_docs": "https://developers.gorgias.com/reference/introduction",
+          "developer_portal": "https://developers.gorgias.com/",
+          "api_tracker": "https://apitracker.io/a/gorgias-io",
+          "description": "Customer support and helpdesk software",
+          "api_type": "REST API with comprehensive documentation",
+          "note": "Typo in original list - should be 'Gorgias' not 'gorges'",
+          "postman_collection": {
+            "available": true,
+            "url": "https://www.postman.com/core-gorgias/public-workspace/documentation/0d3dyeo/gorgias-public-api"
+          },
+          "openapi_spec": {
+            "available": true,
+            "note": "OpenAPI/Swagger specs mentioned in API tracker but direct download link not found"
+          }
+        },
+        "jetform": {
+          "actual_name": "Jotform",
+          "status": "API_AVAILABLE",
+          "api_docs": "https://api.jotform.com/docs/",
+          "description": "Online form builder with 30+ million users",
+          "api_type": "RESTful API with multiple SDKs",
+          "github_libraries": "Multiple language libraries available",
+          "javascript_sdk": "https://js.jotform.com/JotForm.js",
+          "note": "Typo in original list - should be 'Jotform' not 'jetform'",
+          "postman_collection": {
+            "available": false,
+            "note": "No official Postman collection found"
+          },
+          "openapi_spec": {
+            "available": false,
+            "reason": "REST API documented but no OpenAPI specification available"
+          }
+        },
+        "coinsight": {
+          "actual_name": "CoinAPI",
+          "status": "API_AVAILABLE",
+          "api_docs": "https://docs.coinapi.io/",
+          "rest_api_docs": "https://docs.coinapi.io/market-data/rest-api/",
+          "postman_guide": "https://docs.coinapi.io/market-data/how-to-guides/import-api-into-postman",
+          "support_docs": "https://support.coinapi.io/hc/en-us/articles/11098725892252-Can-I-import-API-directly-into-Postman",
+          "description": "Cryptocurrency market data API",
+          "api_type": "Comprehensive crypto data APIs",
+          "products": ["Market Data", "Exchange Rates", "EMS", "Indexes"],
+          "note": "Likely referring to 'CoinAPI' - comprehensive crypto API platform",
+          "postman_collection": {
+            "available": true,
+            "import_method": "Direct OpenAPI import supported"
+          },
+          "openapi_spec": {
+            "available": true,
+            "download_url": "https://raw.githubusercontent.com/coinapi/coinapi-sdk/master/data-api/coinapi-marketdata-rest.yaml",
+            "format": "YAML",
+            "version": "OpenAPI v3",
+            "github_repo": "https://github.com/coinapi/coinapi-sdk"
+          }
+        }
+      }
+    },
+    "alternative_solutions": {
+      "postman_collections": [
+        {
+          "app": "Flipkart",
+          "url": "https://www.postman.com/postman/workspace/postman-team-collections/request/11657775-3cd11be3-4fdb-43b7-829d-0a30242d4f55"
+        },
+        {
+          "app": "Monday.com",
+          "url": "https://www.postman.com/crimson-spaceship-302370/monday-api-v1-graphql/collection/y0ljrxt/monday-v2-api"
+        }
+      ],
+      "github_clients": [
+        {
+          "app": "Ticketbud",
+          "url": "https://github.com/Ticketbud/ticketbud-client"
+        }
+      ],
+      "related_apis": [
+        {
+          "app": "TurboTax",
+          "related": "QuickBooks Online API",
+          "location": "openapi-specs/quickbooks.json"
+        },
+        {
+          "app": "Looker Studio",
+          "related": "Google Looker API",
+          "location": "APIs/google/looker/v1/openapi.yaml"
+        },
+        {
+          "app": "Meta Ads Manager",
+          "related": "Facebook Conversions API",
+          "location": "openapi-specs/facebook_conversions_api.json"
+        }
+      ]
+    }
+  }
+}

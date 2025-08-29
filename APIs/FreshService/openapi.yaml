@@ -1,0 +1,293 @@
+openapi: 3.0.0
+info:
+  title: FreshService
+  version: 1.0.0
+  description: apiKey is set here on authorization tab
+servers:
+  - url: '{{domainUrl}}'
+  - url: ''
+paths:
+  /tickets:
+    parameters: []
+    get:
+      summary: List all tickets
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/x-www-form-urlencoded
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create a ticket
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /tickets/{{ticketId}}:
+    parameters: []
+    get:
+      summary: View a ticket
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/x-www-form-urlencoded
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update a ticket
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+    delete:
+      summary: Delete a ticket
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /tickets/{{ticketId}}/restore:
+    parameters: []
+    put:
+      summary: Restore a ticket
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /ticket_fields:
+    parameters: []
+    get:
+      summary: List all ticket fields
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/x-www-form-urlencoded
+          schema:
+            type: string
+      responses: {}
+  /tickets/{{ticketId}}/reply:
+    parameters: []
+    post:
+      summary: Create a reply
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /tickets/{{ticketId}}/notes:
+    parameters: []
+    post:
+      summary: Create a note
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /tickets/conversations/{{conversationId}}:
+    parameters: []
+    put:
+      summary: Update a conversation
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+    delete:
+      summary: Delete a conversation
+      parameters: []
+      responses: {}
+  /tickets/{{ticketId}}/conversations:
+    parameters: []
+    get:
+      summary: List all conversations of a ticket
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /assets:
+    parameters: []
+    get:
+      summary: List all assets
+      parameters:
+        - name: include
+          in: query
+          required: false
+          example: type_fields
+          schema:
+            type: string
+        - name: trashed
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: order_by
+          in: query
+          required: false
+          example: id
+          schema:
+            type: string
+      responses: {}
+  /requesters:
+    parameters: []
+    post:
+      summary: Create a requester
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List all requesters
+      parameters: []
+      responses: {}
+  /requesters/{{requesterId}}:
+    parameters: []
+    get:
+      summary: View a requester
+      parameters: []
+      responses: {}
+    put:
+      summary: Update a requester
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+    delete:
+      summary: Delete a requester
+      parameters: []
+      responses: {}
+  /requester_fields:
+    parameters: []
+    get:
+      summary: List all Requester fields
+      parameters: []
+      responses: {}
+  /agents:
+    parameters: []
+    post:
+      summary: Create an agent
+      parameters: []
+      responses: {}
+    get:
+      summary: List all agents
+      parameters: []
+      responses: {}
+  /agents/[id]:
+    parameters: []
+    get:
+      summary: View an agent
+      parameters: []
+      responses: {}
+    put:
+      summary: Update an agent
+      parameters: []
+      responses: {}
+    delete:
+      summary: Delete an agent
+      parameters: []
+      responses: {}
+  /roles/:
+    parameters: []
+    get:
+      summary: List all roles
+      parameters: []
+      responses: {}
+  /roles/[id]:
+    parameters: []
+    get:
+      summary: View a role
+      parameters: []
+      responses: {}
+  /groups/:
+    parameters: []
+    post:
+      summary: Create a group
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /groups/[id]:
+    parameters: []
+    get:
+      summary: View a group
+      parameters: []
+      responses: {}
+  /:
+    parameters: []
+    get:
+      summary: List all groups
+      parameters: []
+      responses: {}
+    post:
+      summary: Create a location
+      parameters: []
+      responses: {}
+    put:
+      summary: Update a location
+      parameters: []
+      responses: {}
+    delete:
+      summary: Delete a location
+      parameters: []
+      responses: {}
+  /groups/{{groupId}}:
+    parameters: []
+    put:
+      summary: Update a group
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+    delete:
+      summary: Delete a group
+      parameters: []
+      responses: {}

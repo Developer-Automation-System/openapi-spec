@@ -1,0 +1,482 @@
+openapi: 3.0.0
+info:
+  title: Gainsight
+  version: 1.0.0
+  description: ''
+servers:
+  - url: '{{instanceName}}.gainsightcloud.com'
+paths:
+  /v1/data/objects/query/Company:
+    parameters: []
+    post:
+      summary: getCompany
+      parameters:
+        - name: accesskey
+          in: header
+          required: false
+          example: '{{access_key}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                select:
+                  type: array
+                  items:
+                    type: string
+  /v1/data/objects/Company/1P02E3XFM9XIZFHS8U8T6SXIRYFAM381L23I:
+    parameters: []
+    delete:
+      summary: deleteCompany
+      parameters:
+        - name: accesskey
+          in: header
+          required: false
+          example: '{{access_key}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                records:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Name:
+                        type: string
+                      Industry:
+                        type: string
+                      ARR:
+                        type: integer
+                      Employees:
+                        type: integer
+                      LifecycleInWeeks:
+                        type: integer
+                      OriginalContractDate:
+                        type: string
+                      RenewalDate:
+                        type: string
+                      Status:
+                        type: string
+                      CSMFirstName:
+                        type: string
+                      CSMLastName:
+                        type: string
+                lookups:
+                  type: object
+                  properties:
+                    CSM:
+                      type: object
+                      properties:
+                        fields:
+                          type: object
+                          properties:
+                            CSMFirstName:
+                              type: string
+                            CSMLastName:
+                              type: string
+                        lookupField:
+                          type: string
+                        objectName:
+                          type: string
+  /v2/cockpit/cta/:
+    parameters: []
+    post:
+      summary: createCTA
+      parameters:
+        - name: accesskey
+          in: header
+          required: false
+          example: '{{access_key}}'
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                requests:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      record:
+                        type: object
+                        properties:
+                          CompanyId:
+                            type: string
+                          OwnerId:
+                            type: string
+                          referenceId:
+                            type: string
+                            format: utc-millisec
+                          Name:
+                            type: string
+                          type:
+                            type: string
+                          status:
+                            type: string
+                          priority:
+                            type: string
+                          reason:
+                            type: string
+                          Comments:
+                            type: string
+  /v2/successPlan/list/:
+    parameters: []
+    post:
+      summary: getSuccessPlans
+      parameters:
+        - name: accesskey
+          in: header
+          required: false
+          example: '{{access_key}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                select:
+                  type: array
+                  items:
+                    type: string
+  /v2/cockpit/cta/list:
+    parameters: []
+    post:
+      summary: getCTAs
+      parameters:
+        - name: accesskey
+          in: header
+          required: false
+          example: '{{access_key}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                select:
+                  type: array
+                  items:
+                    type: string
+  /v1/data/objects/query/Person:
+    parameters: []
+    post:
+      summary: getCustomObject
+      parameters:
+        - name: accesskey
+          in: header
+          required: false
+          example: '{{access_key}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                select:
+                  type: array
+                  items:
+                    type: string
+  /v2/cockpit/task/list/:
+    parameters: []
+    post:
+      summary: getPlaybooks
+      parameters:
+        - name: accesskey
+          in: header
+          required: false
+          example: '{{access_key}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                select:
+                  type: array
+                  items:
+                    type: string
+  /v1/api/describe/MDA/company:
+    parameters: []
+    get:
+      summary: describeObject
+      parameters:
+        - name: ic
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: idd
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: accesskey
+          in: header
+          required: false
+          example: '{{access_key}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                select:
+                  type: array
+                  items:
+                    type: string
+  /v1/api/describe/listobjects:
+    parameters: []
+    get:
+      summary: listObjects
+      parameters:
+        - name: accesskey
+          in: header
+          required: false
+          example: '{{access_key}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                select:
+                  type: array
+                  items:
+                    type: string
+  /v1/ant/v2/activity:
+    parameters: []
+    post:
+      summary: addTimelineEntry
+      parameters:
+        - name: authority
+          in: header
+          required: false
+          example: armis.gainsightcloud.com
+          schema:
+            type: string
+        - name: accept
+          in: header
+          required: false
+          example: application/json, text/plain, */*
+          schema:
+            type: string
+        - name: accept-language
+          in: header
+          required: false
+          example: en-US,en;q=0.9
+          schema:
+            type: string
+        - name: content-type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: cookie
+          in: header
+          required: false
+          example: '{{cookie}}'
+          schema:
+            type: string
+        - name: newrelic
+          in: header
+          required: false
+          example: >-
+            eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjI5MzU2MTUiLCJhcCI6Ijc3ODkzMzAzNCIsImlkIjoiMzgzZTM3ZGFkMjI5ZDczOCIsInRyIjoiNjg0NDI5ODUzOTBlYmY2ZjA1YjgxYjBkOGUyYjFiNzAiLCJ0aSI6MTY1NDYzNTcxNDk2Nn19
+          schema:
+            type: string
+        - name: origin
+          in: header
+          required: false
+          example: https://armis.gainsightcloud.com
+          schema:
+            type: string
+        - name: referer
+          in: header
+          required: false
+          example: https://armis.gainsightcloud.com/v1/ui/timeline
+          schema:
+            type: string
+        - name: sec-ch-ua
+          in: header
+          required: false
+          example: '" Not A;Brand";v="99", "Chromium";v="102", "Google Chrome";v="102"'
+          schema:
+            type: string
+        - name: sec-ch-ua-mobile
+          in: header
+          required: false
+          example: '?0'
+          schema:
+            type: string
+        - name: sec-ch-ua-platform
+          in: header
+          required: false
+          example: '"macOS"'
+          schema:
+            type: string
+        - name: sec-fetch-dest
+          in: header
+          required: false
+          example: empty
+          schema:
+            type: string
+        - name: sec-fetch-mode
+          in: header
+          required: false
+          example: cors
+          schema:
+            type: string
+        - name: sec-fetch-site
+          in: header
+          required: false
+          example: same-origin
+          schema:
+            type: string
+        - name: traceparent
+          in: header
+          required: false
+          example: 00-68442985390ebf6f05b81b0d8e2b1b70-383e37dad229d738-01
+          schema:
+            type: integer
+        - name: tracestate
+          in: header
+          required: false
+          example: 2935615@nr=0-1-2935615-778933034-383e37dad229d738----1654635714966
+          schema:
+            type: integer
+        - name: user-agent
+          in: header
+          required: false
+          example: >-
+            Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+            (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36
+          schema:
+            type: string
+        - name: x-gs-host
+          in: header
+          required: false
+          example: GAINSIGHT
+          schema:
+            type: string
+      responses: {}
+  //v2/cockpit/cta/:
+    parameters: []
+    put:
+      summary: Change CTA owner to CSM MANUAL
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: accessKey
+          in: header
+          required: false
+          description: Gainsight API accessKey for Armis Instance
+          example: b8b3aa98-1b62-4b8d-ae08-f098b869d7b8
+          schema:
+            type: string
+      responses: {}
+  //v2/successPlan/:
+    parameters: []
+    put:
+      summary: Change Success Plan owner to CSM MANUAL
+      parameters:
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: accessKey
+          in: header
+          required: false
+          description: Gainsight API accessKey for Armis Instance
+          example: b8b3aa98-1b62-4b8d-ae08-f098b869d7b8
+          schema:
+            type: string
+      responses: {}

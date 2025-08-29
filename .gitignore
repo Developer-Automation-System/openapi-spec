@@ -1,0 +1,22 @@
+# Ignore everything by default
+*
+
+# But include these essential directories and files
+!APIs/
+!APIs/**
+!openapi-specs/
+!openapi-specs/**
+!apps_with_specs.json
+!missing_apps.json
+
+# Also include .gitignore itself
+!.gitignore
+
+# Exclude common unwanted files even in included directories
+**/.DS_Store
+**/Thumbs.db
+**/*.tmp
+**/*.temp
+**/*.log
+**/.env
+**/.env.local

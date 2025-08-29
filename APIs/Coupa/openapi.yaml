@@ -1,0 +1,3988 @@
+openapi: 3.0.0
+info:
+  title: Coupa Postman Collection - OAuth - Master
+  version: 1.0.0
+  description: >-
+    *   Coupa OAuth2 API Documentation -
+    [https://success.coupa.com/Integrate/KB/OAuth_2.0_Getting_Started_with_Coupa_API](https://success.coupa.com/Integrate/KB/OAuth_2.0_Getting_Started_with_Coupa_API)
+servers:
+  - url: '{{URL}}'
+  - url: ''
+paths:
+  /asn/headers:
+    parameters: []
+    get:
+      summary: GET ASNs
+      parameters:
+        - name: status
+          in: query
+          required: false
+          example: received
+          schema:
+            type: string
+        - name: exported
+          in: query
+          required: false
+          example: 'false'
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          required: false
+          example: "[\"id\",\"created_at\",\"updated_at\",\"asn_number\",\"status\",\"ship_date\",\"delivery_date\",\"export_flag\",\"carrier\",\"tracking_number\",{\"custom_fields\": {}},{\"supplier\": [\"id\",\"name\",\"display_name\",\"number\"]},{\t\"ship_to_address\":[\"id\",\"name\",\"street1\",\"street2\",\"city\",\"state\",\"postal_code\",\"location_code\",{\"country\": [\"code\"]}\t]},{\t\"lines\": [\"id\",\"line_num\",\"description\",\"quantity\",\"received_qty\",\"status\",{\"custom_fields\": {}},{\"uom\": [\"name\",\"code\"]},{\"order_line\": [\"id\",\"order_header_id\",\"order_header_number \"]}\t]}]"
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create ASN
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: "[\"id\",\"created_at\",\"updated_at\",\"asn_number\",\"status\",\"ship_date\",\"delivery_date\",\"export_flag\",\"carrier\",\"tracking_number\",{\"custom_fields\": {}},{\"supplier\": [\"id\",\"name\",\"display_name\",\"number\"]},{\t\"ship_to_address\":[\"id\",\"name\",\"street1\",\"street2\",\"city\",\"state\",\"postal_code\",\"location_code\",{\"country\": [\"code\"]}\t]},{\t\"lines\": [\"id\",\"line_num\",\"description\",\"quantity\",\"received_qty\",\"status\",{\"custom_fields\": {}},{\"uom\": [\"name\",\"code\"]},{\"order_line\": [\"id\",\"order_header_id\",\"order_header_number \"]}\t]}]"
+          schema:
+            type: string
+      responses: {}
+  /asn/headers/{asnid}/receive:
+    parameters:
+      - name: asnid
+        in: path
+        required: true
+        example: '50'
+        schema:
+          type: integer
+    put:
+      summary: Receive an ASN
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: "[\"id\",\"created_at\",\"updated_at\",\"asn_number\",\"status\",\"ship_date\",\"delivery_date\",\"export_flag\",\"carrier\",\"tracking_number\",{\"custom_fields\": {}},{\"supplier\": [\"id\",\"name\",\"display_name\",\"number\"]},{\t\"ship_to_address\":[\"id\",\"name\",\"street1\",\"street2\",\"city\",\"state\",\"postal_code\",\"location_code\",{\"country\": [\"code\"]}\t]},{\t\"lines\": [\"id\",\"line_num\",\"description\",\"quantity\",\"received_qty\",\"status\",{\"custom_fields\": {}},{\"uom\": [\"name\",\"code\"]},{\"order_line\": [\"id\",\"order_header_id\",\"order_header_number \"]}]}]"
+          schema:
+            type: string
+      responses: {}
+  /asn/headers/{asnid}/void:
+    parameters:
+      - name: asnid
+        in: path
+        required: true
+        example: '50'
+        schema:
+          type: integer
+    put:
+      summary: Void an ASN
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: "[\"id\",\"created_at\",\"updated_at\",\"asn_number\",\"status\",\"ship_date\",\"delivery_date\",\"export_flag\",\"carrier\",\"tracking_number\",{\"custom_fields\": {}},{\"supplier\": [\"id\",\"name\",\"display_name\",\"number\"]},{\t\"ship_to_address\":[\"id\",\"name\",\"street1\",\"street2\",\"city\",\"state\",\"postal_code\",\"location_code\",{\"country\": [\"code\"]}\t]},{\t\"lines\": [\"id\",\"line_num\",\"description\",\"quantity\",\"received_qty\",\"status\",{\"custom_fields\": {}},{\"uom\": [\"name\",\"code\"]},{\"order_line\": [\"id\",\"order_header_id\",\"order_header_number \"]}]}]"
+          schema:
+            type: string
+      responses: {}
+  /api_docs:
+    parameters: []
+    get:
+      summary: GET API Docs
+      parameters: []
+      responses: {}
+  /api_docs/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '0'
+        schema:
+          type: integer
+    get:
+      summary: GET Specific Schema
+      parameters: []
+      responses: {}
+  /approvals/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '4'
+        schema:
+          type: integer
+    get:
+      summary: GET Approval by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","approval-date","approver-type","approver-id","approvable-type","approvable-id"]
+          schema:
+            type: string
+      responses: {}
+  /approvals:
+    parameters: []
+    get:
+      summary: Query Approval records
+      parameters:
+        - name: approvable-type
+          in: query
+          required: false
+          example: EasyFormResponse
+          schema:
+            type: string
+        - name: status[in]
+          in: query
+          required: false
+          example: pending_approval,approved
+          schema:
+            type: string
+        - name: approver-type
+          in: query
+          required: false
+          example: RemoteApprover
+          schema:
+            type: string
+        - name: approver-id
+          in: query
+          required: false
+          example: '1'
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          required: false
+          example: '["approvable_type","approvable_id"]'
+          schema:
+            type: string
+      responses: {}
+  /approvals/{id}/approve:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '4'
+        schema:
+          type: integer
+    put:
+      summary: Approve an Approval
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","approval-date","approver-type","approver-id","approvable-type","approvable-id"]
+          schema:
+            type: string
+      responses: {}
+  /approvals/{id}/reject:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '4'
+        schema:
+          type: integer
+    put:
+      summary: Reject an Approval
+      parameters:
+        - name: reason
+          in: query
+          required: false
+          example: ReasonForFailure
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","approval-date","approver-type","approver-id","approvable-type","approvable-id"]
+          schema:
+            type: string
+      responses: {}
+  /approvals/{id}/hold:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '23451'
+        schema:
+          type: integer
+    put:
+      summary: Hold an Approval
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","approval-date","approver-type","approver-id","approvable-type","approvable-id"]
+          schema:
+            type: string
+      responses: {}
+  /requisitions/{id}/attachments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '3512'
+        schema:
+          type: integer
+    post:
+      summary: Add Attachment (File) to a Requisition
+      parameters: []
+      responses: {}
+  /purchase_orders/{id}/attachments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '3391'
+        schema:
+          type: integer
+    post:
+      summary: Add Attachment (File) to a Purchase Order
+      parameters: []
+      responses: {}
+  /invoices/{id}/attachments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '841'
+        schema:
+          type: integer
+    post:
+      summary: Add Attachment (File) to an Invoice
+      parameters: []
+      responses: {}
+  /contracts/{id}/attachments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '374'
+        schema:
+          type: integer
+    post:
+      summary: Add Attachment (File) to a Contract
+      parameters:
+        - name: Accept
+          in: header
+          required: false
+          example: application/xml
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: multipart/form-data
+          schema:
+            type: string
+      responses: {}
+  /budget_lines:
+    parameters: []
+    get:
+      summary: Get budget lines
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create budget line
+      parameters: []
+      responses: {}
+  /budget_lines/{budget_line_id}/budget_line_adjustments:
+    parameters:
+      - name: budget_line_id
+        in: path
+        required: true
+        example: '4670'
+        schema:
+          type: integer
+    get:
+      summary: Get budget line adjustments for budget line
+      parameters: []
+      responses: {}
+    post:
+      summary: Create budget line adjustment
+      parameters: []
+      responses: {}
+  /business_entities:
+    parameters: []
+    get:
+      summary: GET Business Entities
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","name","type","formation_type","display_name","status",{"business_entity_account_owners":["id","user_id","email"]},{"addresses":["id","name","street1","street2","city","state","postal_code","location_code",{"country":["code"]},"active"]},{"primary_address":["id","name","street1","street2","city","state","postal_code","location_code",{"country":["code"]},"active"]},{"primary_contact":["id","email","name_given","name_family"]},{"country_of_origin":["code"]},{"business_entity_relationships":["id","business_entity_id","related_business_entity_id","relationship_type","status"]},{"business_entity_alternate_names":["id","business_entity_id","name"]},{"business_entity_external_references":["id","business_entity_id","name","type","value"]}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create Business Entity
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","name","type","formation_type","display_name","status",{"business_entity_account_owners":["id","user_id","email"]},{"addresses":["id","name","street1","street2","city","state","postal_code","location_code",{"country":["code"]},"active"]},{"primary_address":["id","name","street1","street2","city","state","postal_code","location_code",{"country":["code"]},"active"]},{"primary_contact":["id","email","name_given","name_family"]},{"country_of_origin":["code"]},{"business_entity_relationships":["id","business_entity_id","related_business_entity_id","relationship_type","status"]},{"business_entity_alternate_names":["id","business_entity_id","name"]},{"business_entity_external_references":["id","business_entity_id","name","type","value"]}]
+          schema:
+            type: string
+      responses: {}
+  /business_entities/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '55'
+        schema:
+          type: integer
+    get:
+      summary: GET Business Entities by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","name","type","formation_type","display_name","status",{"business_entity_account_owners":["id","user_id","email"]},{"addresses":["id","name","street1","street2","city","state","postal_code","location_code",{"country":["code"]},"active"]},{"primary_address":["id","name","street1","street2","city","state","postal_code","location_code",{"country":["code"]},"active"]},{"primary_contact":["id","email","name_given","name_family"]},{"country_of_origin":["code"]},{"business_entity_relationships":["id","business_entity_id","related_business_entity_id","relationship_type","status"]},{"business_entity_alternate_names":["id","business_entity_id","name"]},{"business_entity_external_references":["id","business_entity_id","name","type","value"]}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update Business Entity
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","name","type","formation_type","display_name","status",{"business_entity_account_owners":["id","user_id","email"]},{"addresses":["id","name","street1","street2","city","state","postal_code","location_code",{"country":["code"]},"active"]},{"primary_address":["id","name","street1","street2","city","state","postal_code","location_code",{"country":["code"]},"active"]},{"primary_contact":["id","email","name_given","name_family"]},{"country_of_origin":["code"]},{"business_entity_relationships":["id","business_entity_id","related_business_entity_id","relationship_type","status"]},{"business_entity_alternate_names":["id","business_entity_id","name"]},{"business_entity_external_references":["id","business_entity_id","name","type","value"]}]
+          schema:
+            type: string
+      responses: {}
+  /departments:
+    parameters: []
+    get:
+      summary: GET Department by name
+      parameters:
+        - name: name
+          in: query
+          required: false
+          example: IT
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: '["id","name","active",{"custom_fields":{}}]'
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create Department
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","name","active",{"custom_fields":{}}]'
+          schema:
+            type: string
+      responses: {}
+  /departments/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '151'
+        schema:
+          type: integer
+    get:
+      summary: GET department by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","name","active",{"custom_fields":{}}]'
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update Existing Department
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","name","active",{"custom_fields":{}}]'
+          schema:
+            type: string
+      responses: {}
+  /commodities:
+    parameters: []
+    get:
+      summary: GET Commodity by name
+      parameters:
+        - name: name
+          in: query
+          required: false
+          example: Labor
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","category","name","active",{"parent":["id","name","category",{"custom_fields":{}}]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create Commodity
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","category","name","active",{"parent":["id","name","category",{"custom_fields":{}}]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+  /commodities/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '4'
+        schema:
+          type: integer
+    get:
+      summary: GET Commodity by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","category","name","active",{"parent":["id","name","category",{"custom_fields":{}}]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update Existing Commodity
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","category","name","active",{"parent":["id","name","category",{"custom_fields":{}}]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+  /lookup_values:
+    parameters: []
+    get:
+      summary: Get Lookup Value by name
+      parameters:
+        - name: name
+          in: query
+          required: false
+          example: compliant
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","external-ref-num","external-ref-code","active",{"parent":["id","name","active",{"custom_fields":{}},{"parent":
+            ["id","name","active",{"custom_fields":{}}]}]},{"lookup":["id","name","active"]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create Lookup Value
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","external-ref-num","external-ref-code","active",{"parent":["id","name","active",{"custom_fields":{}},{"parent":
+            ["id","name","active",{"custom_fields":{}}]}]},{"lookup":["id","name","active"]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+  /lookup_values/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '4'
+        schema:
+          type: integer
+    get:
+      summary: Get Lookup Value by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","active","external-ref-num","external-ref-code",{"parent":["id","name","active",{"custom_fields":{}},{"parent":
+            ["id","name","active",{"custom_fields":{}}]}]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update Existing Lookup Value
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","external-ref-num","external-ref-code","active",{"parent":["id","name","active",{"custom_fields":{}},{"parent":
+            ["id","name","active",{"custom_fields":{}}]}]},{"lookup":["id","name","active"]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+  /addresses/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '4882'
+        schema:
+          type: integer
+    get:
+      summary: Get Address by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","active","street1","street2","city","state","postal_code","location_code",{"country":{}},{"tax_registrations":{}},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update Existing Address
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","active","street1","street2","city","state","postal_code","location_code",{"country":{}},{"tax_registrations":{}},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+  /addresses:
+    parameters: []
+    get:
+      summary: Get Address by Location Code
+      parameters:
+        - name: location-code
+          in: query
+          required: false
+          example: '1234568'
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","active","street1","street2","city","state","postal_code","location_code",{"country":{}},{"tax_registrations":{}},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create Address
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","active","street1","street2","city","state","postal_code","location_code",{"country":{}},{"tax_registrations":{}},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+  /payment_terms/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '32'
+        schema:
+          type: integer
+    get:
+      summary: Get Payment Terms by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","code","description","active"]'
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update Existing Payment Term
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","code","description","active"]'
+          schema:
+            type: string
+      responses: {}
+  /payment_terms:
+    parameters: []
+    get:
+      summary: Get Payment Terms by Code
+      parameters:
+        - name: code
+          in: query
+          required: false
+          example: Net 30
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: '["id","code","description","active"]'
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create Payment Term
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","code","description","active"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{inv_id}/comments:
+    parameters:
+      - name: inv_id
+        in: path
+        required: true
+        example: '6854'
+        schema:
+          type: integer
+    post:
+      summary: POST a comment on Invoice
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","commentable_id","commentable_type","reason_code","comments",{"attachments":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+  /expense_reports/{exp_id}/comments:
+    parameters:
+      - name: exp_id
+        in: path
+        required: true
+        example: '1900'
+        schema:
+          type: integer
+    post:
+      summary: POST a comment on ExpenseReport
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","commentable_id","commentable_type","reason_code","comments",{"attachments":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+  /purchase_orders/{po_id}/comments:
+    parameters:
+      - name: po_id
+        in: path
+        required: true
+        example: '5365'
+        schema:
+          type: integer
+    post:
+      summary: POST a comment on PurchaseOrder
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","commentable_id","commentable_type","reason_code","comments",{"attachments":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+  /requisitions/{req_id}/comments:
+    parameters:
+      - name: req_id
+        in: path
+        required: true
+        example: '3873'
+        schema:
+          type: integer
+    post:
+      summary: POST a comment on Requsition
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","commentable_id","commentable_type","reason_code","comments",{"attachments":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+  /comments:
+    parameters: []
+    post:
+      summary: POST comment on EasyFormResponse
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","commentable_id","commentable_type","reason_code","comments",{"attachments":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+  /requisitions/{id}/comments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Coupa Internal Requisition Id
+        example: '4025'
+        schema:
+          type: integer
+    get:
+      summary: GET Comments for a specific Requisition
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","commentable_id","commentable_type","reason_code","comments",{"attachments":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Add a comment to a requisition
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /purchase_orders/{id}/comments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '3238'
+        schema:
+          type: integer
+    get:
+      summary: GET Comments for a specific PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","commentable_id","commentable_type","reason_code","comments",{"attachments":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Add Comments to PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/comments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '6854'
+        schema:
+          type: integer
+    get:
+      summary: GET Comments for a specific Invoice
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","commentable_id","commentable_type","reason_code","comments",{"attachments":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+  /expense_reports/{id}/comments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1816'
+        schema:
+          type: integer
+    get:
+      summary: GET Comments for a specific ExpenseReport
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","commentable_id","commentable_type","reason_code","comments",{"attachments":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Add a comment to Expense Report
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","commentable_id","commentable_type","comments",{"attachments":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+  /easy_form_responses/{id}/comments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '11485'
+        schema:
+          type: integer
+    get:
+      summary: GET Comments for a specifc EasyFormResponse
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","commentable_id","commentable_type","reason_code","comments",{"attachments":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+  /comments/{id}/attachments:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '132'
+        schema:
+          type: integer
+    post:
+      summary: Adding attachment to an existing comment
+      parameters: []
+      responses: {}
+  /custom_objects/{customObjectId}/object_instances:
+    parameters:
+      - name: customObjectId
+        in: path
+        required: true
+        example: '128'
+        schema:
+          type: integer
+    get:
+      summary: Get Custom Object Instances
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","custom_object_name","custom_object_code","form_response_id",{"created_by":["id","login","email"]},{"updated_by":["id","login","email"]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create new custom object intance
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","custom_object_name","custom_object_code","form_response_id",{"created_by":["id","login","email"]},{"updated_by":["id","login","email"]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+  /custom_objects/{customObjectId}/object_instances/{instanceID}:
+    parameters:
+      - name: customObjectId
+        in: path
+        required: true
+        example: '128'
+        schema:
+          type: integer
+      - name: instanceID
+        in: path
+        required: true
+        example: '55'
+        schema:
+          type: integer
+    get:
+      summary: Get specific Custom Object Instance by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","custom_object_name","custom_object_code","form_response_id",{"created_by":["id","login","email"]},{"updated_by":["id","login","email"]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update specific Custom Object Instance Custom Fields
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","custom_object_name","custom_object_code","form_response_id",{"created_by":["id","login","email"]},{"updated_by":["id","login","email"]},{"custom_fields":{}}]
+          schema:
+            type: string
+      responses: {}
+  /contracts/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '377'
+        schema:
+          type: integer
+    get:
+      summary: Get contract by ID
+      parameters: []
+      responses: {}
+  /contracts/{id}/retrieve_legal_agreement:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '465'
+        schema:
+          type: integer
+    get:
+      summary: Retrieve legal agreement
+      parameters: []
+      responses: {}
+  /contracts/:
+    parameters: []
+    post:
+      summary: Create a Contract
+      parameters: []
+      responses: {}
+  /contracts/{id}/legal_agreement:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '372'
+        schema:
+          type: integer
+    post:
+      summary: Contracts - Add Legal Agreement
+      parameters:
+        - name: Accept
+          in: header
+          required: false
+          example: application/xml
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: multipart/form-data
+          schema:
+            type: string
+      responses: {}
+  /contracts/{id}/submit_for_approval:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '375'
+        schema:
+          type: integer
+    put:
+      summary: Submit for approval
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","status"]'
+          schema:
+            type: string
+      responses: {}
+  /contracts/{id}/contract_terms:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '377'
+        schema:
+          type: integer
+    post:
+      summary: Add contract term
+      parameters: []
+      responses: {}
+  /charges/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '16'
+        schema:
+          type: integer
+    get:
+      summary: Get Charges by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","external_ref_id","virtual_card_id","coupa_pay_id","coupa_pay_statement_id","statement_id","supplier_id","charge_date","total","merchant_total","merchant_reference","card_provider_account","exported","tax_total","accounting_total","supplier_name","account_type_id","order_header_id","order_header_number","document_type",{"currency":["code"]},{"merchant_currency":["code"]},{"accounting_currency":["code"]},{"charge_allocations":
+            ["id","amount","pct",{"account":
+            ["id","name","code","segment_1","segment_2","segment_3","segment_4","segment_5","segment_6","segment_7","segment_8"]},{"currency":["code"]},{"tax_lines":
+            ["amount","rate","code","description","taxable_amount"]  }]}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Mark a Charge as Exported
+      parameters:
+        - name: exported
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /charges:
+    parameters: []
+    get:
+      summary: Get Charges with fields query param - Not Exported
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","external_ref_id","virtual_card_id","coupa_pay_id","coupa_pay_statement_id","statement_id","supplier_id","charge_date","total","merchant_total","merchant_reference","card_provider_account","exported","tax_total","accounting_total","supplier_name","account_type_id","order_header_id","order_header_number","document_type",{"currency":["code"]},{"merchant_currency":["code"]},{"accounting_currency":["code"]},{"charge_allocations":
+            ["id","amount","pct",{"account":
+            ["id","name","code","segment_1","segment_2","segment_3","segment_4","segment_5","segment_6","segment_7","segment_8"]},{"currency":["code"]},{"tax_lines":
+            ["amount","rate","code","description","taxable_amount"]  }]}]
+          schema:
+            type: string
+      responses: {}
+  /coupa_pay/payments/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '18016'
+        schema:
+          type: integer
+    get:
+      summary: Get CoupaPay Invoice Paymeent by ID
+      parameters: []
+      responses: {}
+    put:
+      summary: Mark a CoupaPay Invoice Payment as Exported
+      parameters:
+        - name: exported
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /coupa_pay/payments:
+    parameters: []
+    get:
+      summary: >-
+        Get CoupaPay Invoice Payments - status (Completed Successfully or
+        Completed Wioth Errors) and Not Exported
+      parameters:
+        - name: status[in]
+          in: query
+          required: false
+          example: completed_successfully,completed_with_errors
+          schema:
+            type: string
+        - name: exported
+          in: query
+          required: false
+          example: 'false'
+          schema:
+            type: boolean
+        - name: pay_to_account[type]
+          in: query
+          required: false
+          example: CoupaPay::SupplierPaymentAccount
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: >
+            ["id","payment-batch-id","status","exchange_rate","updated_at","released_at",{"pay_from_account":["id",{"currency":["code"]}]},{"pay_to_currency":["code"]},{"payee":["number"]},{"digital_check":["check_number"]},{"payment_details":["id","released_at","source_transaction_id","source_transaction_reference","discount_total","payment_total",{"payable_allocations":["id","updated_at","payable_to_amount","source_transaction_to_reference","source_transaction_to_id"]},{"currency":["code"]}]}]
+          schema:
+            type: string
+      responses: {}
+  /coupa_pay/statements/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '2'
+        schema:
+          type: integer
+    get:
+      summary: Get Statements by ID
+      parameters: []
+      responses: {}
+    put:
+      summary: Mark a Statement as Exported
+      parameters:
+        - name: exported
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /coupa_pay/statements:
+    parameters: []
+    get:
+      summary: Get All Statements - Status Approved For Paymeent and Not Exported
+      parameters:
+        - name: status
+          in: query
+          required: false
+          example: approved_for_payment
+          schema:
+            type: string
+        - name: exported
+          in: query
+          required: false
+          example: 'false'
+          schema:
+            type: boolean
+      responses: {}
+  /coupa_pay/invoices:
+    parameters: []
+    get:
+      summary: >-
+        Get Pay invoices - Status (WC_Consideration or Ready To Pay) and
+        Exported false
+      parameters:
+        - name: status[in]
+          in: query
+          required: false
+          example: wc_consideration,ready_to_pay
+          schema:
+            type: string
+        - name: exported
+          in: query
+          required: false
+          example: 'false'
+          schema:
+            type: boolean
+      responses: {}
+  /coupa_pay/invoices/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '45'
+        schema:
+          type: integer
+    put:
+      summary: Mark Pay Invoice as Exported
+      parameters:
+        - name: exported
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /payables/external/payables:
+    parameters: []
+    get:
+      summary: GET External Payable by source
+      parameters:
+        - name: source-reference
+          in: query
+          required: false
+          example: '20220702112813'
+          schema:
+            type: integer
+        - name: source-name
+          in: query
+          required: false
+          example: NetSuite
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create External Payable
+      parameters: []
+      responses: {}
+  /payables/external/payables/408:
+    parameters: []
+    get:
+      summary: Get External Payable by ID
+      parameters: []
+      responses: {}
+  /payables/external/payables/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '411'
+        schema:
+          type: integer
+    put:
+      summary: Update External Payable
+      parameters: []
+      responses: {}
+  /payables/external/payables/{id}/void:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '412'
+        schema:
+          type: integer
+    put:
+      summary: Void External Payable
+      parameters: []
+      responses: {}
+  /data_file_sources/load_file:
+    parameters: []
+    post:
+      summary: Import Lookup Values
+      parameters:
+        - name: source_for
+          in: query
+          required: false
+          example: LookupValue
+          schema:
+            type: string
+      responses: {}
+  /data_file_sources/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '9797503'
+        schema:
+          type: integer
+    get:
+      summary: GET status of an import file
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","type","source-for","status","file_file_name","file_file_size","start_time","end_time","records_count","records_created","records_updated","integration_id","integration_run_id"]
+          schema:
+            type: string
+      responses: {}
+  /supplier_information/{supplier_information_id}/easy_form_responses:
+    parameters:
+      - name: supplier_information_id
+        in: path
+        required: true
+        example: '650'
+        schema:
+          type: integer
+    get:
+      summary: GET SIM Easy Form Responses
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","easy_form_id","name","status","submitted_at",{"subject":["id","supplier_id","custom_object_name","custom_object_code"]},{"easy_form_widget_responses":["id","easy_form_id","easy_form_widget_id","easy_form_response_id","answer","type","field_name","widget_label"]},{"requested_by":
+            ["id"]},{"created_by":["id"]},{"updated_by": ["id"]}]
+          schema:
+            type: string
+      responses: {}
+  /easy_form_responses/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '9983'
+        schema:
+          type: integer
+    get:
+      summary: GET Easy For Response by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","easy_form_id","name","status","submitted_at",{"subject":["id","supplier_id","custom_object_name","custom_object_code"]},{"easy_form_widget_responses":["id","easy_form_id","easy_form_widget_id","easy_form_response_id","answer","type","field_name","widget_label"]},{"requested_by":
+            ["id"]},{"created_by":["id"]},{"updated_by":
+            ["id"]},{"approvals":["id","position","approval_chain_id","status","approval_date","type","approvable_type","approver_type","approvable_id","delegate_id","holdable"]}]
+          schema:
+            type: string
+      responses: {}
+  /exchange_rates:
+    parameters: []
+    post:
+      summary: Create FxRates
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","rate","rate_date",{"from_currency":
+            ["code","decimals"]},{"to_currency": ["code","decimals"]}]
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: GET Exchange Rates
+      parameters:
+        - name: from-currency[code]
+          in: query
+          required: false
+          example: INR
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","rate","rate_date",{"from_currency":
+            ["code","decimals"]},{"to_currency": ["code","decimals"]}]
+          schema:
+            type: string
+      responses: {}
+  /expense_reports/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '6011'
+        schema:
+          type: integer
+    get:
+      summary: Get Expense Report by ID
+      parameters:
+        - name: filter
+          in: query
+          required: false
+          example: default_expense_reports_filter
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Mark an Expense Report as exported
+      parameters:
+        - name: exported
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /expense_reports:
+    parameters: []
+    get:
+      summary: Get Expense Reports - Status Approved For Payment and Not Exported
+      parameters:
+        - name: status
+          in: query
+          required: false
+          example: approved_for_payment
+          schema:
+            type: string
+        - name: exported
+          in: query
+          required: false
+          example: 'false'
+          schema:
+            type: boolean
+        - name: filter
+          in: query
+          required: false
+          example: default_expense_reports_filter
+          schema:
+            type: string
+      responses: {}
+  /expense_reports/{expense_report_id}/expense_lines/{expense_line_id}/expense_artifacts:
+    parameters:
+      - name: expense_report_id
+        in: path
+        required: true
+        example: '6011'
+        schema:
+          type: integer
+      - name: expense_line_id
+        in: path
+        required: true
+        example: '84539'
+        schema:
+          type: integer
+    post:
+      summary: Add Receipt to an Expense Line
+      parameters: []
+      responses: {}
+  /expense_reports/460/remove_approval:
+    parameters: []
+    put:
+      summary: Remove approver from expense report
+      parameters:
+        - name: approval_id
+          in: query
+          required: false
+          example: '2129376'
+          schema:
+            type: integer
+        - name: filter
+          in: query
+          required: false
+          example: default_expense_reports_filter
+          schema:
+            type: string
+      responses: {}
+  /integration_runs/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '97952'
+        schema:
+          type: integer
+    get:
+      summary: GET Integartion Run
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","start_time","end_time","records_processed","total_records",{"integration":
+            ["id","name","business_object"]}]
+          schema:
+            type: string
+      responses: {}
+  /integration_runs:
+    parameters: []
+    post:
+      summary: Create new integraion run
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","start_time","end_time","records_processed","total_records",{"integration":
+            ["id","name","business_object"]}]
+          schema:
+            type: string
+      responses: {}
+  /integration_runs/{integartion_run_id}/run:
+    parameters:
+      - name: integartion_run_id
+        in: path
+        required: true
+        example: '74268'
+        schema:
+          type: integer
+    put:
+      summary: Update integraion runwith start, end times and total records
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","start_time","end_time","records_processed","total_records",{"integration":
+            ["id","name","business_object"]}]
+          schema:
+            type: string
+      responses: {}
+  /integration_runs/{integartion_run_id}/success:
+    parameters:
+      - name: integartion_run_id
+        in: path
+        required: true
+        example: '74268'
+        schema:
+          type: integer
+    put:
+      summary: Mark an IntegrationRun as Success
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","start_time","end_time","records_processed","total_records",{"integration":
+            ["id","name","business_object"]}]
+          schema:
+            type: string
+      responses: {}
+  /integration_history_records/create_alert:
+    parameters: []
+    post:
+      summary: Create Integration history Record linked to a Integration Run
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /integration_errors:
+    parameters: []
+    post:
+      summary: Create Integration Errors against an Integration Run
+      parameters: []
+      responses: {}
+  /return_to_supplier_transactions:
+    parameters: []
+    get:
+      summary: GET Return To Supplier Transactions
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","price","quantity","total","transaction_date","type","match_reference","original_transaction_id","voided_value","exported",{"account":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"account_allocations":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"order_line":
+            ["id","order_header_id","order_header_number"]},{"item":
+            ["id","name","item_number"]},{"uom": ["name","code"]},{"created_by":
+            ["id","login","email"]},{"updated_by": ["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+  /return_to_supplier_transactions/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '625'
+        schema:
+          type: integer
+    get:
+      summary: GET Return To Supplier Transactions by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","price","quantity","total","transaction_date","type","match_reference","original_transaction_id","voided_value","exported",{"account":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"account_allocations":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"order_line":
+            ["id","order_header_id","order_header_number"]},{"item":
+            ["id","name","item_number"]},{"uom": ["name","code"]},{"created_by":
+            ["id","login","email"]},{"updated_by": ["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: MarkAsExported Return To Supplier Transactions
+      parameters:
+        - name: exported
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /inventory_consumptions:
+    parameters: []
+    get:
+      summary: GET Inventory Consumptions
+      parameters: []
+      responses: {}
+  /inventory_consumptions/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '609'
+        schema:
+          type: integer
+    get:
+      summary: GET Inventory Consumptions by ID
+      parameters: []
+      responses: {}
+    put:
+      summary: MarkAsExported Inventory Consumptions
+      parameters:
+        - name: exported
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+      responses: {}
+  /inventory_adjustments:
+    parameters: []
+    get:
+      summary: GET Inventory Adjustments
+      parameters: []
+      responses: {}
+  /inventory_adjustments/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '54'
+        schema:
+          type: integer
+    get:
+      summary: GET Inventory Adjustments by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","price","quantity","total","transaction_date","type","match_reference","original_transaction_id","voided_value","exported",{"account":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"account_allocations":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"order_line":
+            ["id","order_header_id","order_header_number"]},{"item":
+            ["id","name","item_number"]},{"uom": ["name","code"]},{"created_by":
+            ["id","login","email"]},{"updated_by": ["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: MarkAsExported Inventory Adjustments
+      parameters:
+        - name: exported
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /inventory_transfers:
+    parameters: []
+    get:
+      summary: GET Inventory Transfers
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","price","quantity","total","transaction_date","type","match_reference","original_transaction_id","voided_value","exported",{"account":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"account_allocations":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"order_line":
+            ["id","order_header_id","order_header_number"]},{"item":
+            ["id","name","item_number"]},{"uom": ["name","code"]},{"created_by":
+            ["id","login","email"]},{"updated_by": ["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: PENDING Create Inventory Transfers
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","status"]'
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+  /inventory_transfers/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '89'
+        schema:
+          type: integer
+    get:
+      summary: GET Inventory Transfers by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","price","quantity","total","transaction_date","type","match_reference","original_transaction_id","voided_value","exported",{"account":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"account_allocations":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"order_line":
+            ["id","order_header_id","order_header_number"]},{"item":
+            ["id","name","item_number"]},{"uom": ["name","code"]},{"created_by":
+            ["id","login","email"]},{"updated_by": ["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: MarkAsExported Return To Supplier Transactions Copy
+      parameters:
+        - name: exported
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /receiving_transactions/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '822'
+        schema:
+          type: integer
+    get:
+      summary: Retrieve goods receipts by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","price","quantity","total","transaction_date","type","match_reference","original_transaction_id","voided_value","exported",{"account":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"account_allocations":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"order_line":
+            ["id","order_header_id","order_header_number"]},{"item":
+            ["id","name","item_number"]},{"uom": ["name","code"]},{"created_by":
+            ["id","login","email"]},{"updated_by": ["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Add Asset Tags to a Receipt
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /receiving_transactions:
+    parameters: []
+    get:
+      summary: Retrieve goods receipts by PO Number
+      parameters:
+        - name: order-line[order-header][po_number]
+          in: query
+          required: false
+          example: '2938'
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","price","quantity","total","transaction_date","type","match_reference","original_transaction_id","voided_value","exported",{"account":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"account_allocations":
+            ["id","name","code","active","segment_1","segment_2", "segment_3",
+            "segment_4", "account_type_id"]},{"order_line":
+            ["id","order_header_id","order_header_number"]},{"item":
+            ["id","name","item_number"]},{"uom": ["name","code"]},{"created_by":
+            ["id","login","email"]},{"updated_by": ["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create a new goods receipt
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /receiving_transactions/{id}/void:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '824'
+        schema:
+          type: integer
+    put:
+      summary: Void Receipts using ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices:
+    parameters: []
+    get:
+      summary: Retrieve all Invoices
+      parameters:
+        - name: filter
+          in: query
+          required: false
+          example: default_invoices_filter
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create Invoice against a PO
+      parameters:
+        - name: filter
+          in: query
+          required: false
+          example: default_invoices_filter
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1308'
+        schema:
+          type: integer
+    get:
+      summary: Retrieve Invoice by ID
+      parameters:
+        - name: filter
+          in: query
+          required: false
+          example: default_invoices_filter
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Add/update a invoice line
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/retrieve_image_scan:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '146'
+        schema:
+          type: integer
+    get:
+      summary: Retrieve Invoices Image Scan
+      parameters: []
+      responses: {}
+  /invoices/{id}/retrieve_legal_invoice_pdf:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '746'
+        schema:
+          type: integer
+    get:
+      summary: Retrieve Legal Invoice PDF
+      parameters:
+        - name: Accept
+          in: header
+          required: false
+          example: application/xml
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/xml
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/submit:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1308'
+        schema:
+          type: integer
+    put:
+      summary: Submit a draft invoice for approval
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/add_approver:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1308'
+        schema:
+          type: integer
+    put:
+      summary: Add approver to an Invoice manually
+      parameters:
+        - name: position
+          in: query
+          required: false
+          example: after_current_approver
+          schema:
+            type: string
+        - name: approver_id
+          in: query
+          required: false
+          example: '548'
+          schema:
+            type: integer
+        - name: approver_type
+          in: query
+          required: false
+          example: user
+          schema:
+            type: string
+        - name: current_approver_id
+          in: query
+          required: false
+          example: '6'
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/remove_approval:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1308'
+        schema:
+          type: integer
+    put:
+      summary: Remove the manually added approver
+      parameters:
+        - name: approval_id
+          in: query
+          required: false
+          example: '33015'
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/restart_approvals:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1308'
+        schema:
+          type: integer
+    put:
+      summary: Restart Invoice Approval
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/bypass_approvals:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1308'
+        schema:
+          type: integer
+    put:
+      summary: Bypass all approvals of an Invoice
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/bypass_current_approval:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1291'
+        schema:
+          type: integer
+    put:
+      summary: Bypass current approvals of an Invoice
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/revalidate_tolerances:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1291'
+        schema:
+          type: integer
+    put:
+      summary: Revalidate toleranes on an Invoice
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/dispute:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1291'
+        schema:
+          type: integer
+    put:
+      summary: Dispute an Invoice
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/void:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1285'
+        schema:
+          type: integer
+    put:
+      summary: Void an approved Invoice
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/image_scan:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1291'
+        schema:
+          type: integer
+    put:
+      summary: Update Image Scan on an Invoice
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /invoices/{id}/abandon:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1291'
+        schema:
+          type: integer
+    put:
+      summary: Abandon an invoice
+      parameters:
+        - name: reason_insight[code]
+          in: query
+          required: false
+          example: AbandonedReasonCode
+          schema:
+            type: string
+        - name: additional_recipients
+          in: query
+          required: false
+          example: coupa@coupa.com
+          schema:
+            type: string
+        - name: send_to_supplier
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+        - name: comment
+          in: query
+          required: false
+          example: test
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /items/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '3522'
+        schema:
+          type: integer
+    get:
+      summary: Retrieve Item by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","name","active"]'
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update existing item
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","name","item-number"]'
+          schema:
+            type: string
+      responses: {}
+  /items:
+    parameters: []
+    get:
+      summary: Retrieve Item by Item Number
+      parameters:
+        - name: item-number
+          in: query
+          required: false
+          example: '2423152'
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          required: false
+          example: '["id","name","active"]'
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create New Item
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","name","item-number"]'
+          schema:
+            type: string
+      responses: {}
+  /supplier_items:
+    parameters: []
+    get:
+      summary: GET Supplier Items by Item Name
+      parameters:
+        - name: item[name]
+          in: query
+          required: false
+          example: Outfit,Maintenance
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","supplier-part-num","supplier-aux-part-num",{"supplier":["id","name","number"]},{"item":
+            ["id","name","item-number","active"]},{"custom_fields": {}}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create New Supplier Item agaisnt an existing item
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","supplier-part-num","supplier-aux-part-num",{"supplier":["id","name","number"]},{"item":
+            ["id","name","item-number","active"]},{"custom_fields": {}}]
+          schema:
+            type: string
+      responses: {}
+  /supplier_items/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '3615'
+        schema:
+          type: integer
+    get:
+      summary: GET Supplier Item by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","supplier-part-num","supplier-aux-part-num",{"supplier":["id","name","number"]},{"item":
+            ["id","name","item-number","active"]},{"custom_fields": {}}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update Existing Supplier Item
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","supplier-part-num","supplier-aux-part-num",{"supplier":["id","name","number"]},{"item":
+            ["id","name","item-number","active"]},{"custom_fields": {}}]
+          schema:
+            type: string
+      responses: {}
+  /payables/orders/{pay_order_id}:
+    parameters:
+      - name: pay_order_id
+        in: path
+        required: true
+        example: '809'
+        schema:
+          type: integer
+    get:
+      summary: Get a Pay Order
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","created_at","updated_at","paid_date","paid_total","remaining_total","remittance_total","exported","milestone_id",{"currency":["code"]},{"reconciliation_lines":["id","payable_type","payable_id","notes","payment_date","amount_paid"]},{"created_by":["id","login","email"]},{"updated_by":["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+  /payables/orders/{pay_order_id}/ready_to_pay:
+    parameters:
+      - name: pay_order_id
+        in: path
+        required: true
+        example: '804'
+        schema:
+          type: integer
+    patch:
+      summary: Update Pay Order Status to Ready to Pay
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","created_at","updated_at","paid_date","paid_total","remaining_total","remittance_total","exported","milestone_id",{"currency":["code"]},{"reconciliation_lines":["id","payable_type","payable_id","notes","payment_date","amount_paid"]},{"created_by":["id","login","email"]},{"updated_by":["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+  /payables/orders/{pay_order_id}/pay_externally:
+    parameters:
+      - name: pay_order_id
+        in: path
+        required: true
+        example: '804'
+        schema:
+          type: integer
+    patch:
+      summary: Update Pay Order Status to Externally Paid
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","created_at","updated_at","paid_date","paid_total","remaining_total","remittance_total","exported","milestone_id",{"currency":["code"]},{"reconciliation_lines":["id","payable_type","payable_id","notes","payment_date","amount_paid"]},{"created_by":["id","login","email"]},{"updated_by":["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+  /:
+    parameters: []
+    get:
+      summary: Mark it as exported
+      parameters: []
+      responses: {}
+  /payables/order/reconciliation_lines:
+    parameters: []
+    get:
+      summary: GET ReconciliationLines for a Payable::Order
+      parameters:
+        - name: payable-id
+          in: query
+          required: false
+          example: '803'
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","payable_type","payable_id","notes","payment_date","amount_paid",{"created_by":["id","login","email"]},{"updated_by":["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create Payment ReconciliationLines for a Pay Order
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","payable_type","payable_id","notes","payment_date","amount_paid",{"created_by":["id","login","email"]},{"updated_by":["id","login","email"]}]
+          schema:
+            type: string
+      responses: {}
+  /payables/invoices:
+    parameters: []
+    get:
+      summary: GET payables invoices
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","document_type","document_id","status","payable_amount","paid_amount","remaining_amount","paid_date","created_at","updated_at","remittance_amount",{"currency":["code"]},{"accounting_currency":["code"]},{"reconciliation_lines":["id","created_at","updated_at","payable_type","notes","payable_id","payment_date","amount_paid"]},{"payment_term":["code"]}]
+          schema:
+            type: string
+      responses: {}
+  /payables/invoices/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1'
+        schema:
+          type: integer
+    get:
+      summary: GET payable invoice by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","document_type","document_id","status","payable_amount","paid_amount","remaining_amount","paid_date","created_at","updated_at","remittance_amount",{"currency":["code"]},{"accounting_currency":["code"]},{"reconciliation_lines":["id","created_at","updated_at","payable_type","notes","payable_id","payment_date","amount_paid"]},{"payment_term":["code"]}]
+          schema:
+            type: string
+      responses: {}
+  /payables/invoices/{id}/pay_externally:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1'
+        schema:
+          type: integer
+    put:
+      summary: Mark a payable::invoice as paid externally
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","document_type","document_id","status","payable_amount","paid_amount","remaining_amount","paid_date","created_at","updated_at","remittance_amount",{"currency":["code"]},{"accounting_currency":["code"]},{"reconciliation_lines":["id","created_at","updated_at","payable_type","notes","payable_id","payment_date","amount_paid"]},{"payment_term":["code"]}]
+          schema:
+            type: string
+      responses: {}
+  /payables/invoices/{id}/track_externally:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '2'
+        schema:
+          type: integer
+    put:
+      summary: Mark a payable::invoice as tracking externally
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","document_type","document_id","status","payable_amount","paid_amount","remaining_amount","paid_date","created_at","updated_at","remittance_amount",{"currency":["code"]},{"accounting_currency":["code"]},{"reconciliation_lines":["id","created_at","updated_at","payable_type","notes","payable_id","payment_date","amount_paid"]},{"payment_term":["code"]}]
+          schema:
+            type: string
+      responses: {}
+  /payables/invoices/{id}/track_in_coupa:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '2'
+        schema:
+          type: integer
+    put:
+      summary: Mark a payable::invoice as tracking in Coupa
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","document_type","document_id","status","payable_amount","paid_amount","remaining_amount","paid_date","created_at","updated_at","remittance_amount",{"currency":["code"]},{"accounting_currency":["code"]},{"reconciliation_lines":["id","created_at","updated_at","payable_type","notes","payable_id","payment_date","amount_paid"]},{"payment_term":["code"]}]
+          schema:
+            type: string
+      responses: {}
+  /payables/allocations:
+    parameters: []
+    get:
+      summary: GET Payable Allocations
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","payable_from_id","payable_from_type","payable_from_amount","source_transaction_from_id","source_transaction_from_type","source_transaction_from_reference","payable_to_id","payable_to_type","payable_to_amount","source_transaction_to_id","source_transaction_to_type","source_transaction_to_reference","status","source","reason_code","payment_reference_id","payment_reference_type","last_exported_at",{"payable_from_currency":["code"]},{"payable_to_currency":["code"]}]
+          schema:
+            type: string
+      responses: {}
+  /project_memberships:
+    parameters: []
+    get:
+      summary: GET a project membership based on a user and project
+      parameters:
+        - name: project[id]
+          in: query
+          required: false
+          example: '1'
+          schema:
+            type: integer
+        - name: user[login]
+          in: query
+          required: false
+          example: dfsagh
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","user_id","created_at","updated_at","project_id","owner","participant",{"user":
+            ["id","login","email"]},{"project":
+            ["id","name","active","open",{"custom_fields": {}}]}]
+          schema:
+            type: string
+      responses: {}
+  /project_memberships/{project_membership_id}:
+    parameters:
+      - name: project_membership_id
+        in: path
+        required: true
+        example: '849'
+        schema:
+          type: integer
+    put:
+      summary: Update a project member as owner
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","user_id","created_at","updated_at","project_id","owner","participant",{"user":
+            ["id","login","email"]},{"project":
+            ["id","name","active","open",{"custom_fields": {}}]}]
+          schema:
+            type: string
+      responses: {}
+  /projects:
+    parameters: []
+    post:
+      summary: Create a Project
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","name","active","open","description","mention-name","start-date","project-id","status",{"template-group":
+            ["id","name"]},{"category": ["id","name","active"]},{"commodities":
+            ["id","name"]},{"created_by": ["id","login","email"]},{"updated_by":
+            ["id","login","email"]},{"custom_fields": {}}]
+          schema:
+            type: string
+      responses: {}
+  /projects/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '299'
+        schema:
+          type: integer
+    get:
+      summary: GET Project by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","name","active","open","description","mention-name","start-date","project-id","status",{"template-group":
+            ["id","name"]},{"category": ["id","name","active"]},{"commodities":
+            ["id","name"]},{"created_by": ["id","login","email"]},{"updated_by":
+            ["id","login","email"]},{"custom_fields": {}}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update Project
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","name","active","open","description","mention-name","start-date","project-id","status",{"template-group":
+            ["id","name"]},{"category": ["id","name","active"]},{"commodities":
+            ["id","name"]},{"created_by": ["id","login","email"]},{"updated_by":
+            ["id","login","email"]},{"custom_fields": {}}]
+          schema:
+            type: string
+      responses: {}
+  /projects/{id}/in_progress:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '2'
+        schema:
+          type: integer
+    post:
+      summary: Update status of a project
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","name","active","open","description","mention-name","start-date","project-id","status",{"template-group":
+            ["id","name"]},{"category": ["id","name","active"]},{"commodities":
+            ["id","name"]},{"created_by": ["id","login","email"]},{"updated_by":
+            ["id","login","email"]},{"custom_fields": {}}]
+          schema:
+            type: string
+      responses: {}
+  /purchase_orders/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '2864'
+        schema:
+          type: integer
+    get:
+      summary: Get Purchase orders by ID
+      parameters: []
+      responses: {}
+    put:
+      summary: Update PO COA and Segments
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /purchase_orders:
+    parameters: []
+    get:
+      summary: Get Purchase orders - issued and not exported
+      parameters:
+        - name: status
+          in: query
+          required: false
+          example: issued
+          schema:
+            type: string
+        - name: exported
+          in: query
+          required: false
+          example: 'false'
+          schema:
+            type: boolean
+        - name: filter
+          in: query
+          required: false
+          example: default_purchase_orders_filter
+          schema:
+            type: string
+      responses: {}
+  /purchase_orders/{id}/reopen:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '11750'
+        schema:
+          type: integer
+    put:
+      summary: Re-Open SoftClosed PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /purchase_orders/{id}/cancel:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '5457'
+        schema:
+          type: integer
+    put:
+      summary: Cancel a PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","status"]'
+          schema:
+            type: string
+      responses: {}
+  /purchase_order_changes:
+    parameters: []
+    get:
+      summary: Get Purchase order changes pending Remote Approver
+      parameters:
+        - name: current_pending_approver[login]
+          in: query
+          required: false
+          example: RemoteApprover
+          schema:
+            type: string
+        - name: filter
+          in: query
+          required: false
+          example: default_purchase_order_changes_filter
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create a new PO change
+      parameters:
+        - name: filter
+          in: query
+          required: false
+          example: default_purchase_order_changes_filter
+          schema:
+            type: string
+      responses: {}
+  /purchase_order_changes/{id}/add_approver:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '170'
+        schema:
+          type: integer
+    put:
+      summary: Add approver to PO change (before current approver)
+      parameters:
+        - name: position
+          in: query
+          required: false
+          example: before_current_approver
+          schema:
+            type: string
+        - name: approver_id
+          in: query
+          required: false
+          example: '5'
+          schema:
+            type: integer
+        - name: current_approver_id
+          in: query
+          required: false
+          example: '6'
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/xml
+          schema:
+            type: string
+      responses: {}
+  /purchase_order_changes/44:
+    parameters: []
+    put:
+      summary: Update purchase order change (remote approver)
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /purchase_order_lines/{id}/soft_close_for_receiving:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '4569'
+        schema:
+          type: integer
+    put:
+      summary: Soft close for receiving line from external PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /purchase_order_lines/{id}/soft_close_for_invoicing:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '4569'
+        schema:
+          type: integer
+    put:
+      summary: Soft close for invoicing line from external PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /purchase_order_lines/{id}/reopen_for_invoicing:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '4569'
+        schema:
+          type: integer
+    put:
+      summary: Reopen for invoicing line from external PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /purchase_order_lines/{id}/reopen_for_receiving:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '4569'
+        schema:
+          type: integer
+    put:
+      summary: Reopen for receiving line from external PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /purchase_orders/:
+    parameters: []
+    post:
+      summary: Create External PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /purchase_orders/{id}/issue:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '2866'
+        schema:
+          type: integer
+    put:
+      summary: Issue External PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /purchase_orders/3413/close:
+    parameters: []
+    put:
+      summary: Close / Soft_Close External PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /purchase_orders/3413/cancel:
+    parameters: []
+    put:
+      summary: Cancel External PO
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /requisitions:
+    parameters: []
+    get:
+      summary: Export Requisitions - Based on Updated Timestamp and Status
+      parameters:
+        - name: exported
+          in: query
+          required: false
+          example: 'false'
+          schema:
+            type: boolean
+        - name: status
+          in: query
+          required: false
+          example: ordered
+          schema:
+            type: string
+        - name: updated-at[gt]
+          in: query
+          required: false
+          example: '2020-04-30T06:00:00-00:00'
+          schema:
+            type: integer
+      responses: {}
+  /requisitions/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '3462'
+        schema:
+          type: integer
+    get:
+      summary: Retrieve Requisition by ID
+      parameters: []
+      responses: {}
+    put:
+      summary: Update Requisition Export Flag
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /requisitions/:
+    parameters: []
+    post:
+      summary: Create a Requisition in Draft Status
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /requisitions/submit_for_approval:
+    parameters: []
+    post:
+      summary: Create a Requisition and Submit the same for approval
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /requisitions/{id}/update_and_submit_for_approval:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Coupa Internal Requisition Id
+        example: '4012'
+        schema:
+          type: integer
+    put:
+      summary: Update a Requisition in Draft Status and Submit for Approval
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /requisitions/{id}/add_approver:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Coupa Internal Requisition Id
+        example: '3564'
+        schema:
+          type: integer
+    put:
+      summary: Add Approval Group to Requisition Approval Chain
+      parameters:
+        - name: position
+          in: query
+          required: false
+          example: before_current_approver
+          schema:
+            type: string
+        - name: approver_id
+          in: query
+          required: false
+          example: '4'
+          schema:
+            type: integer
+        - name: approver_type
+          in: query
+          required: false
+          example: UserGroup
+          schema:
+            type: string
+        - name: current_approver_id
+          in: query
+          required: false
+          example: '14'
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /requisitions/{id}/remove_approval:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Coupa Internal Requisition Id
+        example: '3907'
+        schema:
+          type: integer
+    put:
+      summary: Remove Approver from Requisition Approval Chain
+      parameters:
+        - name: approval_id
+          in: query
+          required: false
+          example: '31852'
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /supplier_risk_aware_feed:
+    parameters: []
+    get:
+      summary: GET RiskAwareFeed
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          example: '1'
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","number_field_01","number_field_02","number_field_03","number_field_04","number_field_05","number_field_06","number_field_07","number_field_08","number_field_09","number_field_10",{"supplier":["id","name","display_name","number"]}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create RiskAwareFeed for a SUpplier
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","number_field_01","number_field_02","number_field_03","number_field_04","number_field_05","number_field_06","number_field_07","number_field_08","number_field_09","number_field_10",{"supplier":["id","name","display_name","number"]}]
+          schema:
+            type: string
+      responses: {}
+  /supplier_risk_aware_feed/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '473'
+        schema:
+          type: integer
+    put:
+      summary: Update RiskAwareFeed for a Supplier
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","number_field_01","number_field_02","number_field_03","number_field_04","number_field_05","number_field_06","number_field_07","number_field_08","number_field_09","number_field_10",{"supplier":["id","name","display_name","number"]}]
+          schema:
+            type: string
+      responses: {}
+  /quote_requests/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '41403'
+        schema:
+          type: integer
+    get:
+      summary: GET Quote Request by ID
+      parameters: []
+      responses: {}
+    put:
+      summary: Update Quote Request
+      parameters: []
+      responses: {}
+  /quote_requests:
+    parameters: []
+    post:
+      summary: Create Quote Request
+      parameters: []
+      responses: {}
+  /quote_requests/{quote_request_id}/quote_responses:
+    parameters:
+      - name: quote_request_id
+        in: path
+        required: true
+        example: '35420'
+        schema:
+          type: integer
+    get:
+      summary: GET response agaist a quote_request
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","quote_request_id","submitted_at","state","promoted","position","comments","exported","awarded",{"lines":["id","created_at","submitted_at","price_amount","quantity","reporting_price_amount",{"price_currency":["code"]},"quote_request_line_id","lot_id","lead_time","cost_element_values","supplier_item_name","item_description","item_part_number","awarded"   
+            ]},{"quote_suppliers":["id","name","display_name","contact_name","email"]},{"created_by":["id","email","login"]},{"updated_by":["id","email","login"]}]
+          schema:
+            type: string
+      responses: {}
+  /quote_responses:
+    parameters: []
+    get:
+      summary: GET quote responses
+      parameters:
+        - name: state[in]
+          in: query
+          required: false
+          example: submitted
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","quote_request_id","submitted_at","state","promoted","position","comments","exported","awarded",{"lines":["id","created_at","submitted_at","price_amount","quantity","reporting_price_amount",{"price_currency":["code"]},"quote_request_line_id","lot_id","lead_time","cost_element_values","supplier_item_name","item_description","item_part_number","awarded"   
+            ]},{"quote_suppliers":["id","name","display_name","contact_name","email"]},{"created_by":["id","email","login"]},{"updated_by":["id","email","login"]}]
+          schema:
+            type: string
+      responses: {}
+  /quote_responses/{id}/award:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '4389'
+        schema:
+          type: integer
+    post:
+      summary: Award a quote response
+      parameters: []
+      responses: {}
+    delete:
+      summary: Remove award from the quote response
+      parameters: []
+      responses: {}
+  /suppliers/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '248'
+        schema:
+          type: integer
+    get:
+      summary: GET Supplier - using ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","number","status"]'
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update a Supplier (On Boarding to Active + Supplier Number)
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","number","status"]'
+          schema:
+            type: string
+      responses: {}
+  /suppliers/:
+    parameters: []
+    get:
+      summary: Get Supplier - using Status
+      parameters:
+        - name: status
+          in: query
+          required: false
+          example: active
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: '["id","number","status"]'
+          schema:
+            type: string
+      responses: {}
+  /suppliers/{id}/addresses:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1'
+        schema:
+          type: integer
+    get:
+      summary: GET remit-to addresses of a supplier
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","remit-to-code","name","street1","street2","city","state",{"country":["code"]},"active","postal-code"]
+          schema:
+            type: string
+      responses: {}
+  /suppliers:
+    parameters: []
+    get:
+      summary: GET suppliers - parent company not blank
+      parameters:
+        - name: status
+          in: query
+          required: false
+          example: active
+          schema:
+            type: string
+        - name: parent[id][blank]
+          in: query
+          required: false
+          example: 'false'
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          required: false
+          example: '["id","number","status"]'
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create a supplier
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /supplier_sites/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '55'
+        schema:
+          type: integer
+    get:
+      summary: GET Supplier Site by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","code","supplier_id",{"addresses":
+            ["id","supplier_id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields": {}}]},{"contacts":
+            ["id","supplier_id","kind","name_given","name_family","email"]}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update existing Supplier Site
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","code","supplier_id",{"addresses":
+            ["id","supplier_id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields": {}}]},{"contacts":
+            ["id","supplier_id","kind","name_given","name_family","email"]}]
+          schema:
+            type: string
+      responses: {}
+  /suppliers/{id}/supplier_sites:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '3505'
+        schema:
+          type: integer
+    get:
+      summary: GET ALL Supplier Sites against a Supplier record
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","code","supplier_id",{"addresses":
+            ["id","supplier_id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields": {}}]},{"contacts":
+            ["id","supplier_id","kind","name_given","name_family","email"]}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create Supplier Site
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","code","supplier_id",{"addresses":
+            ["id","supplier_id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields": {}}]},{"contacts":
+            ["id","supplier_id","kind","name_given","name_family","email"]}]
+          schema:
+            type: string
+      responses: {}
+  /supplier_information:
+    parameters: []
+    get:
+      summary: Retrieve all SIM Records
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","last_exported_at","name","display_name","supplier_id","supplier_number","federal_tax_num","duns_number","user_id","po_email",{"custom_fields":
+            {}},{"created_by": ["id","login","email"]},{"updated_by":
+            ["id","login","email"]},{"supplier_information_addresses":
+            ["id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields":
+            {}},{"supplier_information_tax_registrations":["id","number","supplier_information_address_id","supplier_information_id","active","local",{"country":["code"]}]}]},{"supplier_information_contacts":
+            ["id","supplier_information_id","kind","name_given","name_family","email"]}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create SIM with Primary/RTA/Standard Addresses
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","lasy_exported_at","name","display_name","supplier_id","supplier_number","federal_tax_num","duns_number","user_id","po_email",{"custom_fields":
+            {}},{"created_by": ["id","login","email"]},{"updated_by":
+            ["id","login","email"]},{"supplier_information_addresses":
+            ["id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields":
+            {}}]},{"supplier_information_contacts":
+            ["id","supplier_information_id","kind","name_given","name_family","email"]}]
+          schema:
+            type: string
+      responses: {}
+  /supplier_information/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1'
+        schema:
+          type: integer
+    get:
+      summary: Retrieve SIM Record by Id
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","status","last_exported_at","name","display_name","supplier_id","supplier_number","federal_tax_num","duns_number","user_id","po_email",{"custom_fields":
+            {}},{"created_by": ["id","login","email"]},{"updated_by":
+            ["id","login","email"]},{"supplier_information_addresses":
+            ["id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields":
+            {}},{"supplier_information_tax_registrations":["id","number","supplier_information_address_id","supplier_information_id","active","local",{"country":["code"]}]}]},{"supplier_information_contacts":
+            ["id","supplier_information_id","kind","name_given","name_family","email"]}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Mark SIM Record as Exported
+      parameters:
+        - name: exported
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+      responses: {}
+  /supplier_information/:
+    parameters: []
+    post:
+      summary: Create SIM Record against existing Supplier
+      parameters: []
+      responses: {}
+  /supplier_information/all/easy_form_responses/{id}/add_approver:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '424'
+        schema:
+          type: integer
+    put:
+      summary: Add Approver to SIM Easy Form Approval Chain
+      parameters:
+        - name: position
+          in: query
+          required: false
+          example: before_current_approver
+          schema:
+            type: string
+        - name: approver_id
+          in: query
+          required: false
+          example: '241'
+          schema:
+            type: integer
+        - name: approver_type
+          in: query
+          required: false
+          example: user
+          schema:
+            type: string
+        - name: current_approver_id
+          in: query
+          required: false
+          example: '557'
+          schema:
+            type: integer
+      responses: {}
+  /api/supplier_information/{sim-id}/easy_form_responses/{easy-form-response-id}:
+    parameters:
+      - name: sim-id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: easy-form-response-id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: GET SIM Form Response
+      parameters: []
+      responses: {}
+  /api/supplier_information/all/easy_form_responses:
+    parameters: []
+    get:
+      summary: Get SIM Form Response pending with Remote Approver
+      parameters:
+        - name: status
+          in: query
+          required: false
+          example: pending_approval
+          schema:
+            type: string
+        - name: approvals[approver-id]
+          in: query
+          required: false
+          example: ':user-id'
+          schema:
+            type: string
+      responses: {}
+  /attachments/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '3072398'
+        schema:
+          type: integer
+    get:
+      summary: GET SIM Artifact/Attachment
+      parameters:
+        - name: supplier_information_artifact_id
+          in: query
+          required: false
+          example: '206'
+          schema:
+            type: integer
+      responses: {}
+  /supplier_information_sites/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '28'
+        schema:
+          type: integer
+    get:
+      summary: GET SIM Site by ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","code","supplier_information_id",{"addresses":
+            ["id","supplier_information_id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields": {}}]},{"contacts":
+            ["id","supplier_information_id","kind","name_given","name_family","email"]},{"custom_fields":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Update existing SIM Site
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","code","supplier_information_id",{"addresses":
+            ["id","supplier_information_id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields": {}}]},{"contacts":
+            ["id","supplier_information_id","kind","name_given","name_family","email"]},{"custom_fields":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+  /supplier_information/{id}/supplier_information_sites:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '650'
+        schema:
+          type: integer
+    get:
+      summary: GET ALL SIM Sites against a SIM record
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","code","supplier_information_id",{"addresses":
+            ["id","supplier_information_id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields": {}}]},{"contacts":
+            ["id","supplier_information_id","kind","name_given","name_family","email"]},{"custom_fields":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create SIM SIte using SIM ID in POST URL
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","code","supplier_information_id",{"addresses":
+            ["id","supplier_information_id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields": {}}]},{"contacts":
+            ["id","supplier_information_id","kind","name_given","name_family","email"]},{"custom_fields":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+  /supplier_information_sites:
+    parameters: []
+    post:
+      summary: Create SIM Site using SIM ID in the payload
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","name","code","supplier_information_id",{"addresses":
+            ["id","supplier_information_id","kind","location_code","address_name","street_address","street_address2","city","postal_code","state",{"country":
+            ["id","code","name"]},{"custom_fields": {}}]},{"contacts":
+            ["id","supplier_information_id","kind","name_given","name_family","email"]},{"custom_fields":
+            {}}]
+          schema:
+            type: string
+      responses: {}
+  /supplier_information_tax_registrations/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '1313'
+        schema:
+          type: integer
+    get:
+      summary: GET tax registrations using ID
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","number","active","supplier_information_address_id","supplier_information_id","local",{"country":["code"]}]
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Inactive a tax registration
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","number","active","supplier_information_address_id","supplier_information_id","local",{"country":["code"]}]
+          schema:
+            type: string
+      responses: {}
+    delete:
+      summary: delete a tax registration
+      parameters: []
+      responses: {}
+  /supplier_information_tax_registrations:
+    parameters: []
+    post:
+      summary: create tax registrations
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","number","active","supplier_information_address_id","supplier_information_id","local",{"country":["code"]}]
+          schema:
+            type: string
+      responses: {}
+  /tasks:
+    parameters: []
+    get:
+      summary: GET All Tasks linked to All Projects
+      parameters:
+        - name: linkable-type
+          in: query
+          required: false
+          example: Project
+          schema:
+            type: string
+        - name: owner-id[blank]
+          in: query
+          required: false
+          example: 'false'
+          schema:
+            type: boolean
+        - name: linkable[status][not_eq]
+          in: query
+          required: false
+          example: draft
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","title","description","status","owner_id","due_date","start_date","duration","percentage","linkable_type","linkable_id",{
+            "owner": [ "id"]},{ "resolved_by": [ "id"]},{ "linkable":
+            ["id","created_at","updated_at","name","active","open","description","mention_name","start_date","external_reference_number","end_date","commodity_id","status",{"template_group":["id","name",{"custom_fields":
+            {}}]},{"category": ["id","name",{"custom_fields":
+            {}}]},{"department":["id","name",{"custom_fields": {}}]},{"users":
+            ["id","email",{"custom_fields":
+            {}}]},{"commodity":["id","name",{"custom_fields":
+            {}}]},{"custom_fields": {}}]},{ "created_by": [ "id"]},{
+            "updated_by": ["id"]}]
+          schema:
+            type: string
+      responses: {}
+  /tasks/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '845'
+        schema:
+          type: integer
+    get:
+      summary: GET Task by ID
+      parameters:
+        - name: linkable-type
+          in: query
+          required: false
+          example: Project
+          schema:
+            type: string
+        - name: owner-id[blank]
+          in: query
+          required: false
+          example: 'false'
+          schema:
+            type: boolean
+        - name: linkable[status][not_eq]
+          in: query
+          required: false
+          example: draft
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","title","description","status","owner_id","due_date","start_date","duration","percentage","linkable_type","linkable_id",{
+            "owner": [ "id"]},{ "resolved_by": [ "id"]},{ "linkable":
+            ["id","created_at","updated_at","name","active","open","description","mention_name","start_date","external_reference_number","end_date","commodity_id","status",{"template_group":["id","name",{"custom_fields":
+            {}}]},{"category": ["id","name",{"custom_fields":
+            {}}]},{"department":["id","name",{"custom_fields": {}}]},{"users":
+            ["id","email",{"custom_fields":
+            {}}]},{"commodity":["id","name",{"custom_fields":
+            {}}]},{"custom_fields": {}}]},{ "created_by": [ "id"]},{
+            "updated_by": ["id"]}]
+          schema:
+            type: string
+      responses: {}
+  /projects/{project_id}/tasks:
+    parameters:
+      - name: project_id
+        in: path
+        required: true
+        example: '15'
+        schema:
+          type: integer
+    get:
+      summary: GET All Tasks linked to a specific Project
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","title","description","status","owner_id","due_date","start_date","duration","percentage","linkable_type","linkable_id",{
+            "owner": [ "id"]},{ "resolved_by": [ "id"]},{ "linkable":
+            ["id","created_at","updated_at","name","active","open","description","mention_name","start_date","external_reference_number","end_date","commodity_id","status",{"template_group":["id","name",{"custom_fields":
+            {}}]},{"category": ["id","name",{"custom_fields":
+            {}}]},{"department":["id","name",{"custom_fields": {}}]},{"users":
+            ["id","email",{"custom_fields":
+            {}}]},{"commodity":["id","name",{"custom_fields":
+            {}}]},{"custom_fields": {}}]},{ "created_by": [ "id"]},{
+            "updated_by": ["id"]}]
+          schema:
+            type: string
+      responses: {}
+    post:
+      summary: Create a Task against existing Project
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","title","description","status","owner_id","due_date","start_date","duration","percentage","linkable_type","linkable_id",{
+            "owner": [ "id"]},{ "resolved_by": [ "id"]},{ "linkable":
+            ["id","created_at","updated_at","name","active","open","description","mention_name","start_date","external_reference_number","end_date","commodity_id","status",{"template_group":["id","name",{"custom_fields":
+            {}}]},{"category": ["id","name",{"custom_fields":
+            {}}]},{"department":["id","name",{"custom_fields": {}}]},{"users":
+            ["id","email",{"custom_fields":
+            {}}]},{"commodity":["id","name",{"custom_fields":
+            {}}]},{"custom_fields": {}}]},{ "created_by": [ "id"]},{
+            "updated_by": ["id"]}]
+          schema:
+            type: string
+      responses: {}
+  /projects/{project_id}/tasks/{task_id}:
+    parameters:
+      - name: project_id
+        in: path
+        required: true
+        example: '15'
+        schema:
+          type: integer
+      - name: task_id
+        in: path
+        required: true
+        example: '845'
+        schema:
+          type: integer
+    put:
+      summary: Update existing Task
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: >-
+            ["id","created_at","updated_at","title","description","status","owner_id","due_date","start_date","duration","percentage","linkable_type","linkable_id",{
+            "owner": [ "id"]},{ "resolved_by": [ "id"]},{ "linkable":
+            ["id","created_at","updated_at","name","active","open","description","mention_name","start_date","external_reference_number","end_date","commodity_id","status",{"template_group":["id","name",{"custom_fields":
+            {}}]},{"category": ["id","name",{"custom_fields":
+            {}}]},{"department":["id","name",{"custom_fields": {}}]},{"users":
+            ["id","email",{"custom_fields":
+            {}}]},{"commodity":["id","name",{"custom_fields":
+            {}}]},{"custom_fields": {}}]},{ "created_by": [ "id"]},{
+            "updated_by": ["id"]}]
+          schema:
+            type: string
+      responses: {}
+  /users:
+    parameters: []
+    get:
+      summary: Retrieve all Users
+      parameters:
+        - name: type[blank]
+          in: query
+          required: false
+          example: 'true'
+          schema:
+            type: boolean
+      responses: {}
+    post:
+      summary: Create A User
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id"]'
+          schema:
+            type: string
+      responses: {}
+  /users/:
+    parameters: []
+    get:
+      summary: Retrieve User by login
+      parameters:
+        - name: login
+          in: query
+          required: false
+          example: CoupaSam1
+          schema:
+            type: string
+      responses: {}
+  /users/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        example: '279'
+        schema:
+          type: integer
+    put:
+      summary: Update User Account Security Groups
+      parameters:
+        - name: fields
+          in: query
+          required: false
+          example: '["id","account_security_type",{"account_groups":["name"]}]'
+          schema:
+            type: string
+      responses: {}

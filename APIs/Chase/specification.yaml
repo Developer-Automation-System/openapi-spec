@@ -1,0 +1,4084 @@
+openapi: 3.0.0
+x-chase-info: 107195//Partner//Aggregators/Product/306
+x-chase-info2: 58432/true/jpmc/servicing/inquiry-maintenance/
+info:
+  x-chase-governance-level: tags
+  version: 4.0.0
+  title: Account and Customer Information API
+  description: Account and Customer Information API
+servers:
+  - url: https://api2.chase.com/jpmc/servicing/inquiry-maintenance/fdx/v4
+    description: Account and Customer Information API
+paths:
+  /ping:
+    get:
+      tags:
+        - Ping
+      summary: Keep Alive
+      description: Verifies the application alive status
+      parameters:
+        - $ref: "#/components/parameters/interactionIdParam"
+      operationId: alive
+      responses:
+        "200":
+          description: Healthcheck response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PingResponse"
+              examples:
+                Successful Ping:
+                  value:
+                    status: ok
+        "500":
+          description: Subsystem unavailable
+          content:
+            application/json:
+              examples:
+                Internal Server Error:
+                  value:
+                    code: 500
+                    message: Internal Server Error
+              schema:
+                $ref: "#/components/schemas/Error"
+  /accounts:
+    get:
+      operationId: searchForAccounts
+      tags:
+        - Account Information
+      summary: Search for account
+      description: Retrieve account information and a list of account transactions.
+        You can specify one or more accounts, and limit the list of transactions
+        by date and time. You can also specify the total number of transactions
+        to return, and whether you want to the return list to start at the first
+        available transaction record, or at a record further into the available
+        data.
+      parameters:
+        - $ref: "#/components/parameters/authorizationParam"
+          examples:
+            Example1LightweightPayload:
+              value: abcd12345
+        - $ref: "#/components/parameters/interactionIdParam"
+          examples:
+            Example1LightweightPayload:
+              value: 123456
+        - $ref: "#/components/parameters/resultTypeParam"
+          examples:
+            Example1LightweightPayload:
+              value: lightweight
+      responses:
+        "200":
+          description: An array of accounts
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Accounts"
+              examples:
+                AccountsLightweight:
+                  description: Lightweight response for accounts info. Only returns fields
+                    referenced in the 'AccountDescriptor' entity
+                  value:
+                    accounts:
+                      - depositAccount:
+                          accountId: "4814737"
+                          accountNumberDisplay: ...2325
+                          accountType: CHECKING
+                          nickname: CHASE CHECKING
+                          status: OPEN
+                          fiAttributes: []
+                      - depositAccount:
+                          accountId: "4804208"
+                          accountNumberDisplay: ...5584
+                          accountType: CHECKING
+                          nickname: TOTAL CHECKING
+                          status: OPEN
+                          fiAttributes: []
+                      - locAccount:
+                          accountId: "4814739"
+                          accountNumberDisplay: ...0654
+                          accountType: CREDITCARD
+                          nickname: CREDIT LOC
+                          status: OPEN
+                          fiAttributes: []
+                      - investmentAccount:
+                          accountId: "4804210"
+                          accountNumberDisplay: ...4403
+                          accountType: BROKERAGE
+                          nickname: You Invest Trade-Ret
+                          status: OPEN
+                          fiAttributes: []
+                      - locAccount:
+                          accountId: "4804213"
+                          accountNumberDisplay: ...7722
+                          accountType: LINEOFCREDIT
+                          nickname: PERSONAL LOC
+                          status: OPEN
+                          fiAttributes: []
+                      - annuityAccount:
+                          accountId: "4897305"
+                          accountNumberDisplay: ...1965
+                          accountType: ANNUITY
+                          nickname: AEGON
+                          status: OPEN
+                          fiAttributes: []
+                AccountsDetails:
+                  description: Retrieve account information and account transactions. The payload
+                    contains all the fields included in the Account object,
+                    which includes all the fields in the AccountDescriptor.
+                  value:
+                    accounts:
+                      - depositAccount:
+                          accountId: "4814737"
+                          accountNumberDisplay: ...2325
+                          accountType: CHECKING
+                          nickname: CHASE CHECKING
+                          status: OPEN
+                          fiAttributes: []
+                          currency:
+                            currencyCode: USD
+                          interestRate: 0
+                          transferIn: true
+                          transferOut: true
+                          lastActivityDate: 2019-02-08
+                          transactionsIncluded: false
+                          balanceAsOf: 2019-08-02
+                          currentBalance: 4085.17
+                          availableBalance: 4085.17
+                          interestYtd: 0
+                      - depositAccount:
+                          accountId: "4804208"
+                          accountNumberDisplay: ...5584
+                          accountType: CHECKING
+                          nickname: TOTAL CHECKING
+                          status: OPEN
+                          fiAttributes: []
+                          currency:
+                            currencyCode: USD
+                          interestRate: 0
+                          transferIn: true
+                          transferOut: true
+                          lastActivityDate: 2019-02-19
+                          transactionsIncluded: false
+                          balanceAsOf: 2019-08-02
+                          currentBalance: 2091.31
+                          availableBalance: 2091.31
+                          interestYtd: 0
+                      - locAccount:
+                          accountId: "4814739"
+                          accountNumberDisplay: ...0654
+                          accountType: CREDITCARD
+                          nickname: CREDIT LOC
+                          status: OPEN
+                          fiAttributes:
+                            - name: rewardName
+                              value: AARP Rewards
+                            - name: creditCardBrandGuid
+                              value: 62fb22b1-2eb9-4b39-b10c-924ea3dbc2bc
+                            - name: autoPay
+                              value: false
+                          currency:
+                            currencyCode: USD
+                          transactionsIncluded: false
+                          creditLine: 20000
+                          availableCredit: 20000
+                          nextPaymentAmount: 0
+                          nextPaymentDate: 2019-12-01
+                          currentBalance: 0
+                          minimumPaymentAmount: 0
+                          lastPaymentAmount: 100
+                          lastPaymentDate: 2019-03-12
+                          pastDueAmount: 0
+                          lastStmtBalance: 0
+                          lastStmtDate: 2019-07-04
+                          currentRewardsBalance: 5500
+                          rewardProgramId: 404
+                          purchasesApr: 17.74
+                          advancesApr: 25.74
+                          cashAdvanceLimit: 4000
+                          availableCash: 0
+                      - locAccount:
+                          accountId: "5666288"
+                          accountNumberDisplay: ...1375
+                          accountType: LINEOFCREDIT
+                          nickname: PERSONAL LOC
+                          status: OPEN
+                          fiAttributes: []
+                          currency:
+                            currencyCode: USD
+                          balanceType: LIABILITY
+                          interestRate: 8.24
+                          transferIn: true
+                          transferOut: false
+                          transactionsIncluded: false
+                          balanceAsOf: 2020-06-30
+                          creditLine: 23000
+                          availableCredit: 0
+                          nextPaymentAmount: 15
+                          nextPaymentDate: 2020-07-25
+                          principalBalance: 389.23
+                          currentBalance: 15
+                          lastPaymentAmount: 0
+                          lastPaymentDate: 2020-06-29
+                          pastDueAmount: 0
+                          lastStmtDate: 2020-06-30
+                      - investmentAccount:
+                          accountId: "4804210"
+                          accountNumberDisplay: ...4403
+                          accountType: BROKERAGE
+                          nickName: You Invest Trade-Ret
+                          status: OPEN
+                          fiAttributes: []
+                          availableCashBalance: 381.31
+                          balanceList:
+                            - balanceDate: 2019-07-09T12:000:00.000Z
+                              balanceDescription: Cash account
+                              balanceName: Cash (1)
+                              balanceType: AMOUNT
+                              balanceValue: 381.31
+                            - balanceDate: 2019-07-09T12:000:00.000Z
+                              balanceDescription: Trade account
+                              balanceName: Trade (1)
+                              balanceType: AMOUNT
+                              balanceValue: 3132.03
+                          marginBalance: 0
+                          shortBalance: 0
+                          openOrders:
+                            - orderType: BUY
+                          holdings:
+                            - securityId: 46625H100
+                              securityIdType: CUSIP
+                              holdingName: JPMorgan Chase &amp; Co.
+                              holdingType: STOCK
+                              positionType: LONG
+                              heldInAccount: CASH
+                              description: JPM STOCK
+                              symbol: JPM
+                              currentUnitPrice: 113.35
+                              currentUnitPriceDate: 2019-07-09T12:000:00.000Z
+                              units: 10
+                              marketValue: 1133.5
+                              faceValue: 1033.23
+                              averageCost: true
+                              cashAccount: false
+                              rate: 1.6
+                              expirationDate: 2019-07-09T12:000:00.000Z
+                              debtSecurity:
+                                parValue: 100
+                                yieldToMaturity: 0
+                            - securityId: 46625H100
+                              securityIdType: CUSIP
+                              holdingName: JPMorgan Chase &amp; Co.
+                              holdingType: STOCK
+                              positionType: LONG
+                              heldInAccount: CASH
+                              description: JPM STOCK
+                              symbol: JPM
+                              currentUnitPrice: 113.35
+                              currentUnitPriceDate: 2019-07-09T12:000:00.000Z
+                              units: 10
+                              marketValue: 1133.5
+                              faceValue: 1033.23
+                              averageCost: true
+                              cashAccount: false
+                              rate: 1.6
+                              expirationDate: 2019-07-09T12:000:00.000Z
+                              sweepSecurity:
+                                currentBalance: 1677
+                                availableBalance: 1233
+                                balanceAsOf: 2019-07-09T12:000:00.000Z
+                            - securityId: 46625H100
+                              securityIdType: CUSIP
+                              holdingName: JPMorgan Chase &amp; Co.
+                              holdingType: STOCK
+                              positionType: LONG
+                              heldInAccount: CASH
+                              description: JPM STOCK
+                              symbol: JPM
+                              currentUnitPrice: 113.35
+                              currentUnitPriceDate: 2019-07-09T12:000:00.000Z
+                              units: 10
+                              marketValue: 1133.5
+                              faceValue: 1033.23
+                              averageCost: true
+                              cashAccount: false
+                              rate: 1.6
+                              expirationDate: 2019-07-09T12:000:00.000Z
+                              optionSecurity:
+                                optionType: call
+                                strikePrice: 5
+                                expireDate: 2019-07-09T12:000:00.000Z
+                                sharesPerContract: 100
+                      - investmentAccount:
+                          accountId: "4804210"
+                          accountNumberDisplay: ...4403
+                          accountType: BROKERAGE
+                          error:
+                            code: "402"
+                            description: Account type not supported
+                          nickname: You Invest Trade-Ret
+                          fiAttributes: []
+                      - loanAccount:
+                          accountId: "4920005"
+                          accountNumberDisplay: ...0805
+                          accountType: AUTOLOAN
+                          nickname: CHASE AUTO ACCOUNT
+                          status: OPEN
+                          currency:
+                            currencyCode: USD
+                          interestRate: 4.94
+                          transactionsIncluded: false
+                          balanceAsOf: 2020-08-19
+                          principalBalance: 27631.63
+                          originalPrincipal: 32691.8
+                          originatingDate: 2019-02-21
+                          loanTerm: 72
+                          totalNumberOfPayments: 72
+                          nextPaymentAmount: 526.67
+                          nextPaymentDate: 2020-02-07
+                          paymentFrequency: MONTHLY
+                          lastPaymentAmount: 526.67
+                          lastPaymentDate: 2020-01-07
+                          maturityDate: 2025-03-07
+                          interestPaidYearToDate: 125.13
+                          fiAttributes:
+                            - name: loanPaymentsRemaining
+                              value: "67"
+                      - loanAccount:
+                          accountId: "4905190"
+                          accountNumberDisplay: ...5126
+                          accountType: MORTGAGE
+                          nickname: MORTGAGE LOAN
+                          status: OPEN
+                          currency:
+                            currencyCode: USD
+                          interestRate: 3.5
+                          transactionsIncluded: false
+                          balanceAsOf: 2020-06-30
+                          principalBalance: 290805.3
+                          escrowBalance: 2469.92
+                          originalPrincipal: 371000
+                          originatingDate: 2013-06-25
+                          loanTerm: 0
+                          totalNumberOfPayments: 360
+                          nextPaymentAmount: 2266.6
+                          nextPaymentDate: 2020-07-01
+                          paymentFrequency: MONTHLY
+                          lastPaymentAmount: 2335.05
+                          lastPaymentDate: 2020-06-15
+                          maturityDate: 2043-07-01
+                          interestPaidYearToDate: 5164.35
+                      - annuityAccount:
+                          accountId: "5717498"
+                          accountNumberDisplay: ...6789
+                          accountType: ANNUITY
+                          nickname: AEGON
+                          status: OPEN
+                          fiAttributes: []
+                          currency:
+                            currencyCode: USD
+                          transactionsIncluded: false
+                          netPresentValue: 10710.77
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: "401"
+                description: Input invalid
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              example:
+                code: "601"
+                description: Customer not found
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /accounts/{accountId}:
+    get:
+      operationId: getAccount
+      tags:
+        - Account Information
+      description: Get a specific account
+      summary: Get an account
+      parameters:
+        - $ref: "#/components/parameters/authorizationParam"
+          examples:
+            Example1DepositDetailsPayload:
+              value: abcd12345
+            Example2InvestmentDetailsPayload:
+              value: wxyz45678
+            Example3MortgageDetailsPayload:
+              value: npqr54321
+            Example4HomeEquityLOCDetailsPayload:
+              value: wsxe24680
+            Example5AnnuityDetailsPayload:
+              value: wsxe24681
+            Example6AutoLoanDetailsPayload:
+              value: abcd98765
+            Example7CreditCardDetailsPayload:
+              value: wxyz98765
+        - $ref: "#/components/parameters/interactionIdParam"
+          examples:
+            Example1DepositDetailsPayload:
+              value: 123456
+            Example2InvestmentDetailsPayload:
+              value: 345673
+            Example3MortgageDetailsPayload:
+              value: 653241
+            Example4HomeEquityLOCDetailsPayload:
+              value: 135791
+            Example5AnnuityDetailsPayload:
+              value: 135643
+            Example6AutoLoanDetailsPayload:
+              value: 987654
+            Example7CreditCardDetailsPayload:
+              value: 874739
+        - $ref: "#/components/parameters/accountIdParam"
+          examples:
+            Example1DepositDetailsPayload:
+              value: 3813048
+            Example2InvestmentDetailsPayload:
+              value: 3746272
+            Example3MortgageDetailsPayload:
+              value: 5253641
+            Example4HomeEquityLOCDetailsPayload:
+              value: 4845310
+            Example5AnnuityDetailsPayload:
+              value: 5717498
+            Example6AutoLoanDetailsPayload:
+              value: 4920005
+            Example7CreditCardDetailsPayload:
+              value: 4817322
+      responses:
+        "200":
+          description: This can be either DepositAccount, LocAccount, InvestmentAccount,
+            LoanAccount or AnnuityAccount
+          content:
+            application/json:
+              schema:
+                type: object
+                oneOf:
+                  - properties:
+                      depositAccount:
+                        $ref: "#/components/schemas/DepositAccount"
+                  - properties:
+                      locAccount:
+                        $ref: "#/components/schemas/LocAccount"
+                  - properties:
+                      investmentAccount:
+                        $ref: "#/components/schemas/InvestmentAccount"
+                  - properties:
+                      loanAccount:
+                        $ref: "#/components/schemas/LoanAccount"
+                  - properties:
+                      annuityAccount:
+                        $ref: "#/components/schemas/AnnuityAccount"
+              examples:
+                Checking Account:
+                  value:
+                    depositAccount:
+                      accountId: "3813048"
+                      accountNumberDisplay: ...7233
+                      accountType: CHECKING
+                      nickname: TOTAL CHECKING
+                      status: OPEN
+                      fiAttributes: []
+                      currency:
+                        currencyCode: USD
+                      interestRate: 0
+                      transferIn: true
+                      transferOut: true
+                      lastActivityDate: 2019-05-30
+                      transactionsIncluded: false
+                      balanceAsOf: 2019-08-02
+                      currentBalance: 354.1
+                      availableBalance: 354.1
+                      interestYtd: 0
+                Certificate Of Deposit Account:
+                  value:
+                    depositAccount:
+                      accountId: "4806949"
+                      accountNumberDisplay: ...0816
+                      accountType: CD
+                      nickname: CD 90-179 DAYS
+                      status: OPEN
+                      fiAttributes: []
+                      currency:
+                        currencyCode: USD
+                      interestRate: 1.59
+                      transferIn: true
+                      transferOut: true
+                      transactionsIncluded: false
+                      balanceAsOf: 2019-08-02
+                      currentBalance: 1260398.82
+                      availableBalance: 1260398.82
+                      annualPercentageYield: 1.6
+                      interestYtd: 10398.82
+                      maturityDate: 2019-10-06
+                      term: 4
+                Mortgage Account:
+                  value:
+                    loanAccount:
+                      accountId: "5253641"
+                      accountNumberDisplay: ...3354
+                      accountType: MORTGAGE
+                      nickname: MORTGAGE LOAN
+                      status: CLOSED
+                      fiAttributes:
+                        - name: loanPaymentsRemaining
+                          value: "7"
+                        - name: statementCloseDate
+                          value: "20211001"
+                        - name: statementCloseBalance
+                          value: "-16947.06"
+                      currency:
+                        currencyCode: USD
+                      interestRate: 5.5
+                      transactionsIncluded: false
+                      balanceAsOf: 2020-06-01
+                      principalBalance: 0
+                      escrowBalance: 0
+                      originalPrincipal: 83877
+                      originatingDate: 2010-04-21
+                      loanTerm: 0
+                      totalNumberOfPayments: 360
+                      nextPaymentAmount: 0
+                      paymentFrequency: MONTHLY
+                      lastPaymentAmount: 699.94
+                      lastPaymentDate: 2020-04-12
+                      maturityDate: 2040-05-01
+                      interestPaidYearToDate: 957.39
+                Home Equity Line Of Credit Account (LOC):
+                  value:
+                    locAccount:
+                      accountId: "4845310"
+                      accountNumberDisplay: ...6698
+                      accountType: HOMEEQUITYLINEOFCREDIT
+                      nickname: HOME EQ LOC C
+                      status: OPEN
+                      fiAttributes: []
+                      currency:
+                        currencyCode: USD
+                      balanceType: LIABILITY
+                      interestRate: 4.01
+                      transferIn: true
+                      transferOut: false
+                      transactionsIncluded: false
+                      balanceAsOf: 2020-06-01
+                      creditLine: 28000
+                      availableCredit: 0
+                      nextPaymentAmount: 145.35
+                      nextPaymentDate: 2020-06-10
+                      principalBalance: 18185.35
+                      currentBalance: 18279.19
+                      lastPaymentAmount: 100
+                      lastPaymentDate: 2020-05-04
+                      pastDueAmount: 0
+                      lastStmtDate: 2020-05-15
+                Credit Card Account (LOC):
+                  value:
+                    locAccount:
+                      accountId: "4817322"
+                      accountNumberDisplay: ...8442
+                      accountType: CREDITCARD
+                      nickname: CREDIT LOC
+                      status: OPEN
+                      fiAttributes:
+                        - name: rewardName
+                          value: United MileagePlus<sup>Â®</sup> Card
+                        - name: creditCardBrandGuid
+                          value: 51fb24b1-aeb9-4b39-b10c-924ea3dbc2bc
+                        - name: autoPay
+                          value: false
+                      currency:
+                        currencyCode: USD
+                      transactionsIncluded: false
+                      creditLine: 20000
+                      availableCredit: 0
+                      nextPaymentAmount: 95
+                      nextPaymentDate: 2019-11-25
+                      currentBalance: 2040.55
+                      minimumPaymentAmount: 95
+                      lastPaymentAmount: 1.08
+                      lastPaymentDate: 2019-08-30
+                      pastDueAmount: 25
+                      lastStmtBalance: 2040.55
+                      lastStmtDate: 2019-10-28
+                      currentRewardsBalance: 3000
+                      rewardProgramId: 404
+                      purchasesApr: 14.74
+                      advancesApr: 20.74
+                      cashAdvanceLimit: 4000
+                      availableCash: 0
+                Brokerage Account:
+                  value:
+                    investmentAccount:
+                      accountId: "4804210"
+                      accountNumberDisplay: ...4403
+                      accountType: BROKERAGE
+                      nickName: You Invest Trade-Ret
+                      status: OPEN
+                      fiAttributes: []
+                      availableCashBalance: 381.31
+                      balanceList:
+                        - balanceDate: 2019-07-09T12:000:00.000Z
+                          balanceDescription: Cash account
+                          balanceName: Cash (1)
+                          balanceType: AMOUNT
+                          balanceValue: 381.31
+                        - balanceDate: 2019-07-09T12:000:00.000Z
+                          balanceDescription: Trade account
+                          balanceName: Trade (1)
+                          balanceType: AMOUNT
+                          balanceValue: 3132.03
+                      marginBalance: 0
+                      shortBalance: 0
+                      openOrders:
+                        - orderType: BUY
+                      holdings:
+                        - securityId: 46625H100
+                          securityIdType: CUSIP
+                          holdingName: JPMorgan Chase &amp; Co.
+                          holdingType: STOCK
+                          positionType: LONG
+                          heldInAccount: CASH
+                          description: JPM STOCK
+                          symbol: JPM
+                          currentUnitPrice: 113.35
+                          currentUnitPriceDate: 2019-07-09T12:000:00.000Z
+                          units: 10
+                          marketValue: 1133.5
+                          faceValue: 1033.23
+                          averageCost: true
+                          cashAccount: false
+                          rate: 1.6
+                          expirationDate: 2019-07-09T12:000:00.000Z
+                          debtSecurity:
+                            parValue: 100
+                            yieldToMaturity: 0
+                        - securityId: 46625H100
+                          securityIdType: CUSIP
+                          holdingName: JPMorgan Chase &amp; Co.
+                          holdingType: STOCK
+                          positionType: LONG
+                          heldInAccount: CASH
+                          description: JPM STOCK
+                          symbol: JPM
+                          currentUnitPrice: 113.35
+                          currentUnitPriceDate: 2019-07-09T12:000:00.000Z
+                          units: 10
+                          marketValue: 1133.5
+                          faceValue: 1033.23
+                          averageCost: true
+                          cashAccount: false
+                          rate: 1.6
+                          expirationDate: 2019-07-09T12:000:00.000Z
+                          sweepSecurity:
+                            currentBalance: 1677
+                            availableBalance: 1233
+                            balanceAsOf: 2019-07-09T12:000:00.000Z
+                        - securityId: 46625H100
+                          securityIdType: CUSIP
+                          holdingName: JPMorgan Chase &amp; Co.
+                          holdingType: STOCK
+                          positionType: LONG
+                          heldInAccount: CASH
+                          description: JPM STOCK
+                          symbol: JPM
+                          currentUnitPrice: 113.35
+                          currentUnitPriceDate: 2019-07-09T12:000:00.000Z
+                          units: 10
+                          marketValue: 1133.5
+                          faceValue: 1033.23
+                          averageCost: true
+                          cashAccount: false
+                          rate: 1.6
+                          expirationDate: 2019-07-09T12:000:00.000Z
+                          optionSecurity:
+                            optionType: call
+                            strikePrice: 5
+                            expireDate: 2019-07-09T12:000:00.000Z
+                            sharesPerContract: 100
+                AnnuityAccount:
+                  value:
+                    annuityAccount:
+                      accountId: "5717498"
+                      accountNumberDisplay: ...6789
+                      accountType: ANNUITY
+                      nickname: AEGON
+                      status: OPEN
+                      fiAttributes: []
+                      currency:
+                        currencyCode: USD
+                      transactionsIncluded: false
+                      netPresentValue: 10710.77
+                loanAccount:
+                  value:
+                    loanAccount:
+                      accountId: "4920005"
+                      accountNumberDisplay: ...0805
+                      accountType: AUTOLOAN
+                      nickname: CHASE AUTO ACCOUNT
+                      status: OPEN
+                      currency:
+                        currencyCode: USD
+                      interestRate: 4.94
+                      transactionsIncluded: false
+                      balanceAsOf: 2020-08-19
+                      principalBalance: 27631.63
+                      originalPrincipal: 32691.8
+                      originatingDate: 2019-02-21
+                      loanTerm: 72
+                      totalNumberOfPayments: 72
+                      nextPaymentAmount: 526.67
+                      nextPaymentDate: 2020-02-07
+                      paymentFrequency: MONTHLY
+                      lastPaymentAmount: 526.67
+                      lastPaymentDate: 2020-01-07
+                      maturityDate: 2025-03-07
+                      interestPaidYearToDate: 125.13
+                      fiAttributes:
+                        - name: loanPaymentsRemaining
+                          value: "67"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /accounts/{accountId}/transactions:
+    get:
+      operationId: searchForAccountTransactions
+      tags:
+        - Account Transactions
+      description: "Retrieves account transactions <br> <br>Notes <br>*NOTE: Annuity,
+        IRA, CD accounts do not have transactions and will return an error
+        indicating as such.* <br> <br>Notes <br>1. Endpoint returns all
+        transactions for the dates specified, regardless of the times specified.
+        <br>2. If startTime and endTime parameters are equal (in this case, the
+        range requested is 0), then one day of transactions is returned. <br>3.
+        If the end date is the current date, only transactions until the current
+        time are returned. The same query, executed later in the day, may return
+        additional transactions. <br> 3) If the startTime is provided but not
+        the endTime, then the endTime will default to the current date. <br> 4)
+        If an endTime is provided but no startTime, the startTime will default
+        to  90 days  before the endTime. Transactions are pagination
+        supported.You can set the Limit field in the request to specify the
+        number of transactions returned.. The client should look for
+        'links.next.href' to determine if additional API calls are required to
+        retrieve the data requested.The client should continue to make API calls
+        until the key is no longer returned in the response."
+      summary: Search for account transactions
+      parameters:
+        - $ref: "#/components/parameters/authorizationParam"
+          examples:
+            Example1DepositTransactionsPayload:
+              value: abcd12345
+            Example2InvestmentTransactionsPayload:
+              value: wxyz45678
+            Example3MortgageTransactionsPayload:
+              value: npqr54321
+            Example4BusinessRevolvingLoCTransactionsPayload:
+              value: wsxe24680
+            Example5CreditCardTransactionsPayloadFirstPage:
+              value: wsabc2540
+            Example5CreditCardTransactionsPayloadSecondPage:
+              value: xsabc2540
+            Example5CreditCardTransactionsPayloadLastPage:
+              value: ysabc2540
+            Example6DepositTransactionsPayloadFirstPage:
+              value: fpabc2522
+            Example6DepositTransactionsPayloadSecondPage:
+              value: spabc2522
+            Example6DepositTransactionsPayloadLastPage:
+              value: lpabc2522
+        - $ref: "#/components/parameters/interactionIdParam"
+          examples:
+            Example1DepositTransactionsPayload:
+              value: 123456
+            Example2InvestmentTransactionsPayload:
+              value: wxyz45678
+            Example3MortgageTransactionsPayload:
+              value: 653241
+            Example4BusinessRevolvingLoCTransactionsPayload:
+              value: 135791
+            Example5CreditCardTransactionsPayloadFirstPage:
+              value: 135791
+            Example5CreditCardTransactionsPayloadSecondPage:
+              value: 135792
+            Example5CreditCardTransactionsPayloadLastPage:
+              value: 135793
+            Example6DepositTransactionsPayloadFirstPage:
+              value: 112522
+            Example6DepositTransactionsPayloadSecondPage:
+              value: 112523
+            Example6DepositTransactionsPayloadLastPage:
+              value: 112524
+        - $ref: "#/components/parameters/accountIdParam"
+          examples:
+            Example1DepositTransactionsPayload:
+              value: 4749855
+            Example2InvestmentTransactionsPayload:
+              value: 3456433
+            Example3MortgageTransactionsPayload:
+              value: 4905190
+            Example4BusinessRevolvingLoCTransactionsPayload:
+              value: 4694545
+            Example5CreditCardTransactionsPayloadFirstPage:
+              value: 3754773
+            Example5CreditCardTransactionsPayloadSecondPage:
+              value: 3754773
+            Example5CreditCardTransactionsPayloadLastPage:
+              value: 3754773
+            Example6DepositTransactionsPayloadFirstPage:
+              value: 6656116
+            Example6DepositTransactionsPayloadSecondPage:
+              value: 6656116
+            Example6DepositTransactionsPayloadLastPage:
+              value: 6656116
+        - $ref: "#/components/parameters/startTimeParam"
+          examples:
+            Example1DepositTransactionsPayload:
+              value: 2019-02-26T00:00:00.000Z
+            Example2InvestmentTransactionsPayload:
+              value: 2019-04-23T00:00:00.000Z
+            Example3MortgageTransactionsPayload:
+              value: 2019-02-26T00:00:00.000Z
+            Example4BusinessRevolvingLoCTransactionsPayload:
+              value: 2019-02-26T00:00:00.000Z
+            Example5CreditCardTransactionsPayloadFirstPage:
+              value: 2020-01-01T00:00:00.000Z
+            Example5CreditCardTransactionsPayloadSecondPage:
+              value: 2020-01-01T00:00:00.000Z
+            Example5CreditCardTransactionsPayloadLastPage:
+              value: 2020-01-01T00:00:00.000Z
+            Example6DepositTransactionsPayloadFirstPage:
+              value: 2020-06-01T00:00:00.000Z
+            Example6DepositTransactionsPayloadSecondPage:
+              value: 2020-06-01T00:00:00.000Z
+            Example6DepositTransactionsPayloadLastPage:
+              value: 2020-06-01T00:00:00.000Z
+        - $ref: "#/components/parameters/endTimeParam"
+          examples:
+            Example1DepositTransactionsPayload:
+              value: 2019-07-31T00:00:00.000Z
+            Example2InvestmentTransactionsPayload:
+              value: 2020-04-23T00:00:00.000Z
+            Example3MortgageTransactionsPayload:
+              value: 2020-07-31T00:00:00.000Z
+            Example4BusinessRevolvingLoCTransactionsPayload:
+              value: 2020-07-31T00:00:00.000Z
+            Example5CreditCardTransactionsPayloadFirstPage:
+              value: 2020-03-31T00:00:00.000Z
+            Example5CreditCardTransactionsPayloadSecondPage:
+              value: 2020-03-31T00:00:00.000Z
+            Example5CreditCardTransactionsPayloadLastPage:
+              value: 2020-03-31T00:00:00.000Z
+            Example6DepositTransactionsPayloadFirstPage:
+              value: 2021-12-31T00:00:00.000Z
+            Example6DepositTransactionsPayloadSecondPage:
+              value: 2021-12-31T00:00:00.000Z
+            Example6DepositTransactionsPayloadLastPage:
+              value: 2021-12-31T00:00:00.000Z
+        - $ref: "#/components/parameters/offsetParam"
+          examples:
+            Example5CreditCardTransactionsPayloadSecondPage:
+              value: eyJzdGFydERhdGUiOiIyMDE5MDEwMSIsImVuZERhdGUiOiIyMDIwMDkxMSIsInRvdGFsRWxlbWVudHMiOjIyMTUsIm9mZnNldCI6InxQXzIwMjAwNzMwXzE5NDYwMzMifQ==
+            Example5CreditCardTransactionsPayloadLastPage:
+              value: eyJzdGFydERhdGUiOiIyMDE5MDEwMSIsImVuZERhdGUiOiIyMDIwMDkxMSIsInRvdGFsRWxlbWVudHMiOjIyMTUsIm9mZnNldCI6InxQXzIwMjAwODA0XzE5MzI0NDMifQ==
+            Example6DepositTransactionsPayloadSecondPage:
+              value: eyJ0b3RhbEVsZW1lbnRzIjowLCJvZmZzZXQiOm51bGwsIlNPUiI6IkdXUyIsImluZGV4SW5QYWdlIjoxMH0=
+            Example6DepositTransactionsPayloadLastPage:
+              value: eyJ0b3RhbEVsZW1lbnRzIjo5LCJvZmZzZXQiOiIkU09SJEA1YmQyZDYxNDY2NWZjNjBjMGQyZDg1NGIwODBlNWI3YyRTT1IkJERhdGFTb3VyY2UkU09SJERhdGFTb3VyY2UkIiwiU09SIjoiRVRVIiwiaW5kZXhJblBhZ2UiOm51bGx9
+        - $ref: "#/components/parameters/limitParam"
+          examples:
+            Example5CreditCardTransactionsPayloadFirstPage:
+              value: 5
+            Example5CreditCardTransactionsPayloadSecondPage:
+              value: 5
+            Example5CreditCardTransactionsPayloadLastPage:
+              value: 5
+            Example6DepositTransactionsPayloadFirstPage:
+              value: 10
+            Example6DepositTransactionsPayloadSecondPage:
+              value: 10
+            Example6DepositTransactionsPayloadLastPage:
+              value: 10
+      responses:
+        "200":
+          description: An array of transactions, which can be either DepositTransaction,
+            LocTransaction (line of credit), InvestmentTransaction or
+            LoanTransaction Transactions can be paginated. Use the links field
+            to determine if you need additional API calls to retrieve the data
+            you want.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transactions"
+              examples:
+                DepositTransaction:
+                  value:
+                    page:
+                      totalElements: 4
+                    transactions:
+                      - depositTransaction:
+                          accountId: "4749855"
+                          transactionId: "0"
+                          postedTimestamp: 2019-07-31
+                          transactionTimestamp: 2019-07-31
+                          description: INTEREST PAYMENT
+                          status: POSTED
+                          amount: 0.01
+                          transactionType: POSCREDIT
+                          payee: PAYEE NAME
+                      - depositTransaction:
+                          accountId: "4749855"
+                          transactionId: "0"
+                          postedTimestamp: 2019-02-28
+                          transactionTimestamp: 2019-02-28
+                          description: INTEREST PAYMENT
+                          status: POSTED
+                          amount: 0.03
+                          transactionType: POSCREDIT
+                          payee: PAYEE NAME
+                      - depositTransaction:
+                          accountId: "4749855"
+                          transactionId: "5704579158"
+                          postedTimestamp: 2019-02-26
+                          transactionTimestamp: 2019-02-26
+                          description: "ALLY BANK TRANSFER WEB ID: 3770527921"
+                          status: POSTED
+                          amount: -300
+                          transactionType: POSDEBIT
+                          payee: PAYEE NAME
+                      - depositTransaction:
+                          accountId: "4749855"
+                          transactionId: "5705141948"
+                          postedTimestamp: 2019-02-26
+                          transactionTimestamp: 2019-02-26
+                          description: VENMO CASHOUT
+                          debitCreditMemo: CREDIT
+                          status: POSTED
+                          amount: 101.72
+                          transactionType: POSCREDIT
+                          payee: PAYEE NAME
+                Business Revolving Credit (LOC) Transactions:
+                  value:
+                    page:
+                      totalElements: 11
+                    transactions:
+                      - locTransaction:
+                          accountId: "4694545"
+                          postedTimestamp: 2019-12-25
+                          description: AUTO DEBIT PMT
+                          amount: 137.91
+                          checkNumber: ""
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 137.91
+                            feesAmount: 0
+                      - locTransaction:
+                          accountId: "4694545"
+                          postedTimestamp: 2019-11-25
+                          description: AUTO DEBIT PMT
+                          amount: 142.5
+                          checkNumber: ""
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 142.5
+                            feesAmount: 0
+                      - locTransaction:
+                          accountId: "4694545"
+                          postedTimestamp: 2019-11-01
+                          description: RATE CHANGE
+                          amount: 0
+                          checkNumber: ""
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 0
+                            feesAmount: 0
+                      - locTransaction:
+                          accountId: "4694545"
+                          postedTimestamp: 2019-10-25
+                          description: AUTO DEBIT PMT
+                          amount: 292.21
+                          checkNumber: ""
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 142.21
+                            feesAmount: 150
+                      - locTransaction:
+                          accountId: "4694545"
+                          postedTimestamp: 2019-10-01
+                          description: RATE CHANGE
+                          amount: 0
+                          checkNumber: ""
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 0
+                            feesAmount: 0
+                      - locTransaction:
+                          accountId: "4694545"
+                          postedTimestamp: 2019-09-25
+                          description: AUTO DEBIT PMT
+                          amount: 146.95
+                          checkNumber: ""
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 146.95
+                            feesAmount: 0
+                      - locTransaction:
+                          accountId: "4694545"
+                          postedTimestamp: 2019-09-01
+                          description: FEE ASSESSMENT
+                          amount: 150
+                          checkNumber: ""
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 0
+                            feesAmount: 150
+                      - locTransaction:
+                          accountId: "4694545"
+                          postedTimestamp: 2019-08-25
+                          description: AUTO DEBIT PMT
+                          amount: 151.41
+                          checkNumber: ""
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 151.41
+                            feesAmount: 0
+                      - locTransaction:
+                          accountId: "4694545"
+                          postedTimestamp: 2019-08-01
+                          description: RATE CHANGE
+                          amount: 0
+                          checkNumber: ""
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 0
+                            feesAmount: 0
+                      - locTransaction:
+                          accountId: "4694545"
+                          postedTimestamp: 2019-07-25
+                          description: AUTO DEBIT PMT
+                          amount: 146.52
+                          checkNumber: ""
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 146.52
+                            feesAmount: 0
+                      - locTransaction:
+                          accountId: "4694545"
+                          postedTimestamp: 2019-06-25
+                          description: AUTO DEBIT PMT
+                          amount: 151.41
+                          checkNumber: ""
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 151.41
+                            feesAmount: 0
+                Mortgage Loan Transaction:
+                  value:
+                    page:
+                      totalElements: 13
+                    transactions:
+                      - loanTransaction:
+                          accountId: "4905190"
+                          postedTimestamp: 2020-01-15
+                          description: PRINCIPAL PAYMENT
+                          amount: 300
+                          paymentDetails:
+                            principalAmount: 300
+                            interestAmount: 0
+                            escrowAmount: 0
+                            feesAmount: 0
+                      - loanTransaction:
+                          "accountId: '4905190'": null
+                          "postedTimestamp: '2020-01-15'": null
+                          "description: PAYMENT": null
+                          "amount: 2335.05": null
+                          paymentDetails:
+                            principalAmount: 796.84
+                            interestAmount: 869.12
+                            escrowAmount: 669.09
+                            feesAmount: 0
+                      - loanTransaction:
+                          "accountId: '4905190'": null
+                          "postedTimestamp: '2020-01-10'": null
+                          "description: CITY TAX": null
+                          "amount: -1768.24": null
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 0
+                            escrowAmount: -1768.24
+                            feesAmount: 0
+                      - loanTransaction:
+                          "accountId: '4905190'": null
+                          "postedTimestamp: '2019-12-31'": null
+                          "description: INTEREST ON ESCROW DEPOSIT": null
+                          "amount: 0.04": null
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 0
+                            escrowAmount: 0.04
+                            feesAmount: 0
+                      - loanTransaction:
+                          accountId: "4905190"
+                          postedTimestamp: 2019-12-15
+                          description: PAYMENT
+                          amount: 2335.05
+                          paymentDetails:
+                            principalAmount: 793.65
+                            interestAmount: 872.31
+                            escrowAmount: 669.09
+                            feesAmount: 0
+                      - loanTransaction:
+                          accountId: "4905190"
+                          postedTimestamp: 2019-12-13
+                          description: RETURNED ITEM
+                          amount: 0
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 0
+                            escrowAmount: 0
+                            feesAmount: 0
+                      - loanTransaction:
+                          accountId: "4905190"
+                          postedTimestamp: 2019-12-13
+                          description: RETURNED ITEM
+                          amount: 0
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 0
+                            escrowAmount: 0
+                            feesAmount: 0
+                      - loanTransaction:
+                          accountId: "4905190"
+                          postedTimestamp: 2019-12-09
+                          description: MISAPPLICATION REVERSAL
+                          amount: -2335.05
+                          paymentDetails:
+                            principalAmount: -793.65
+                            interestAmount: -872.31
+                            escrowAmount: -669.09
+                            feesAmount: 0
+                      - loanTransaction:
+                          accountId: "4905190"
+                          postedTimestamp: 2019-12-09
+                          description: MISAPPLICATION REVERSAL
+                          amount: 0
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 0
+                            escrowAmount: 0
+                            feesAmount: 0
+                      - loanTransaction:
+                          accountId: "4905190"
+                          postedTimestamp: 2019-12-13
+                          description: MISAPPLICATION REVERSAL
+                          amount: -365
+                          paymentDetails:
+                            principalAmount: -365
+                            interestAmount: 0
+                            escrowAmount: 0
+                            feesAmount: 0
+                      - loanTransaction:
+                          accountId: "4905190"
+                          postedTimestamp: 2019-12-13
+                          description: NSF FEE ASSESSED
+                          amount: 0
+                          paymentDetails:
+                            principalAmount: 0
+                            interestAmount: 0
+                            escrowAmount: 0
+                            feesAmount: 0
+                      - loanTransaction:
+                          accountId: "4905190"
+                          postedTimestamp: 2019-12-09
+                          description: PRINCIPAL PAYMENT
+                          amount: 365
+                          paymentDetails:
+                            principalAmount: 365
+                            interestAmount: 0
+                            escrowAmount: 0
+                            feesAmount: 0
+                      - loanTransaction:
+                          accountId: "4905190"
+                          postedTimestamp: 2019-12-09
+                          description: PAYMENT
+                          amount: 2335.05
+                          paymentDetails:
+                            principalAmount: 793.65
+                            interestAmount: 872.31
+                            escrowAmount: 669.09
+                            feesAmount: 0
+                Paginated Credit Cards (LOC) Transactions (First Page):
+                  value:
+                    page:
+                      nextOffset: eyJzdGFydERhdGUiOiIyMDE5MDEwMSIsImVuZERhdGUiOiIyMDIwMDkxMSIsInRvdGFsRWxlbWVudHMiOjIyMTUsIm9mZnNldCI6InxQXzIwMjAwNzMwXzE5NDYwMzMifQ==
+                      totalElements: 15
+                    links:
+                      next:
+                        href: /jpmc/servicing/inquiry-maintenance/fdx/v4/accounts/3754773/transactions?limit=5&amp;offset=eyJzdGFydERhdGUiOiIyMDE5MDEwMSIsImVuZERhdGUiOiIyMDIwMDkxMSIsInRvdGFsRWxlbWVudHMiOjIyMTUsIm9mZnNldCI6InxQXzIwMjAwNzMwXzE5NDYwMzMifQ==&amp;startTime=2020-01-01&amp;endTime=2020-03-31
+                    transactions:
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 201906021958585190524#20190524
+                          referenceTransactionId: ""
+                          postedTimestamp: 2019-06-02
+                          transactionTimestamp: 2019-06-01
+                          description: ANNUAL MEMBERSHIP FEE
+                          debitCreditMemo: DEBIT
+                          category: "0000"
+                          status: POSTED
+                          amount: 595
+                          transactionType: FEE
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 201906201948439190524#20190524
+                          referenceTransactionId: ""
+                          postedTimestamp: 2019-06-20
+                          transactionTimestamp: 2019-06-20
+                          description: AUTOMATIC PAYMENT - THANK
+                          debitCreditMemo: CREDIT
+                          category: "0000"
+                          status: POSTED
+                          amount: -595
+                          transactionType: PAYMENT
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202006011942517200524#20200524
+                          referenceTransactionId: ""
+                          postedTimestamp: 2020-06-01
+                          transactionTimestamp: 2020-06-01
+                          description: ANNUAL MEMBERSHIP FEE
+                          debitCreditMemo: DEBIT
+                          category: "0000"
+                          status: POSTED
+                          amount: 595
+                          transactionType: FEE
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202006191945144200524#20200524
+                          referenceTransactionId: ""
+                          postedTimestamp: 2020-06-19
+                          transactionTimestamp: 2020-06-19
+                          description: AUTOMATIC PAYMENT - THANK
+                          debitCreditMemo: CREDIT
+                          category: "0000"
+                          status: POSTED
+                          amount: -595
+                          transactionType: PAYMENT
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202007301946033200724#20200724
+                          referenceTransactionId: "24005520212953638939799"
+                          postedTimestamp: 2020-07-30
+                          transactionTimestamp: 2020-06-18
+                          description: Walmart
+                          debitCreditMemo: DEBIT
+                          category: "5999"
+                          status: POSTED
+                          amount: 0.1
+                          transactionType: SALE
+                Paginated Credit Cards (LOC) Transactions (Next Page):
+                  value:
+                    page:
+                      nextOffset: eyJzdGFydERhdGUiOiIyMDE5MDEwMSIsImVuZERhdGUiOiIyMDIwMDkxMSIsInRvdGFsRWxlbWVudHMiOjIyMTUsIm9mZnNldCI6InxQXzIwMjAwODA0XzE5MzI0NDMifQ==
+                      totalElements: 15
+                    links:
+                      next:
+                        href: /jpmc/servicing/inquiry-maintenance/fdx/v4/accounts/3754773/transactions?limit=5&amp;offset=eyJzdGFydERhdGUiOiIyMDE5MDEwMSIsImVuZERhdGUiOiIyMDIwMDkxMSIsInRvdGFsRWxlbWVudHMiOjIyMTUsIm9mZnNldCI6InxQXzIwMjAwODA0XzE5MzI0NDMifQ==&amp;startTime=2020-01-01&amp;endTime=2020-03-31
+                    transactions:
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202007301946043200724#20200724
+                          referenceTransactionId: "24005520212953638939799"
+                          postedTimestamp: 2020-07-30
+                          transactionTimestamp: 2020-06-18
+                          description: Walmart
+                          debitCreditMemo: DEBIT
+                          category: "5999"
+                          status: POSTED
+                          amount: 0.1
+                          transactionType: SALE
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202007311938175200724#20200724
+                          referenceTransactionId: "24005520213249267957965"
+                          postedTimestamp: 2020-07-31
+                          transactionTimestamp: 2020-01-22
+                          description: JanTran02-ve
+                          debitCreditMemo: DEBIT
+                          category: "5999"
+                          status: POSTED
+                          amount: 0.1
+                          transactionType: SALE
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202006011942517200524#20200524
+                          referenceTransactionId: "24005520213128993285265"
+                          postedTimestamp: 2020-07-31
+                          transactionTimestamp: 2020-07-01
+                          description: JulTran03+ve
+                          debitCreditMemo: DEBIT
+                          category: "5999"
+                          status: POSTED
+                          amount: 0.1
+                          transactionType: SALE
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202006191945144200524#20200524
+                          referenceTransactionId: "24005520217794638541325"
+                          postedTimestamp: 2020-08-04
+                          transactionTimestamp: 2020-08-04
+                          description: AugTran03+ve
+                          debitCreditMemo: DEBIT
+                          category: "5999"
+                          status: POSTED
+                          amount: 0.1
+                          transactionType: SALE
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202007301946033200724#20200724
+                          referenceTransactionId: "24005520217794638541325"
+                          postedTimestamp: 2020-08-04
+                          transactionTimestamp: 2020-08-04
+                          description: AugTran03+ve
+                          debitCreditMemo: DEBIT
+                          category: "5999"
+                          status: POSTED
+                          amount: 0.1
+                          transactionType: SALE
+                Paginated Credit Cards (LOC) Transactions (Final response):
+                  value:
+                    page:
+                      totalElements: 15
+                    transactions:
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202009111932409200824#20200824
+                          referenceTransactionId: "20200911035932387752796"
+                          postedTimestamp: 2020-09-11
+                          transactionTimestamp: 2020-09-05
+                          description: AUTOTEST090520
+                          debitCreditMemo: DEBIT
+                          category: "5999"
+                          status: POSTED
+                          amount: 0.16
+                          transactionType: SALE
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202009111932419200824#20200824
+                          referenceTransactionId: "20200911035927714697003"
+                          postedTimestamp: 2020-09-11
+                          transactionTimestamp: 2020-09-04
+                          description: AUTOTEST090420
+                          debitCreditMemo: DEBIT
+                          category: "5999"
+                          status: POSTED
+                          amount: 0.16
+                          transactionType: SALE
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202009111932429200824#20200824
+                          referenceTransactionId: "20200911035921503789631"
+                          postedTimestamp: 2020-09-11
+                          transactionTimestamp: 2020-09-03
+                          description: AUTOTEST090320
+                          debitCreditMemo: DEBIT
+                          category: "5999"
+                          status: POSTED
+                          amount: 0.16
+                          transactionType: SALE
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202009111932439200824#20200824
+                          referenceTransactionId: "20200911035915275581540"
+                          postedTimestamp: 2020-09-11
+                          transactionTimestamp: 2020-09-02
+                          description: AUTOTEST090220
+                          debitCreditMemo: DEBIT
+                          category: "5999"
+                          status: POSTED
+                          amount: 0.16
+                          transactionType: SALE
+                      - locTransaction:
+                          accountId: "3754773"
+                          transactionId: 202009111932449200824#20200824
+                          referenceTransactionId: "20200911035907742977333"
+                          postedTimestamp: 2020-09-11
+                          transactionTimestamp: 2020-09-01
+                          description: AUTOTEST090120
+                          debitCreditMemo: DEBIT
+                          category: "5999"
+                          status: POSTED
+                          amount: 0.16
+                          transactionType: SALE
+                Paginated Deposit (DDA) Transactions (First Page):
+                  value:
+                    page:
+                      nextOffset: eyJ0b3RhbEVsZW1lbnRzIjowLCJvZmZzZXQiOm51bGwsIlNPUiI6IkdXUyIsImluZGV4SW5QYWdlIjoxMH0=
+                      totalElements: 10
+                    links:
+                      next:
+                        href: /jpmc/servicing/inquiry-maintenance/fdx/v4/accounts/6656116/transactions?offset=eyJ0b3RhbEVsZW1lbnRzIjowLCJvZmZzZXQiOm51bGwsIlNPUiI6IkdXUyIsImluZGV4SW5QYWdlIjoxMH0=&amp;limit=10&amp;startTime=2020-06-01&amp;endTime=2021-12-31
+                    transactions:
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionTimestamp: 2021-07-22
+                          description: We've placed a hold on one or more checks in your deposit.
+                          status: HOLD
+                          amount: -1.01
+                          transactionType: OTHER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionTimestamp: 2021-07-22
+                          description: We've placed a hold on one or more checks in your deposit.
+                          status: HOLD
+                          amount: -1.02
+                          transactionType: OTHER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionTimestamp: 2021-07-22
+                          description: We've placed a hold on one or more checks in your deposit.
+                          status: HOLD
+                          amount: -1.03
+                          transactionType: OTHER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionTimestamp: 2021-07-22
+                          description: We've placed a hold on one or more checks in your deposit.
+                          status: HOLD
+                          amount: -1.04
+                          transactionType: OTHER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionTimestamp: 2021-07-22
+                          description: We've placed a hold on one or more checks in your deposit.
+                          status: HOLD
+                          amount: -1.05
+                          transactionType: OTHER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionTimestamp: 2021-07-22
+                          description: We've placed a hold on one or more checks in your deposit.
+                          status: HOLD
+                          amount: -1.06
+                          transactionType: OTHER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionTimestamp: 2021-07-22
+                          description: We've placed a hold on one or more checks in your deposit.
+                          status: HOLD
+                          amount: -1.07
+                          transactionType: OTHER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionTimestamp: 2021-07-22
+                          description: We've placed a hold on one or more checks in your deposit.
+                          status: HOLD
+                          amount: -1.08
+                          transactionType: OTHER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionTimestamp: 2021-07-22
+                          description: We've placed a hold on one or more checks in your deposit.
+                          status: HOLD
+                          amount: -1.09
+                          transactionType: OTHER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionTimestamp: 2021-07-22
+                          description: We've placed a hold on one or more checks in your deposit.
+                          status: HOLD
+                          amount: -1.1
+                          transactionType: OTHER
+                Paginated Deposit (DDA) Transactions (Next Page):
+                  value:
+                    page:
+                      nextOffset: eyJ0b3RhbEVsZW1lbnRzIjo5LCJvZmZzZXQiOiIkU09SJEA1YmQyZDYxNDY2NWZjNjBjMGQyZDg1NGIwODBlNWI3YyRTT1IkJERhdGFTb3VyY2UkU09SJERhdGFTb3VyY2UkIiwiU09SIjoiRVRVIiwiaW5kZXhJblBhZ2UiOm51bGx9
+                      totalElements: 10
+                    links:
+                      next:
+                        href: /jpmc/servicing/inquiry-maintenance/fdx/v4/accounts/6656116/transactions?offset=eyJ0b3RhbEVsZW1lbnRzIjo5LCJvZmZzZXQiOiIkU09SJEA1YmQyZDYxNDY2NWZjNjBjMGQyZDg1NGIwODBlNWI3YyRTT1IkJERhdGFTb3VyY2UkU09SJERhdGFTb3VyY2UkIiwiU09SIjoiRVRVIiwiaW5kZXhJblBhZ2UiOm51bGx9&amp;limit=10&amp;startTime=2020-06-01&amp;endTime=2021-12-31
+                    transactions:
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionTimestamp: 2021-07-22
+                          description: We've placed a hold on one or more checks in your deposit.
+                          status: HOLD
+                          amount: -1.11
+                          transactionType: OTHER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211900000010"
+                          referenceTransactionId: ""
+                          postedTimestamp: 2021-07-09
+                          transactionTimestamp: 2021-07-09
+                          description: MONTHLY SERVICE FEE
+                          status: POSTED
+                          amount: -12
+                          transactionType: FEE
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211790000030"
+                          referenceTransactionId: "1539435865"
+                          postedTimestamp: 2021-06-28
+                          transactionTimestamp: 2021-06-28
+                          description: Zelle payment to ZAITCEV,SERGEI JPM634368551
+                          status: POSTED
+                          amount: -100
+                          transactionType: TRANSFER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211790000020"
+                          referenceTransactionId: ""
+                          postedTimestamp: 2021-06-28
+                          transactionTimestamp: 2021-06-28
+                          description: "Online Transfer from CHK ...7137 transaction#: 12061956478"
+                          status: POSTED
+                          amount: 300
+                          transactionType: TRANSFER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211790000010"
+                          referenceTransactionId: ""
+                          postedTimestamp: 2021-06-28
+                          transactionTimestamp: 2021-06-26
+                          description: "Online Transfer from CHK ...7137 transaction#: 12055962774"
+                          status: POSTED
+                          amount: 300
+                          transactionType: TRANSFER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211760000050"
+                          referenceTransactionId: "070811"
+                          postedTimestamp: 2021-06-25
+                          transactionTimestamp: 2021-06-24
+                          description: FOREIGN EXCHANGE RATE ADJUSTMENT FEE 06/24RURU_BEEL
+                          status: POSTED
+                          amount: -0.16
+                          transactionType: FEE
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211760000040"
+                          referenceTransactionId: "050714"
+                          postedTimestamp: 2021-06-25
+                          transactionTimestamp: 2021-06-25
+                          description: MACY'S 769 19535 AVENTURA FL 515905 06/25
+                          status: POSTED
+                          amount: -105
+                          transactionType: POSDEBIT
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211760000030"
+                          referenceTransactionId: "1536021845"
+                          postedTimestamp: 2021-06-25
+                          transactionTimestamp: 2021-06-25
+                          description: Zelle payment to ZAITCEV,SERGEI JPM631915321
+                          status: POSTED
+                          amount: -500
+                          transactionType: TRANSFER
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211760000020"
+                          referenceTransactionId: "070811"
+                          postedTimestamp: 2021-06-25
+                          transactionTimestamp: 2021-06-24
+                          description: RURU_BEELINE MOSKVA 06/24 RU Ruble 400.00 X 0.01382500 (EXCHG RTE)
+                          status: POSTED
+                          amount: -5.53
+                          transactionType: POSDEBIT
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211760000010"
+                          referenceTransactionId: ""
+                          postedTimestamp: 2021-06-25
+                          transactionTimestamp: 2021-06-25
+                          description: "Online Transfer from CHK ...7137 transaction#: 12046104145"
+                          status: POSTED
+                          amount: 400
+                          transactionType: TRANSFER
+                Paginated Deposit (DDA) Transactions (Final Response):
+                  value:
+                    page:
+                      totalElements: 10
+                    transactions:
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211750000110"
+                          referenceTransactionId: "011119"
+                          postedTimestamp: 2021-06-24
+                          transactionTimestamp: 2021-06-21
+                          description: FOREIGN EXCHANGE RATE ADJUSTMENT FEE 06/22MAGNOLIYA
+                          status: POSTED
+                          amount: -0.01
+                          transactionType: FEE
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211750000100"
+                          referenceTransactionId: "023204"
+                          postedTimestamp: 2021-06-24
+                          transactionTimestamp: 2021-06-22
+                          description: FOREIGN EXCHANGE RATE ADJUSTMENT FEE 06/22MINIMARKE
+                          status: POSTED
+                          amount: -0.07
+                          transactionType: FEE
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211750000090"
+                          referenceTransactionId: "034406"
+                          postedTimestamp: 2021-06-24
+                          transactionTimestamp: 2021-06-22
+                          description: FOREIGN EXCHANGE RATE ADJUSTMENT FEE 06/22SEKCIJA 2
+                          status: POSTED
+                          amount: -0.23
+                          transactionType: FEE
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211750000080"
+                          referenceTransactionId: "013603"
+                          postedTimestamp: 2021-06-24
+                          transactionTimestamp: 2021-06-22
+                          description: FOREIGN EXCHANGE RATE ADJUSTMENT FEE 06/22DELIVERY
+                          status: POSTED
+                          amount: -0.24
+                          transactionType: FEE
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211750000070"
+                          referenceTransactionId: "082417"
+                          postedTimestamp: 2021-06-24
+                          transactionTimestamp: 2021-06-24
+                          description: TOTAL WINE AND MIAMI FL 06/24
+                          status: POSTED
+                          amount: -299.1
+                          transactionType: POSDEBIT
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211750000060"
+                          referenceTransactionId: "044512"
+                          postedTimestamp: 2021-06-24
+                          transactionTimestamp: 2021-06-24
+                          description: WORLD MARKET &amp; HOLLYWOOD FL 06/24
+                          status: POSTED
+                          amount: -112.97
+                          transactionType: POSDEBIT
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211750000050"
+                          referenceTransactionId: "034406"
+                          postedTimestamp: 2021-06-24
+                          transactionTimestamp: 2021-06-22
+                          description: SEKCIJA 2 KONAKOVO 06/22 RU Ruble 580.00 X 0.01377586 (EXCHG RTE)
+                          status: POSTED
+                          amount: -7.99
+                          transactionType: POSDEBIT
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211750000040"
+                          referenceTransactionId: "023204"
+                          postedTimestamp: 2021-06-24
+                          transactionTimestamp: 2021-06-22
+                          description: MINIMARKET MOSCOW 06/22 RU Ruble 178.00 X 0.01376405 (EXCHG RTE)
+                          status: POSTED
+                          amount: -2.45
+                          transactionType: POSDEBIT
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211750000030"
+                          referenceTransactionId: "013603"
+                          postedTimestamp: 2021-06-24
+                          transactionTimestamp: 2021-06-22
+                          description: DELIVERY CLUB MOSCOW 06/22 RU Ruble 600.00 X 0.01383333 (EXCHG RTE)
+                          status: POSTED
+                          amount: -8.3
+                          transactionType: POSDEBIT
+                      - depositTransaction:
+                          accountId: "6656116"
+                          transactionId: "0211750000020"
+                          referenceTransactionId: "011119"
+                          postedTimestamp: 2021-06-24
+                          transactionTimestamp: 2021-06-21
+                          description: MAGNOLIYA MOSCOW 06/22 RU Ruble 47.90 X 0.01377871 (EXCHG RTE)
+                          status: POSTED
+                          amount: -0.66
+                          transactionType: POSDEBIT
+                InvestmentTransaction:
+                  value:
+                    page:
+                      totalElements: 3
+                    transactions:
+                      - locTransaction:
+                          accountId: "4804210"
+                          transactionId: 201906211932582190829#20190621
+                          postedTimestamp: 2019-06-21
+                          transactionTimestamp: 2019-06-21
+                          description: JPM PURCHASE 10 STOCKS
+                          debitCreditMemo: DEBIT
+                          status: POSTED
+                          accruedInterest: 0
+                          commission: 0
+                          incomeType: CGLONG
+                          positionType: LONG
+                          price: 1105.2
+                          securityId: 46625H100
+                          securityType: STOCK
+                          symbol: JPM
+                          transactionType: PURCHASED
+                          unitPrice: 110.52
+                          units: 10
+                      - investmentTransaction:
+                          accountId: "5421546"
+                          transactionId: TX-6279620200811#20200811-0
+                          postedTimestamp: 2020-08-11
+                          transactionTimestamp: 2020-08-11
+                          description: ""
+                          memo: ""
+                          debitCreditMemo: DEBIT
+                          status: POSTED
+                          amount: -627.96
+                          fiAttributes:
+                            - name: settlementDate
+                              value: 2020-08-11
+                          transactionType: OTHER
+                          securityIdType: OTHER
+                          commission: 0
+                          fees: 0
+                          fractionalCash: 0
+                          subAccountSec: CASH
+                          subAccountFund: CASH
+                          unitPrice: 0
+                          units: 0
+                          transferAction: OUT
+                          positionType: SHORT
+                      - investmentTransaction:
+                          accountId: "5421546"
+                          transactionId: TX6279620200811#20200811-1031877576
+                          postedTimestamp: 2020-08-11
+                          transactionTimestamp: 2020-08-11
+                          description: CHASE DEPOSIT SWEEP MGD JPMORGAN CHASE BANK NA INTRA-DAY WITHDRWAL
+                          memo: CHASE DEPOSIT SWEEP MGD JPMORGAN CHASE BANK NA INTRA-DAY WITHDRWAL
+                          debitCreditMemo: CREDIT
+                          status: PENDING
+                          amount: 627.96
+                          fiAttributes:
+                            - name: settlementDate
+                              value: 2020-08-11
+                          transactionType: SOLD
+                          securityId: QCDSM
+                          securityIdType: SYMBOL
+                          symbol: QCDSM
+                          commission: 0
+                          fees: 0
+                          fractionalCash: 0
+                          subAccountSec: CASH
+                          subAccountFund: CASH
+                          unitPrice: 0
+                          units: -627.96
+                          transferAction: IN
+                          positionType: SHORT
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /accounts/{accountId}/payment-networks:
+    get:
+      operationId: getAccountPaymentNetworks
+      tags:
+        - Money Movement
+      description: Get payment networks supported by the account. This function allows
+        third-party applications to use substitute account numbers (SAN).
+        Substitute account numbers provide additional security, as they are
+        easily updated as necessary in the event of a data breach. An empty list
+        will be sent when user has turned the SAN sharing OFF.
+      summary: Get payment networks supported by the account. Chase supports two
+        network types. ACH and RTP.
+      parameters:
+        - $ref: "#/components/parameters/authorizationParam"
+          examples:
+            Example1SANPayload:
+              value: xyzabc123
+        - $ref: "#/components/parameters/interactionIdParam"
+          examples:
+            Example1SANPayload:
+              value: 10101234123
+        - $ref: "#/components/parameters/accountIdParam"
+          examples:
+            Example1SANPayload:
+              value: 1234123
+      responses:
+        "200":
+          description: Information required to execute a payment transaction against this
+            account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountPaymentNetworkList"
+              examples:
+                Tokenized Account Number:
+                  value:
+                    paymentNetworks:
+                      - bankId: "121000358"
+                        identifier: "987654321"
+                        identifierType: TOKENIZED_ACCOUNT_NUMBER
+                        type: US_ACH
+                        transferIn: true
+                        transferOut: true
+                      - bankId: "121000358"
+                        identifier: "987654321"
+                        identifierType: TOKENIZED_ACCOUNT_NUMBER
+                        type: US_RTP
+                        transferIn: true
+                        transferOut: false
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /customers/current:
+    get:
+      operationId: getCustomerInfo
+      tags:
+        - Personal Information
+      description: >-
+        Get information about the customer within the authorization scope. The
+        customer information will be on profile level, not account specific
+        level.
+
+
+        The application must have appropriate permission to access personal
+        information in order to successfully make this request.
+      summary: Get current authenticated customer information
+      parameters:
+        - $ref: "#/components/parameters/authorizationParam"
+          examples:
+            ExampleProfilePIIPayload:
+              value: abcd12345
+        - $ref: "#/components/parameters/interactionIdParam"
+          examples:
+            ExampleProfilePIIPayload:
+              value: 123456
+      responses:
+        "200":
+          description: Encrypted data describing current authenticated customer with
+            available profile level information. Successful response is returned
+            in JWE, hence, requires further decryption to get appropriate data.
+          content:
+            application/jwt:
+              schema:
+                $ref: "#/components/schemas/Customer"
+              examples:
+                Encrypted Response:
+                  summary: Encrypted response following JWE format
+                  value: eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.R2CFqEhFEH-9cyu6F9XpT6T11Be0pU138n-7BWt7ehHj9qE3vOzx5XaEZLmqy8MA8frNy1lWgu0Q9Y7Nn_WxZ40Jyq_PFCA9XRZ9oOfCptMy4JlBbL3531ajCFXCKteue0f0E8lsoaOKVkpKwY6oIm4sdeeXHsOVxXXAOz607xH-Mg9yjcTuDybmuik71NyUejxZvW1ismP3XB8yYf4QXs_rrFAgx_37bW_7YuDG5YwCGSgq43qI3fMZPBv2_fS7UM4zQwFW98OUbzrYIeZ2RlGlPrW8Jw_dytJ1w3bJqsysv_EuRQ23jyAhFXieUa7UIsyW6ZgoXUJejT84HNY4gQ.LsnMKoljDDDFA7ln.FiBwjuT3eR8ynAXmtvkzPODpC9ZJgczCO_FMJxIl8ryRqL9HpN7ANKlQcKg0A5wpFU-yiqD6k-kfsQI1-yMEuvkBZVziGL0ajoEhKNwGRaYBwboHysNCWZFRmPQjGYOoVTLg3fplqtWWX_PFiqp9aur1tAh0Eg85Qam-jk2xfqpLOElvSgoIxbic8s6fjrI3nbz5UlcS5nLTL8heQL6mh9ituf7Q8LqlFRLmf1j2KzAjrdjYWnnPQ-EPke2bV4CS6TQ3wbT87iioOYZeioz9d9uJ89JG0yMV6_V9Fg4CwniEr1ATpNK-wJP9uHRQn4yKphxKM1awNWRz-tmNYlYO5Pk2vi1liauquwZKbpZOCsfdpOlfxhyefYUlBYUfJ16ZKHAhJH0YXDFlQXDkxN9v6T-LZAypEqySgAACYkgzMTQdGdYNlLErdY8vA0QZyvCssEDcBd1re0Lua00vp9khZ6z57IQtRcpECsLS_251WQe-Zq0yrhlv2adq7jR3tLarzfDX8LZIzAoflVhJJ3S5uGtXI5E-z8hhzIb3oIZhVQ7F0IpYRyp29cdjHHhNhMj-RUNI0uUgbIdncKwYP7M2P9wGCM18MkkX8V4JJGuzpSUjILyvwD5IPgZOnhiKV-0jytIwZEqd-l7I7g-hGbNab2_0IqceJVOWGI2BNqWbIpI5XyYpvO0baQYxx4JfyHyqtVN4v-XY4r55rJfXyisi5czvC2kouFbhmQKt-lcM3vZb-7oBGSUcuoyzAMjlSioanOdhiaSP1RXT365GIoq4SnngiNaY3J_n84vi1pw75awe3RWIJbKyds5yy7R9zqFiP9OeRXUgeEu7BSJK4ej1d0hc9FxRpNyvTfDaCCB7FpgjiRZfFv2392SydfLBOL4-s5v_94cjUDc3OCV-t1OK4Oos0nHcK5-6lW_De0jcrDf7_-ruL_GE0soAlDhQfBrXaO-kpzYsnvEASCsMrtB-SasU4pvVnZ_NKHIOtgb-dt-Ds7S73Mg0EluzP3o4gDIQkhU1sd_A5-pI-8KKbcWGwryPVcMQH0EQ_JBtZqY8zVLm2PZA-gUcEqOsyA.7FjVwsNUBX8WGyXslX5_RQ
+                Unencrypted Response:
+                  summary: Customer object before encryption
+                  value:
+                    name:
+                      first: John
+                      last: Smith
+                      middle: Adams
+                    email:
+                      - John.Smith@example.com
+                    addresses:
+                      - line1: 25 Washington Dr
+                        line2: Apt 322
+                        city: Newark
+                        state: NJ
+                        postalCode: 111110000
+                        country: US
+                    telephones:
+                      - number: 1111111111
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /customers/current/customer-id:
+    get:
+      tags:
+        - Customer ID
+      summary: Retrieve the Customer Id
+      description: Retrieve the customer ID belonging to the authorizing user.
+        Customer ID uniquely identify a Chase user. This endpoint does not
+        encrypt the payload.
+      parameters:
+        - $ref: "#/components/parameters/authorizationParam"
+        - $ref: "#/components/parameters/interactionIdParam"
+      operationId: getCustomerId
+      responses:
+        "200":
+          description: A successful retrieval of the user id
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - customerId
+                properties:
+                  customerId:
+                    description: Unique customer ID
+                    type: string
+                    maxLength: 255
+                    example: bd48e2c19f89cc338b16e50f49fg2879ce285e687fd1d3ae0c025aca67c33fd102e8ee26719ea9c17b21fb9b80718bf595459a194e3e6cc5981d6bf5f78be491
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /accounts/{accountId}/contact:
+    get:
+      operationId: getAccountContact
+      tags:
+        - Personal Information
+      description: Get information about the customer within the authorization scope.
+        The customer               information will be on account level. The
+        application must have appropriate permission to access personal
+        information in order to successfully make this request.
+      summary: Get an account's contact information
+      parameters:
+        - $ref: "#/components/parameters/authorizationParam"
+          examples:
+            ExampleSoleOwnerPayload:
+              value: abc123hgad
+            ExampleSecondaryAccountOwnerPayload:
+              value: abc123hgaf
+            ExampleBusinessAccountOwnerPayload:
+              value: abc123hgan
+            ExampleCardsAccountOwnerPayload:
+              value: abc123hgadm
+        - $ref: "#/components/parameters/interactionIdParam"
+          examples:
+            ExampleSoleOwnerPayload:
+              value: partner1
+            ExampleSecondaryAccountOwnerPayload:
+              value: partner2
+            ExampleBusinessAccountOwnerPayload:
+              value: partner3
+            ExampleCardsAccountOwnerPayload:
+              value: partner4
+        - $ref: "#/components/parameters/accountIdParam"
+          examples:
+            ExampleSoleOwnerPayload:
+              value: 5678679
+            ExampleSecondaryAccountOwnerPayload:
+              value: 1234566
+            ExampleBusinessAccountOwnerPayload:
+              value: 3456789
+            ExampleCardsAccountOwnerPayload:
+              value: 3456732
+      responses:
+        "200":
+          description: Details used to verify an account
+          content:
+            application/jwt:
+              schema:
+                $ref: "#/components/schemas/AccountContact"
+              examples:
+                Encrypted Response:
+                  summary: Encrypted response following JWE format
+                  value: eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAtMjU2In0.R2CFqEhFEH-9cyu6F9XpT6T11Be0pU138n-7BWt7ehHj9qE3vOzx5XaEZLmqy8MA8frNy1lWgu0Q9Y7Nn_WxZ40Jyq_PFCA9XRZ9oOfCptMy4JlBbL3531ajCFXCKteue0f0E8lsoaOKVkpKwY6oIm4sdeeXHsOVxXXAOz607xH-Mg9yjcTuDybmuik71NyUejxZvW1ismP3XB8yYf4QXs_rrFAgx_37bW_7YuDG5YwCGSgq43qI3fMZPBv2_fS7UM4zQwFW98OUbzrYIeZ2RlGlPrW8Jw_dytJ1w3bJqsysv_EuRQ23jyAhFXieUa7UIsyW6ZgoXUJejT84HNY4gQ.LsnMKoljDDDFA7ln.FiBwjuT3eR8ynAXmtvkzPODpC9ZJgczCO_FMJxIl8ryRqL9HpN7ANKlQcKg0A5wpFU-yiqD6k-kfsQI1-yMEuvkBZVziGL0ajoEhKNwGRaYBwboHysNCWZFRmPQjGYOoVTLg3fplqtWWX_PFiqp9aur1tAh0Eg85Qam-jk2xfqpLOElvSgoIxbic8s6fjrI3nbz5UlcS5nLTL8heQL6mh9ituf7Q8LqlFRLmf1j2KzAjrdjYWnnPQ-EPke2bV4CS6TQ3wbT87iioOYZeioz9d9uJ89JG0yMV6_V9Fg4CwniEr1ATpNK-wJP9uHRQn4yKphxKM1awNWRz-tmNYlYO5Pk2vi1liauquwZKbpZOCsfdpOlfxhyefYUlBYUfJ16ZKHAhJH0YXDFlQXDkxN9v6T-LZAypEqySgAACYkgzMTQdGdYNlLErdY8vA0QZyvCssEDcBd1re0Lua00vp9khZ6z57IQtRcpECsLS_251WQe-Zq0yrhlv2adq7jR3tLarzfDX8LZIzAoflVhJJ3S5uGtXI5E-z8hhzIb3oIZhVQ7F0IpYRyp29cdjHHhNhMj-RUNI0uUgbIdncKwYP7M2P9wGCM18MkkX8V4JJGuzpSUjILyvwD5IPgZOnhiKV-0jytIwZEqd-l7I7g-hGbNab2_0IqceJVOWGI2BNqWbIpI5XyYpvO0baQYxx4JfyHyqtVN4v-XY4r55rJfXyisi5czvC2kouFbhmQKt-lcM3vZb-7oBGSUcuoyzAMjlSioanOdhiaSP1RXT365GIoq4SnngiNaY3J_n84vi1pw75awe3RWIJbKyds5yy7R9zqFiP9OeRXUgeEu7BSJK4ej1d0hc9FxRpNyvTfDaCCB7FpgjiRZfFv2392SydfLBOL4-s5v_94cjUDc3OCV-t1OK4Oos0nHcK5-6lW_De0jcrDf7_-ruL_GE0soAlDhQfBrXaO-kpzYsnvEASCsMrtB-SasU4pvVnZ_NKHIOtgb-dt-Ds7S73Mg0EluzP3o4gDIQkhU1sd_A5-pI-8KKbcWGwryPVcMQH0EQ_JBtZqY8zVLm2PZA-gUcEqOsyA.7FjVwsNUBX8WGyXslX5_RQ
+                Personal Primary Account Owner (Decrypted):
+                  value:
+                    holders:
+                      name:
+                        - first: Beth
+                          last: Parker
+                          relationship: SOLE_OWNER
+                    emails:
+                      - BPacct@gmail.com
+                    addresses:
+                      - line1: 123 Cupcake St
+                        city: Silver Spring
+                        state: MD,
+                        postalCode: 10001
+                    telephones:
+                      - type: HOME
+                        country: US
+                        number: 555555555
+                Personal Secondary Account Owner (Decrypted):
+                  value:
+                    holders:
+                      name:
+                        - first: Beth
+                          last: Parker
+                          relationship: PRIMARY_OWNER
+                        - first: Julie
+                          last: Jackson
+                          relationship: SECONDARY_JOINT
+                    addresses:
+                      - line1: 123 Cupcake St
+                        city: Silver Spring
+                        state: MD,
+                        postalCode: 10001
+                Business Account Owner (Decrypted):
+                  value:
+                    holders:
+                      name:
+                        - company: Beth's Cupcakes
+                          relationship: SOLE_OWNER
+                    emails:
+                      - BPacct@gmail.com
+                    addresses:
+                      - line1: 123 Cupcake St
+                        city: Silver Spring
+                        state: MD,
+                        postalCode: 10001
+                    telephones:
+                      - type: HOME
+                        country: US
+                        number: 555555555
+                Cards Account Owner (Decrypted):
+                  value:
+                    holders:
+                      name:
+                        - first: Mark
+                          last: Carey
+                          relationship: SOLE_OWNER
+                      emails:
+                        - mark.carey1@gmail.com
+                      addresses:
+                        - line1: 654 Sundrive St
+                          city: Ozone Spring
+                          state: MD,
+                          postalCode: 10001
+                      telephones:
+                        - type: HOME
+                          country: US
+                          number: 555555557
+                        - type: CELL
+                          country: US
+                          number: 800555557
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+components:
+  parameters:
+    accountIdParam:
+      name: accountId
+      in: path
+      description: Account ID
+      required: true
+      schema:
+        type: string
+    authorizationParam:
+      name: authorization
+      in: header
+      description: Three-legged oAuth access_token received in the user consent flow
+        POST response body as a bearer token.
+      required: true
+      schema:
+        type: string
+    interactionIdParam:
+      name: FDX-InteractionId
+      in: header
+      description: Client-determined identifier used for tracing purposes. It is
+        unique to the client instance, and enables support people to trace a
+        full path of interactions through multiple sub-systems. This field value
+        is echoed back to the client in the response header of the server.
+      required: true
+      schema:
+        type: string
+    resultTypeParam:
+      name: resultType
+      in: query
+      description: Indicates if result is either a detailed response or a lightweight
+        response. Defaults to lightweight
+      required: false
+      schema:
+        type: string
+        enum:
+          - lightweight
+          - details
+        default: lightweight
+    startTimeParam:
+      name: startTime
+      in: query
+      description: "Start time for use in retrieval. Converted to U.S.Eastern Standard
+        Time (EST) before retrieval, EST is assumed if no time is provided.It
+        must be in the ISO-8601 format (examples in parenthesis), otherwise a
+        702 error code is returned. 1. YYYY (2019). 2. YYYY-MM (2019-07). 3.
+        YYYY-MM-DD (2019-07-16). 4. YYYY-MM-DDThh:mmTZD (2019-07-16T19:20+01:00
+        or 2019-07-16T19:20Z). 5. YYYY-MM-DDThh:mm:ssTZD
+        (2019-07-16T19:20:30-01:00 or 2019-07-16T19:20:30Z). 6.
+        YYYY-MM-DDThh:mm:ss.sTZD YYYY-MM-DDThh:mm:ss.sTZD
+        (2019-07-16T19:20:30.45+01:00 or 2019-07-16T19:20:30.45Z). Note: 703
+        error code returned if startTime is after endTime or if startTime is
+        greater than 2 years from the current time."
+      required: false
+      schema:
+        type: string
+        default: 90 days before endTime
+    endTimeParam:
+      name: endTime
+      in: query
+      description: End time for use in retrieval. Converted to U.S.Eastern Standard
+        Time (EST) before retrieval, EST is assumed if no time is provided.It
+        must be in the ISO-8601 format (examples in parenthesis). 1. YYYY
+        (2019). 2. YYYY-MM (2019-07). 3. YYYY-MM-DD (2019-07-16). 4.
+        YYYY-MM-DDThh:mmTZD (2019-07-16T19:20+01:00 or 2019-07-16T19:20Z). 5.
+        YYYY-MM-DDThh:mm:ssTZD (2019-07-16T19:20:30-01:00 or
+        2019-07-16T19:20:30Z). 6. YYYY-MM-DDThh:mm:ss.sTZD
+        YYYY-MM-DDThh:mm:ss.sTZD (2019-07-16T19:20:30.45+01:00 or
+        2019-07-16T19:20:30.45Z).
+      required: false
+      schema:
+        type: string
+        default: The current time
+    offsetParam:
+      name: offset
+      in: query
+      description: Record position from which to start the request. It is an encoded value.
+      required: false
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Total number of records to return in the call. The size of your
+        return payload can have a substantial impact on the performance of both
+        your application and Chase servers. See the Pagination documentation for
+        this API for best practices.
+      required: false
+      schema:
+        type: integer
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            code: "402"
+            description: Account type not supported. See the Supported Account Types
+              documentation for this API for more details.
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            code: "701"
+            description: Account not found
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            code: "602"
+            description: Customer not authorized. Partner must contact Chase with the
+              FDX-InteractionId to resolve.
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            code: "500"
+            description: Internal server error
+  schemas:
+    PingResponse:
+      description: ok
+      properties:
+        status:
+          type: string
+          description: Healthcheck status
+          example: ok
+    Account:
+      title: Account Entity
+      description: Inherits all elements from the AccountDescriptor, of which this is
+        a subset.
+      allOf:
+        - $ref: "#/components/schemas/AccountDescriptor"
+        - type: object
+          properties:
+            parentAccountId:
+              description: Long-term persistent identity of the parent account. This is used
+                to group accounts. Not applicable for Annuity Account.
+              allOf:
+                - $ref: "#/components/schemas/Identifier"
+            currency:
+              allOf:
+                - $ref: "#/components/schemas/Currency"
+              description: Account currency code. Chase supports only the USD currency code
+              type: object
+            interestRate:
+              allOf:
+                - $ref: "#/components/schemas/Number"
+              description: Interest rate of the account. Not applicable for Annuity Account.
+              x-chase-dataelem: INTL/20170/N/N
+            transferIn:
+              allOf:
+                - $ref: "#/components/schemas/Boolean"
+              description: Account is eligible for incoming transfers. Not applicable for
+                Annuity Account.
+            transferOut:
+              allOf:
+                - $ref: "#/components/schemas/Boolean"
+              description: Account is eligible for outgoing transfers. Not applicable for
+                Annuity Account.
+            lastActivityDate:
+              allOf:
+                - $ref: "#/components/schemas/Timestamp"
+              description: Date that the most recent transaction occurred on an account. Not
+                applicable for Annuity Account.
+            transactionsIncluded:
+              allOf:
+                - $ref: "#/components/schemas/Boolean"
+              description: Default is false. If present and true, a call to retrieve
+                transactions does not return any further details about this
+                account. This is an optimization that allows a Durable Data API
+                server to return transactions and account details in a single
+                call.
+    AccountDescriptor:
+      title: AccountDescriptor Entity
+      description: Provides lightweight account information, when lightweight is
+        specified in the call.
+      properties:
+        accountId:
+          allOf:
+            - $ref: "#/components/schemas/Identifier"
+          description: Long-term persistent identity of the account. Not an account
+            number. This identity must be unique to the owning institution.
+        error:
+          description: Returned if an error occurs when retrieving this account
+          allOf:
+            - $ref: "#/components/schemas/Error"
+        accountNumberDisplay:
+          type: string
+          description: Account identity to display to customer.This is a masked account
+            number.
+        accountType:
+          $ref: "#/components/schemas/AccountType"
+        nickname:
+          type: string
+          maxLength: 256
+          description: Name given by the user. Used in UIs to assist in account selection
+        status:
+          $ref: "#/components/schemas/AccountStatus"
+        fiAttributes:
+          type: array
+          description: Array of attributes that are specific to the financial institution
+            that has created the application using this API.Annuity Account
+            Status will always be OPEN
+          items:
+            $ref: "#/components/schemas/FiAttribute"
+      type: object
+    AccountDescriptorList:
+      title: AccountDescriptorList Entity
+      description: When you specify a lightweight payload, this object contains
+        multiple AccountDescriptor objects, one for each account returned.
+      properties:
+        accountDescriptor:
+          type: array
+          items:
+            $ref: "#/components/schemas/AccountDescriptor"
+    AccountContact:
+      title: Account Contact Entity
+      type: object
+      properties:
+        holders:
+          type: array
+          items:
+            $ref: "#/components/schemas/AccountHolder"
+          description: Owners of the acount
+        emails:
+          type: array
+          items:
+            type: string
+          description: Email addresses associated with the account
+          x-chase-dataelem: CONF/140224/Y/Y
+        addresses:
+          type: array
+          items:
+            $ref: "#/components/schemas/DeliveryAddress"
+          description: Physical mail addresses associated with the account
+        telephones:
+          type: array
+          items:
+            $ref: "#/components/schemas/TelephoneNumber"
+          description: Telephone numbers associated with the account
+    Accounts:
+      title: Accounts entity
+      description: A list of account objects in an array, as specified by the API call.
+      properties:
+        accounts:
+          type: array
+          items:
+            oneOf:
+              - type: object
+                properties:
+                  depositAccount:
+                    $ref: "#/components/schemas/DepositAccount"
+              - type: object
+                properties:
+                  locAccount:
+                    $ref: "#/components/schemas/LocAccount"
+              - type: object
+                properties:
+                  investmentAccount:
+                    $ref: "#/components/schemas/InvestmentAccount"
+              - type: object
+                properties:
+                  loanAccount:
+                    $ref: "#/components/schemas/LoanAccount"
+              - type: object
+                properties:
+                  annuityAccount:
+                    $ref: "#/components/schemas/AnnuityAccount"
+    AccountPaymentNetwork:
+      title: Payment Network Supported by Account
+      description: Details required to execute a transaction against the account
+        within the payment network
+      type: object
+      properties:
+        bankId:
+          type: string
+          description: Bank identifier used by the payment network ie. Routing Number
+        identifier:
+          type: string
+          description: Account number or a tokenized number used to identify the account
+            within the payment network
+        identifierType:
+          $ref: "#/components/schemas/PaymentNetworkIdentifierType"
+        type:
+          $ref: "#/components/schemas/PaymentNetworkType"
+        transferIn:
+          type: boolean
+          description: Can transfer funds to the account using this information. Set to true
+        transferOut:
+          type: boolean
+          description: Can transfer funds from the account using this information. Set to
+            true
+    AccountPaymentNetworkList:
+      description: |-
+        An array of payment networks supported by the account. Chase supports
+
+        two network type (US_ACH, US_RTP), results are not paginated.
+      type: object
+      properties:
+        paymentNetworks:
+          type: array
+          items:
+            $ref: "#/components/schemas/AccountPaymentNetwork"
+    AnnuityAccount:
+      title: AnnuityAccount Entity
+      description: Annuity account. Supported for Account light-weight, heavy-wegiht
+        and account detailed call.
+      allOf:
+        - $ref: "#/components/schemas/Account"
+        - type: object
+          properties:
+            netPresentValue:
+              description: Surrender or cash balance value
+              allOf:
+                - $ref: "#/components/schemas/Number"
+    Currency:
+      title: Currency Entity
+      properties:
+        currencyCode:
+          description: Chase only supports USD (US Dollars) in this field.
+          type: string
+          maxLength: 3
+          x-chase-dataelem: PBL/180351/N/N
+          $ref: "#/components/schemas/Iso4217Code"
+      type: object
+    DepositAccount:
+      title: DepositAccount Entity
+      allOf:
+        - $ref: "#/components/schemas/Account"
+        - type: object
+          properties:
+            balanceAsOf:
+              description: As-of date of balances. ISO 8601 Date format - YYYY-MM-DD
+              allOf:
+                - $ref: "#/components/schemas/Timestamp"
+            currentBalance:
+              allOf:
+                - $ref: "#/components/schemas/Number"
+              description: Balance of funds in account
+            availableBalance:
+              $ref: "#/components/schemas/Number"
+              description: Balance of funds available for use
+              type: number
+              format: double
+              x-chase-dataelem: CONF/160554/N/N
+            annualPercentageYield:
+              allOf:
+                - $ref: "#/components/schemas/Number"
+              description: Annual Percentage Yield
+            interestYtd:
+              allOf:
+                - $ref: "#/components/schemas/Number"
+              description: YTD Interest
+            term:
+              type: integer
+              description: Term of CD in months. For terms that are defined in days, Chase
+                convert them to months by multiplying with 0.03287671232876712
+                (12 / 365). Chase then rounds them to the their nearest whole
+                integer value, i.e. 1.5000 becomes 2, 1.4999 becomes 1
+            maturityDate:
+              description: Maturity date for CDs. ISO 8601 Date format - YYYY-MM-DD
+              allOf:
+                - $ref: "#/components/schemas/Timestamp"
+    DepositTransaction:
+      title: DepositTransaction Entity
+      allOf:
+        - $ref: "#/components/schemas/Transaction"
+        - properties:
+            transactionType:
+              allOf:
+                - $ref: "#/components/schemas/DepositTransactionType"
+              description: Deposit transaction type
+            checkNumber:
+              type: integer
+              format: int64
+              description: The sequential number that identifies a check.
+              x-chase-dataelem: INTL/180301/N/N
+          type: object
+    Error:
+      title: Error Entity
+      description: >-
+        An error entity which is used at the API level for error responses or at
+        the account level to indicate a problem specific to a particular
+          | Error Code | Error Message                               | HTTP Status Code |
+          | ---------- | ------------------------------------------- | ---------------- |
+          | `401`      | Input invalid                               | `400`            |
+          | `402`      | Account type not supported                  | `400`            |
+          | `403`      | Missing required 'FDX-InteractionId' header | `400`            |
+          | `500`      | Internal server error                       | `500`            |
+          | `601`      | Customer not found                          | `404`            |
+          | `602`      | Customer not authorized                     | `401`            |
+          | `701`      | Account not found                           | `404`            |
+      properties:
+        code:
+          type: string
+          maxLength: 4
+          description: Long term persistent identifier which can be used to trace error
+            condition back to log information
+        message:
+          type: string
+          maxLength: 256
+          description: End user displayable information to help the customer diagnose an
+            error
+      type: object
+    FiAttribute:
+      title: FiAttribute Entity
+      description: Financial platform provider-specific attribute
+      properties:
+        name:
+          type: string
+          maxLength: 150
+          description: Name of attribute
+        value:
+          type: string
+          description: Value of attribute
+      type: object
+    InvestmentAccount:
+      title: InvestmentAccount Entity
+      description: Investment account entity.
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/Account"
+        - type: object
+          properties:
+            availableCashBalance:
+              description: Cash available to trade
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            balanceList:
+              type: array
+              description: Array of InvestmentBalance items
+              items:
+                $ref: "#/components/schemas/InvestmentBalance"
+            currentValue:
+              description: Total current value of all investments
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            marginBalance:
+              description: Margin balance available (more specifically, equity margin buying
+                power)
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            shortBalance:
+              description: Short balance
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            holdings:
+              type: array
+              description: Array of holdings
+              items:
+                $ref: "#/components/schemas/Holding"
+            openOrders:
+              type: array
+              description: Array of open orders
+              items:
+                $ref: "#/components/schemas/OpenOrder"
+    InvestmentBalance:
+      title: InvestmentBalance entity
+      description: Investment balance entity
+      type: object
+      properties:
+        balanceDate:
+          description: The date for which this balance is as of
+          allOf:
+            - $ref: "#/components/schemas/Timestamp"
+        balanceDescription:
+          type: string
+          description: Description of the balance entity
+        balanceName:
+          type: string
+          description: Name of the balance entity
+        balanceType:
+          $ref: "#/components/schemas/InvestmentBalanceType"
+        balanceValue:
+          description: Value of the balance
+          allOf:
+            - $ref: "#/components/schemas/Number"
+    Holding:
+      title: Holding Entity
+      description: >
+        Holding entity. This entity contains a populated DebtSecurity or
+        OptionSecurity
+
+        object if applicable to the holding type
+      allOf:
+        - type: object
+          properties:
+            securityId:
+              description: Unique identifier of the security
+              type: string
+            securityIdType:
+              description: Security identifier type
+              allOf:
+                - $ref: "#/components/schemas/SecurityIdType"
+            holdingName:
+              description: Holding name or security name
+              type: string
+            holdingType:
+              description: Only applicable for private bank accounts
+              allOf:
+                - $ref: "#/components/schemas/HoldingType"
+            positionType:
+              $ref: "#/components/schemas/PositionType"
+            heldInAccount:
+              $ref: "#/components/schemas/HeldInAccount"
+            description:
+              description: Description of the holding. Only applicable for private bank
+                accounts
+              type: string
+            symbol:
+              description: Ticker/market symbol
+              type: string
+            currentUnitPrice:
+              description: Current unit price
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            currentUnitPriceDate:
+              description: Current unit price as of date
+              allOf:
+                - $ref: "#/components/schemas/Timestamp"
+            units:
+              description: Number of stocks or shares
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            marketValue:
+              description: Market value at the time of data retrieved
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            faceValue:
+              description: Required for bonds. Face value at the time of data retrieved
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            averageCost:
+              description: Cost is average of all purchases for holding
+              allOf:
+                - $ref: "#/components/schemas/Boolean"
+            cashAccount:
+              description: If true, indicates that this holding is used to  maintain proceeds
+                from sales, dividends,and other cash postings to the investment
+                account
+              allOf:
+                - $ref: "#/components/schemas/Boolean"
+            rate:
+              description: RFor CDs, bonds, and other rate based holdings
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            expirationDate:
+              description: For CDs, bonds, and other time-based holdings
+              allOf:
+                - $ref: "#/components/schemas/Timestamp"
+        - oneOf:
+            - type: object
+              properties:
+                debtSecurity:
+                  $ref: "#/components/schemas/DebtSecurity"
+            - type: object
+              properties:
+                optionSecurity:
+                  $ref: "#/components/schemas/OptionSecurity"
+            - type: object
+              properties:
+                sweepSecurity:
+                  $ref: "#/components/schemas/SweepSecurity"
+    DebtSecurity:
+      title: DebtSecurity entity
+      description: Debt security entity. Non-null when holding entity is of debt type.
+      type: object
+      properties:
+        callType:
+          $ref: "#/components/schemas/CallType"
+        debtType:
+          $ref: "#/components/schemas/DebtType"
+        parValue:
+          description: Par value amount
+          allOf:
+            - $ref: "#/components/schemas/Number"
+        yieldToMaturity:
+          description: Yield to maturity
+          allOf:
+            - $ref: "#/components/schemas/Number"
+    OptionSecurity:
+      title: OptionSecurity entity
+      description: Option security entity. Non-null when holding entity is of option type.
+      type: object
+      properties:
+        optionType:
+          $ref: "#/components/schemas/OptionType"
+        expireDate:
+          description: Expiration date of option
+          allOf:
+            - $ref: "#/components/schemas/Timestamp"
+        sharesPerContract:
+          description: Shares per contract
+          allOf:
+            - $ref: "#/components/schemas/Number"
+        strikePrice:
+          description: Strike price / Unit price
+          allOf:
+            - $ref: "#/components/schemas/Number"
+    OpenOrder:
+      title: OpenOrder entity
+      description: Open order entity
+      type: object
+      properties:
+        orderType:
+          $ref: "#/components/schemas/OrderType"
+    SweepSecurity:
+      title: SweepSecurity entity
+      description: Sweep Security entity
+      type: object
+      properties:
+        currentBalance:
+          description: Balance of funds in account
+          allOf:
+            - $ref: "#/components/schemas/Number"
+        availableBalance:
+          description: Balance of funds available for use
+          allOf:
+            - $ref: "#/components/schemas/Number"
+        balanceAsOf:
+          description: As-of date of balances
+          allOf:
+            - $ref: "#/components/schemas/Timestamp"
+    InvestmentTransaction:
+      title: InvestmentTransaction entity
+      description: |
+        Investment transaction entity
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/Transaction"
+        - properties:
+            commission:
+              description: Transaction commission
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            fees:
+              description: Not applicable for private bank accounts
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            foreignCurrency:
+              description: The ISO 4217 code of the foreign currency. Only applicable for
+                private bank accounts
+              allOf:
+                - $ref: "#/components/schemas/Iso4217Code"
+            fractionalCash:
+              description: Cash for fractional units (used for stock splits)
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            incomeType:
+              $ref: "#/components/schemas/IncomeType"
+            positionType:
+              $ref: "#/components/schemas/PositionType"
+            price:
+              description: Purchase price for the units
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            securityId:
+              description: Unique identifier of the security
+              type: string
+            securityIdType:
+              description: Security identifier type
+              allOf:
+                - $ref: "#/components/schemas/SecurityIdType"
+            securityType:
+              description: Type of security
+              allOf:
+                - $ref: "#/components/schemas/SecurityType"
+            subAccountFund:
+              description: From which account money came in
+              allOf:
+                - $ref: "#/components/schemas/SubAccountType"
+            subAccountSec:
+              description: Sub-account security type
+              allOf:
+                - $ref: "#/components/schemas/SubAccountType"
+            symbol:
+              description: Ticker symbol.
+              type: string
+            transferAction:
+              $ref: "#/components/schemas/TransferAction"
+            transactionReason:
+              description: Reason for this transaction
+              allOf:
+                - $ref: "#/components/schemas/TransactionReason"
+            transactionType:
+              description: Enum type string for the investment transaction
+              allOf:
+                - $ref: "#/components/schemas/InvestmentTransactionType"
+            unitPrice:
+              description: Price per commonly-quoted unit. <ul> <li> Share price for stocks,
+                mutual funds, etc. </li> <li> Percentage of par for bonds. </li>
+                <li> Per share for options </li> </ul>
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            units:
+              description: Quantity for security-based actions <ul> <li> Shares for stocks,
+                mutual funds, etc </li> <li> Face value for bonds </li> <li>
+                Contracts for options </li> </ul>
+              allOf:
+                - $ref: "#/components/schemas/Number"
+    LineItem:
+      title: LineItem Entity
+      properties:
+        description:
+          type: string
+          description: The description of the line item
+        amount:
+          allOf:
+            - $ref: "#/components/schemas/Number"
+          description: The amount of money associated with this line item
+        checkNumber:
+          type: integer
+          format: int64
+          description: The sequential number that identifies a check.
+          x-chase-dataelem: INTL/180301/N/N
+        memo:
+          allOf:
+            - $ref: "#/components/schemas/String255"
+          description: Secondary item description
+        reference:
+          type: string
+          maxLength: 150
+          description: A reference number
+        imageIds:
+          type: array
+          description: Array of image identifiers (unique to transaction) used to retrieve
+            images of a check or transaction receipt
+          items:
+            type: string
+      type: object
+    LocAccount:
+      title: LocAccount Entity
+      allOf:
+        - $ref: "#/components/schemas/Account"
+        - properties:
+            availableCredit:
+              description: Amount of credit available.
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            availableCash:
+              description: Amount of cash available. Only applicable to cards.
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            advancesApr:
+              description: Annual percentage rate charged for cash advances. Only applicable
+                to cards.
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            balanceAsOf:
+              description: As-of date of balances. ISO 8601 Date format - YYYY-MM-DD
+              allOf:
+                - $ref: "#/components/schemas/Timestamp"
+            cashAdvanceLimit:
+              description: Cash advance limit. Only applicable to cards.
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            creditLine:
+              description: Credit limit
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            currentBalance:
+              description: Balance owed to the financial institution
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            principalBalance:
+              description: Principal balance. Not applicable to cards.
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            currentRewardsBalance:
+              description: Reward points balance. Only applicable to cards.
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            rewardProgramId:
+              description: Reward Program Identifier.
+              allOf:
+                - $ref: "#/components/schemas/String64"
+            lastPaymentAmount:
+              description: Last payment amount
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            lastPaymentDate:
+              description: Last payment date. ISO 8601 Date format - YYYY-MM-DD
+              allOf:
+                - $ref: "#/components/schemas/Timestamp"
+            lastStmtBalance:
+              description: Last statement balance. Only applicable to cards.
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            lastStmtDate:
+              description: Last statement date, ISO 8601 Date format - YYYY-MM-DD
+              allOf:
+                - $ref: "#/components/schemas/Timestamp"
+            minimumPaymentAmount:
+              description: Minimum payment amount. Only applicable to cards.
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            nextPaymentAmount:
+              description: Next payment amount
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            nextPaymentDate:
+              description: Next payment date. ISO 8601 Date format - YYYY-MM-DD
+              allOf:
+                - $ref: "#/components/schemas/Timestamp"
+            pastDueAmount:
+              description: Past due amount
+              allOf:
+                - $ref: "#/components/schemas/Number"
+            purchasesApr:
+              description: Annual percentage rate charged for purchases.Only applicable to
+                cards.
+              allOf:
+                - $ref: "#/components/schemas/Number"
+    LocTransaction:
+      title: LocTransaction Entity
+      description: A line of credit transaction.
+      allOf:
+        - $ref: "#/components/schemas/Transaction"
+        - properties:
+            transactionType:
+              $ref: "#/components/schemas/LocTransactionType"
+    LoanAccount:
+      title: LoanAccount Entity
+      allOf:
+        - $ref: "#/components/schemas/Account"
+        - properties:
+            balanceAsOf:
+              $ref: "#/components/schemas/Timestamp"
+              description: As-of date for balances.Not applicable to auto lease (ALS)
+                accounts.
+            principalBalance:
+              $ref: "#/components/schemas/Number"
+              description: Principal balance of loan.Not applicable to auto lease (ALS)
+                accounts
+            escrowBalance:
+              $ref: "#/components/schemas/Number"
+              description: Escrow balance of loan.Only applicable to mortgage (HMG) accounts.
+            originalPrincipal:
+              $ref: "#/components/schemas/Number"
+              description: Original principal of loan.Not applicable to auto lease (ALS)
+                account.
+            originatingDate:
+              $ref: "#/components/schemas/Timestamp"
+              description: Loan origination date. Not applicable to auto lease (ALS) account.
+            loanTerm:
+              type: integer
+              description: Term of loan in months.Only applicable to auto loan (ALA) accounts.
+            totalNumberOfPayments:
+              type: integer
+              description: Total number of payments. Not applicable to auto lease (ALS)
+                account.
+            nextPaymentAmount:
+              $ref: "#/components/schemas/Number"
+              description: Amount of next payment
+            nextPaymentDate:
+              $ref: "#/components/schemas/Timestamp"
+              description: Date of next payment
+            paymentFrequency:
+              $ref: "#/components/schemas/PaymentFrequency"
+              description: DAILY, WEEKLY, BIWEEKLY, SEMIMONTHLY, MONTHLY, SEMIANNUALLY,
+                ANNUALLY.Only applicable to auto loan(ALA),auto lease(ALS) and
+                mortgage(HMG) accounts.
+            lastPaymentAmount:
+              $ref: "#/components/schemas/Number"
+              description: Last payment amount
+            lastPaymentDate:
+              $ref: "#/components/schemas/Timestamp"
+              description: Last payment date
+            maturityDate:
+              $ref: "#/components/schemas/Timestamp"
+              description: Maturity date
+            interestPaidYearToDate:
+              $ref: "#/components/schemas/Number"
+              description: Interest paid year to date.Not applicable to auto lease (ALS)
+                account.
+    LoanTransaction:
+      title: LoanTransaction Entity
+      allOf:
+        - $ref: "#/components/schemas/Transaction"
+        - properties:
+            transactionType:
+              $ref: "#/components/schemas/LoanTransactionType"
+              description: PAYMENT, FEE, ADJUSTMENT, INTEREST. Not applicable to any Loan
+                accounts.
+            paymentDetails:
+              $ref: "#/components/schemas/PaymentDetails"
+              description: Breakdown of payment details
+    PaymentNetworkIdentifierType:
+      title: Payment Network Identifier Type
+      description: Suggested value for Payment Initiation Identifier Type
+      type: string
+      enum:
+        - TOKENIZED_ACCOUNT_NUMBER
+    PaymentNetworkType:
+      title: Payment Network Type
+      description: Supported Payment Network Type US_ACH | Automated Clearing House
+        and US_RTP | Real Time Payments
+      type: string
+      enum:
+        - US_ACH
+        - US_RTP
+    PaymentDetails:
+      title: PaymentDetails Entity
+      properties:
+        principalAmount:
+          $ref: "#/components/schemas/Number"
+          description: The amount of payment applied to principal
+        interestAmount:
+          $ref: "#/components/schemas/Number"
+          description: The amount of payment applied to interest
+        insuranceAmount:
+          $ref: "#/components/schemas/Number"
+          description: The amount of payment applied to life/health/accident insurance on
+            the loan
+        escrowAmount:
+          $ref: "#/components/schemas/Number"
+          description: Required escrow advances already paid by the servicer and any
+            required escrow advances from the servicer that are currently due
+            and will be paid by the servicer during the Trial Period. Report 2
+            decimals.
+          type: number
+          format: double
+          x-chase-dataelem: CONF/22109/N/N
+        pmiAmount:
+          $ref: "#/components/schemas/Number"
+          description: The amount of payment applied to PMI
+        feesAmount:
+          $ref: "#/components/schemas/Number"
+          description: The amount of payment applied to fees
+      type: object
+    Transaction:
+      title: Transaction Entity
+      properties:
+        accountId:
+          description: Account ID associated with the transaction.
+          allOf:
+            - $ref: "#/components/schemas/Identifier"
+        transactionId:
+          description: Long term persistent identity of the transaction (unique to account)
+          allOf:
+            - $ref: "#/components/schemas/Identifier"
+        referenceTransactionId:
+          description: For reverse postings, the identity of the transaction being
+            reversed. For the correction transaction, the identity of the
+            reversing post. For credit card posting transactions, the identity
+            of the authorization transaction.
+          allOf:
+            - $ref: "#/components/schemas/Identifier"
+        postedTimestamp:
+          description: The date and time that the transaction was posted to the account.
+          allOf:
+            - $ref: "#/components/schemas/Timestamp"
+        transactionTimestamp:
+          description: The date and time that the transaction was added to the server
+            backend systems
+          allOf:
+            - $ref: "#/components/schemas/Timestamp"
+        description:
+          type: string
+          description: The description of the transaction
+        memo:
+          description: Secondary transaction description
+          allOf:
+            - $ref: "#/components/schemas/String255"
+        debitCreditMemo:
+          $ref: "#/components/schemas/DebitCreditMemo"
+        category:
+          type: string
+          maxLength: 4
+          description: Transaction category, preferably MCC or SIC.
+        status:
+          $ref: "#/components/schemas/TransactionStatus"
+        amount:
+          description: The amount of money in the account currency.
+          allOf:
+            - $ref: "#/components/schemas/Number"
+        fiAttributes:
+          type: array
+          description: Array of attributes that are specific to the financial institution
+            that has created the application using this API.
+          items:
+            $ref: "#/components/schemas/FiAttribute"
+      type: object
+    Transactions:
+      title: Transactions Entity
+      description: Array of transactions
+      allOf:
+        - $ref: "#/components/schemas/PaginatedArray"
+        - type: object
+          properties:
+            transactions:
+              description: An array of transactions. The entity types within this array are
+                dependent on the account type (deposit, investment, loan, or
+                line of credit)
+              type: array
+              items:
+                oneOf:
+                  - type: object
+                    properties:
+                      depositTransaction:
+                        $ref: "#/components/schemas/DepositTransaction"
+                  - type: object
+                    properties:
+                      locTransaction:
+                        $ref: "#/components/schemas/LocTransaction"
+                  - type: object
+                    properties:
+                      investmentTransaction:
+                        $ref: "#/components/schemas/InvestmentTransaction"
+                  - type: object
+                    properties:
+                      loanTransaction:
+                        $ref: "#/components/schemas/LoanTransaction"
+    Address:
+      description: Postal address
+      properties:
+        line1:
+          $ref: "#/components/schemas/String64"
+          description: Address line 1
+        line2:
+          $ref: "#/components/schemas/String64"
+          description: Address line 2
+        line3:
+          $ref: "#/components/schemas/String64"
+          description: Address line 3
+        city:
+          $ref: "#/components/schemas/String64"
+          description: City
+        state:
+          $ref: "#/components/schemas/String64"
+          description: State or province
+        postalCode:
+          type: string
+          maxLength: 10
+          description: A code that identifies the Postcode Area, a Geographic Area defined
+            by postal authorities to facilitate mail delivery services; for
+            example, the area defined by a Zip Code in the U. S.
+          x-chase-dataelem: CONF/140031/Y/Y
+        country:
+          $ref: "#/components/schemas/Iso3166CountryCode"
+          description: Country code
+          x-chase-dataelem: CONF/149/Y/N
+      title: Address
+      type: object
+    Customer:
+      title: Customer entity
+      description: Represents a customer
+      properties:
+        customerId:
+          $ref: "#/components/schemas/Identifier"
+          description: Long-term persistent identity of the customer. This identity must
+            be unique to the owning institution
+        name:
+          $ref: "#/components/schemas/CustomerName"
+          description: The customer's name
+        dateOfBirth:
+          $ref: "#/components/schemas/Timestamp"
+          description: The customer's date of birth
+        taxId:
+          type: string
+          description: The SSN or TIN associated with this customer
+        governmentId:
+          type: string
+          description: A federal (such as passport) or state (such as driver's license)
+            issued identifier
+        email:
+          type: array
+          items:
+            type: string
+          description: An array of the customer's electronic mail addresses
+        addresses:
+          type: array
+          items:
+            $ref: "#/components/schemas/DeliveryAddress"
+          description: An array of the customer's physical mail addresses
+        telephones:
+          type: array
+          items:
+            $ref: "#/components/schemas/TelephoneNumber"
+          description: An array of the customer's telephone numbers
+        accounts:
+          type: array
+          items:
+            $ref: "#/components/schemas/CustomerToAccountRelationship"
+          description: List of accounts related to this customer
+    CustomerName:
+      title: Customer Name entity
+      description: The name of an individual in their role as a customer
+      allOf:
+        - $ref: "#/components/schemas/IndividualName"
+        - type: object
+          properties:
+            prefix:
+              description: Name prefix, e.g. Mr.
+              type: string
+            company:
+              type: string
+              description: Company name
+    CustomerToAccountRelationship:
+      type: object
+      title: Customer to Account Relationship entity
+      description: Describes an account related to a customer
+      properties:
+        accountId:
+          $ref: "#/components/schemas/Identifier"
+          description: Account ID of the related account
+        links:
+          type: object
+          properties:
+            account:
+              $ref: "#/components/schemas/HateoasLink"
+              description: Link to the account
+          description: Link to the account
+        relationship:
+          $ref: "#/components/schemas/AccountHolderRelationship"
+          description: Type of relationship to the account
+    DeliveryAddress:
+      title: Delivery Address
+      description: A delivery address and its location type
+      allOf:
+        - $ref: "#/components/schemas/Address"
+        - type: object
+          properties:
+            type:
+              $ref: "#/components/schemas/DeliveryAddressType"
+              description: Type of address location. One of BUSINESS, HOME, MAILING
+    IndividualName:
+      description: First name, middle initial, last name, suffix fields
+      properties:
+        first:
+          description: That part of an individuals full name considered a personal name or
+            given name and generally positioned before the last name or family
+            name.
+          type: string
+          maxLength: 40
+          x-chase-dataelem: CONF/140027/Y/Y
+        middle:
+          description: Middle initial
+          type: string
+          maxLength: 40
+          x-chase-dataelem: CONF/140028/Y/Y
+        last:
+          description: That part of an individuals name generally placed at the end of the
+            given name. The last name is also known as the surname or family
+            name.
+          type: string
+          maxLength: 40
+          x-chase-dataelem: CONF/140025/Y/Y
+        suffix:
+          description: Generational or academic suffix
+          type: string
+          maxLength: 10
+          x-chase-dataelem: CONF/268/Y/Y
+      title: Individual name
+      type: object
+    TelephoneNumber:
+      title: Telephone Number
+      description: Standard for international phone numbers
+      properties:
+        type:
+          $ref: "#/components/schemas/TelephoneNumberType"
+          description: "Type of phone number: HOME, BUSINESS, CELL, FAX"
+          x-chase-dataelem: INTL/140372/N/N
+        country:
+          type: string
+          maxLength: 3
+          description: Country calling codes defined by ITU-T recommendations E.123 and
+            E.164
+          x-chase-dataelem: CONF/140022/Y/Y
+        number:
+          type: string
+          maxLength: 15
+          pattern: \d+
+          description: Telephone subscriber number defined by ITU-T recommendation E.164
+          x-chase-dataelem: CONF/140004/Y/Y
+      type: object
+    AccountStatus:
+      title: AccountStatus
+      type: string
+      enum:
+        - OPEN
+        - CLOSED
+        - OTHER
+        - PENDINGOPEN
+        - PENDINGCLOSE
+        - DELINQUENT
+    AccountType:
+      title: Account Type
+      type: string
+      enum:
+        - 403B
+        - ANNUITY
+        - AUTOLOAN
+        - AUTOLEASE
+        - BROKERAGE
+        - CD
+        - CHECKING
+        - COMMERCIALLINEOFCREDIT
+        - CREDITCARD
+        - HOMEEQUITYLOAN
+        - HOMEEQUITYLINEOFCREDIT
+        - IRA
+        - LINEOFCREDIT
+        - LOAN
+        - MONEYMARKET
+        - MORTGAGE
+        - SAVINGS
+    BalanceType:
+      title: Balance Type
+      type: string
+    Boolean:
+      type: boolean
+      pattern: true|false
+    CallType:
+      title: Call Type
+      description: Call type string enum
+      type: string
+      enum:
+        - CALL
+        - MATURITY
+        - PREFUND
+        - PUT
+    ContentTypes:
+      title: Content Types
+      description: Types of document formats. (Suggested)
+      type: string
+      enum:
+        - application/pdf
+        - image/gif
+        - image/jpeg
+        - image/tiff
+        - image/png
+        - application/json
+      example: application/json
+    DebitCreditMemo:
+      title: Debit or Credit Memo
+      type: string
+      enum:
+        - CREDIT
+        - DEBIT
+    DebtType:
+      title: Debt Type
+      type: string
+      enum:
+        - COUPON
+        - ZERO
+    DepositTransactionType:
+      title: Deposit Transaction Type
+      type: string
+      enum:
+        - ADJUSTMENT
+        - ATMDEPOSIT
+        - ATMWITHDRAWAL
+        - BILLPAYMENT
+        - CHECK
+        - DEPOSIT
+        - DIRECTDEPOSIT
+        - FEE
+        - OTHER
+        - POSCREDIT
+        - POSDEBIT
+        - TRANSFER
+    HateoasLink:
+      type: object
+      required:
+        - href
+      properties:
+        href:
+          type: string
+          example: /example/accounts/12345
+        action:
+          type: string
+          enum:
+            - GET
+            - POST
+            - PATCH
+            - DELETE
+            - PUT
+          description: HTTP Method to use for the request (Suggested)
+        types:
+          type: array
+          items:
+            $ref: "#/components/schemas/ContentTypes"
+          description: Content-types that can be used in the Accept header.
+    HeldInAccount:
+      title: Held in account
+      description: Sub-account
+      type: string
+      enum:
+        - CASH
+        - MARGIN
+        - SHORT
+        - OTHER
+    HoldingType:
+      title: Holding type
+      type: string
+      enum:
+        - STOCK
+        - BOND
+        - MUTUALFUND
+        - CD
+        - ANNUITY
+        - OPTIONS
+        - OTHER
+    Identifier:
+      title: Identifier
+      type: string
+      maxLength: 256
+    InterestRateType:
+      title: Interest Rate Type
+      type: string
+    Iso4217Code:
+      title: ISO 4217 Code
+      type: string
+      enum:
+        - AED
+        - AFN
+        - ALL
+        - AMD
+        - ANG
+        - AOA
+        - ARS
+        - AUD
+        - AWG
+        - AZN
+        - BAM
+        - BBD
+        - BDT
+        - BGN
+        - BHD
+        - BIF
+        - BMD
+        - BND
+        - BOB
+        - BOV
+        - BRL
+        - BSD
+        - BTN
+        - BWP
+        - BYR
+        - BZD
+        - CAD
+        - CDF
+        - CHE
+        - CHF
+        - CHW
+        - CLF
+        - CLP
+        - CNY
+        - COP
+        - COU
+        - CRC
+        - CUC
+        - CUP
+        - CVE
+        - CZK
+        - DJF
+        - DKK
+        - DOP
+        - DZD
+        - EGP
+        - ERN
+        - ETB
+        - EUR
+        - FJD
+        - FKP
+        - GBP
+        - GEL
+        - GHS
+        - GIP
+        - GMD
+        - GNF
+        - GTQ
+        - GYD
+        - HKD
+        - HNL
+        - HRK
+        - HTG
+        - HUF
+        - IDR
+        - ILS
+        - INR
+        - IQD
+        - IRR
+        - ISK
+        - JMD
+        - JOD
+        - JPY
+        - KES
+        - KGS
+        - KHR
+        - KMF
+        - KPW
+        - KRW
+        - KWD
+        - KYD
+        - KZT
+        - LAK
+        - LBP
+        - LKR
+        - LRD
+        - LSL
+        - LYD
+        - MAD
+        - MDL
+        - MGA
+        - MKD
+        - MMK
+        - MNT
+        - MOP
+        - MRO
+        - MUR
+        - MVR
+        - MWK
+        - MXN
+        - MXV
+        - MYR
+        - MZN
+        - NAD
+        - NGN
+        - NIO
+        - NOK
+        - NPR
+        - NZD
+        - OMR
+        - PAB
+        - PEN
+        - PGK
+        - PHP
+        - PKR
+        - PLN
+        - PYG
+        - QAR
+        - RON
+        - RSD
+        - RUB
+        - RWF
+        - SAR
+        - SBD
+        - SCR
+        - SDG
+        - SEK
+        - SGD
+        - SHP
+        - SLL
+        - SOS
+        - SRD
+        - SSP
+        - STD
+        - SVC
+        - SYP
+        - SZL
+        - THB
+        - TJS
+        - TMT
+        - TND
+        - TOP
+        - TRY
+        - TTD
+        - TWD
+        - TZS
+        - UAH
+        - UGX
+        - USD
+        - USN
+        - UYI
+        - UYU
+        - UZS
+        - VEF
+        - VND
+        - VUV
+        - WST
+        - XAF
+        - XAG
+        - XAU
+        - XBA
+        - XBB
+        - XBC
+        - XBD
+        - XCD
+        - XDR
+        - XOF
+        - XPD
+        - XPF
+        - XPT
+        - XSU
+        - XTS
+        - XUA
+        - XXX
+        - YER
+        - ZAR
+        - ZMW
+        - ZWL
+    IncomeType:
+      title: Income type
+      description: Type of investment income
+      type: string
+      enum:
+        - CGLONG
+        - CGSHORT
+        - MISC
+    InvestmentBalanceType:
+      title: Investment balance type
+      description: Balance type of the investment. Always uses true values.
+      type: string
+      enum:
+        - AMOUNT
+    InvestmentTransactionType:
+      title: Investment Transaction Type
+      type: string
+      enum:
+        - CLOSURE
+        - CLOSUREOPT
+        - CONTRIBUTION
+        - DEP
+        - DIRECTDEBIT
+        - DIRECTDEP
+        - DIV
+        - DIVIDEND
+        - DIVIDENDREINVEST
+        - EXPENSE
+        - FEE
+        - INCOME
+        - INTEREST
+        - INVEXPENSE
+        - JRNLFUND
+        - JRNLSEC
+        - MARGININTEREST
+        - OPTIONEXERCISE
+        - OPTIONEXPIRATION
+        - OTHER
+        - PAYMENT
+        - POS
+        - PURCHASED
+        - PURCHASEDTOCOVER
+        - PURCHASETOCLOSE
+        - PURCHASETOOPEN
+        - REINVESTOFINCOME
+        - REPEATPMT
+        - RETURNOFCAPITAL
+        - SOLD
+        - SOLDTOCLOSE
+        - SOLDTOOPEN
+        - SPLIT
+        - SRVCHG
+        - TRANSFER
+        - XFER
+    LocTransactionType:
+      title: Line of Credit Transaction Type Entity
+      type: string
+      enum:
+        - ADJUSTMENT
+        - CHECK
+        - FEE
+        - INTEREST
+        - PAYMENT
+        - SALE
+        - WITHDRAWAL
+    LoanTransactionType:
+      title: Loan Transaction Type
+      type: string
+      enum:
+        - ADJUSTMENT
+        - FEE
+        - INTEREST
+        - PAYMENT
+    Number:
+      title: Number
+      type: number
+    OptionType:
+      title: Option security
+      type: string
+      enum:
+        - CALL
+        - PUT
+    OrderType:
+      title: Order type
+      type: string
+      enum:
+        - BUY
+        - BUYTOCOVER
+        - BUYTOOPEN
+        - SELL
+        - SELLCLOSE
+        - SELLSHORT
+        - SELLTOCOVER
+        - SELLTOOPEN
+    PositionType:
+      title: Position type
+      type: string
+      enum:
+        - LONG
+        - SHORT
+    String255:
+      title: String255
+      type: string
+      maxLength: 255
+    String64:
+      title: String64
+      description: string 64
+      type: string
+      maxLength: 64
+    SecurityIdType:
+      title: Security ID Type
+      type: string
+      enum:
+        - CUSIP
+        - ISIN
+        - SEDOL
+        - SICC
+        - VALOR
+        - WKN
+    SecurityType:
+      title: Security type
+      type: string
+      enum:
+        - STOCK
+        - MUTUALFUND
+        - DEBT
+        - OPTION
+        - SWEEP
+        - OTHER
+    SubAccountType:
+      title: Sub Account type
+      type: string
+      enum:
+        - CASH
+        - MARGIN
+        - OTHERS
+        - SHORT
+    TransactionReason:
+      title: Transaction Reason
+      type: string
+      enum:
+        - CALL
+        - SELL
+        - MATURITY
+    TransferAction:
+      title: Transfer Action
+      type: string
+      enum:
+        - IN
+        - OUT
+    Timestamp:
+      title: Timestamp
+      type: string
+      format: date-time
+      description: ISO 8601 date format in UTC time zone. <br> Date fields are in ISO
+        8601 date format - YYYY-MM-DD<br> <br> Timestamp fields are in ISO 8601
+        date time format - YYYY-MM-DDThh:mm:ss.sssZ <br> <br>Only date responses
+        are supported, so Timestamp responses are all set to 12:00:00.000
+        UTC<br>
+      example: 2019-04-23T12:00:00.000Z or 2019-04-23
+      pattern: \d{4}\-\d\d\-\d\dT\d\d:\d\d:\d\d\.\d\d\dZ or \d{4}\-\d\d\-\d\d
+    PaymentFrequency:
+      title: Payment Frequency
+      type: string
+      enum:
+        - ANNUALLY
+        - BIWEEKLY
+        - DAILY
+        - MONTHLY
+        - SEMIANNUALLY
+        - SEMIMONTHLY
+        - WEEKLY
+    TransactionStatus:
+      title: Transaction Status
+      type: string
+      enum:
+        - HOLD
+        - PENDING
+        - POSTED
+    Iso3166CountryCode:
+      title: ISO3166 Country Code
+      description: ISO 3166 Codes for the representation of names of countries and
+        their subdivisions
+      type: string
+      enum:
+        - AD
+        - AE
+        - AF
+        - AG
+        - AI
+        - AL
+        - AM
+        - AN
+        - AO
+        - AQ
+        - AR
+        - AS
+        - AT
+        - AU
+        - AW
+        - AX
+        - AZ
+        - BA
+        - BB
+        - BD
+        - BE
+        - BF
+        - BG
+        - BH
+        - BI
+        - BJ
+        - BM
+        - BN
+        - BO
+        - BR
+        - BS
+        - BT
+        - BV
+        - BW
+        - BY
+        - BZ
+        - CA
+        - CC
+        - CD
+        - CF
+        - CG
+        - CH
+        - CI
+        - CK
+        - CL
+        - CM
+        - CN
+        - CO
+        - CR
+        - CS
+        - CU
+        - CV
+        - CX
+        - CY
+        - CZ
+        - DE
+        - DJ
+        - DK
+        - DM
+        - DO
+        - DZ
+        - EC
+        - EE
+        - EG
+        - EH
+        - ER
+        - ES
+        - ET
+        - FI
+        - FJ
+        - FK
+        - FM
+        - FO
+        - FR
+        - GA
+        - GB
+        - GD
+        - GE
+        - GF
+        - GG
+        - GH
+        - GI
+        - GL
+        - GM
+        - GN
+        - GP
+        - GQ
+        - GR
+        - GS
+        - GT
+        - GU
+        - GW
+        - GY
+        - HK
+        - HM
+        - HN
+        - HR
+        - HT
+        - HU
+        - ID
+        - IE
+        - IL
+        - IM
+        - IN
+        - IO
+        - IQ
+        - IR
+        - IS
+        - IT
+        - JE
+        - JM
+        - JO
+        - JP
+        - KE
+        - KG
+        - KH
+        - KI
+        - KM
+        - KN
+        - KP
+        - KR
+        - KW
+        - KY
+        - KZ
+        - LA
+        - LB
+        - LC
+        - LI
+        - LK
+        - LR
+        - LS
+        - LT
+        - LU
+        - LV
+        - LY
+        - MA
+        - MC
+        - MD
+        - MG
+        - MH
+        - MK
+        - ML
+        - MM
+        - MN
+        - MO
+        - MP
+        - MQ
+        - MR
+        - MS
+        - MT
+        - MU
+        - MV
+        - MW
+        - MX
+        - MY
+        - MZ
+        - NA
+        - NC
+        - NE
+        - NF
+        - NG
+        - NI
+        - NL
+        - NO
+        - NP
+        - NR
+        - NU
+        - NZ
+        - OM
+        - PA
+        - PE
+        - PF
+        - PG
+        - PH
+        - PK
+        - PL
+        - PM
+        - PN
+        - PR
+        - PS
+        - PT
+        - PW
+        - PY
+        - QA
+        - RE
+        - RO
+        - RU
+        - RW
+        - SA
+        - SB
+        - SC
+        - SD
+        - SE
+        - SG
+        - SH
+        - SI
+        - SJ
+        - SK
+        - SL
+        - SM
+        - SN
+        - SO
+        - SR
+        - ST
+        - SV
+        - SY
+        - SZ
+        - TC
+        - TD
+        - TF
+        - TG
+        - TH
+        - TJ
+        - TK
+        - TL
+        - TM
+        - TN
+        - TO
+        - TR
+        - TT
+        - TV
+        - TW
+        - TZ
+        - UA
+        - UG
+        - UM
+        - US
+        - UY
+        - UZ
+        - VA
+        - VC
+        - VE
+        - VG
+        - VI
+        - VN
+        - VU
+        - WF
+        - WS
+        - YE
+        - YT
+        - ZA
+        - ZM
+        - ZW
+    PageMetadata:
+      description: Page metadata
+      properties:
+        total:
+          type: number
+          description: Total number of results in this collection across all pages
+        page:
+          type: number
+          description: Current page number
+    PageMetadataLinks:
+      type: object
+      properties:
+        next:
+          $ref: "#/components/schemas/HateoasLink"
+    PaginatedArray:
+      type: object
+      description: To be used as a mixin using "allOf"
+      properties:
+        page:
+          $ref: "#/components/schemas/PageMetadata"
+        links:
+          $ref: "#/components/schemas/PageMetadataLinks"
+    AccountHolderRelationship:
+      title: Account Holder Relationship
+      description: Types of relationships between accounts and holders. Suggested values
+      type: string
+      enum:
+        - BUSINESS
+        - FOR_BENEFIT_OF
+        - FOR_BENEFIT_OF_PRIMARY
+        - FOR_BENEFIT_OF_PRIMARY_JOINT_RESTRICTED
+        - FOR_BENEFIT_OF_SECONDARY
+        - FOR_BENEFIT_OF_SECONDARY_JOINT_RESTRICTED
+        - FOR_BENEFIT_OF_SOLE_OWNER_RESTRICTED
+        - POWER_OF_ATTORNEY
+        - PRIMARY_JOINT_TENANTS
+        - PRIMARY
+        - PRIMARY_BORROWER
+        - PRIMARY_JOINT
+        - SECONDARY
+        - SECONDARY_JOINT_TENANTS
+        - SECONDARY_BORROWER
+        - SECONDARY_JOINT
+        - SOLE_OWNER
+        - TRUSTEE
+        - UNIFORM_TRANSFER_TO_MINOR
+    AccountHolder:
+      title: Account Holder Entity
+      allOf:
+        - $ref: "#/components/schemas/Customer"
+        - type: object
+          properties:
+            relationship:
+              $ref: "#/components/schemas/AccountHolderRelationship"
+    DeliveryAddressType:
+      title: Delivery Address Type
+      description: The location type of an address
+      type: string
+      enum:
+        - BUSINESS
+        - HOME
+        - MAILING
+    TelephoneNumberType:
+      title: Telephone Number Type
+      description: Purpose or type of telephone number
+      type: string
+      enum:
+        - HOME
+        - BUSINESS
+        - CELL
+        - FAX

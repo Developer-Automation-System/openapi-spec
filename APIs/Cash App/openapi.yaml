@@ -1,0 +1,1747 @@
+openapi: 3.0.0
+info:
+  title: '[External] Cash App Pay API Collection'
+  version: 1.0.0
+  description: ''
+servers:
+  - url: '{{host}}'
+paths:
+  /network/v1/brands:
+    parameters: []
+    post:
+      summary: Create brand
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List brand
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Upsert brand
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/brands/{{brand_id}}:
+    parameters: []
+    get:
+      summary: Retrieve brand
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    patch:
+      summary: Update brand
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/merchants:
+    parameters: []
+    post:
+      summary: Create merchant
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List merchants
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    put:
+      summary: Upsert merchant
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/merchants/{{merchant_id}}:
+    parameters: []
+    get:
+      summary: Retrieve merchant
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    patch:
+      summary: Update merchant
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/customers:
+    parameters: []
+    get:
+      summary: List customers
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/customers/{{customer_id}}:
+    parameters: []
+    get:
+      summary: Retrieve customer
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/customers/{{customer_id}}/grants/{{grant_id}}:
+    parameters: []
+    get:
+      summary: Retrieve customer grant
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/payments:
+    parameters: []
+    post:
+      summary: Create payment
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List payments
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/payments/{{payment_id}}:
+    parameters: []
+    get:
+      summary: Retrieve payment
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/payments/{{payment_id}}/capture:
+    parameters: []
+    post:
+      summary: Capture payment
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/payments/{{payment_id}}/void:
+    parameters: []
+    post:
+      summary: Void payment
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/payments/void-by-idempotency-key:
+    parameters: []
+    post:
+      summary: Void payment by idempotency key
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/refunds:
+    parameters: []
+    post:
+      summary: Create refund
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: List refunds
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/refunds/{{refund_id}}:
+    parameters: []
+    get:
+      summary: Retrieve refund
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/refunds/{{refund_id}}/capture:
+    parameters: []
+    post:
+      summary: Capture refund
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/refunds/{{refund_id}}/void:
+    parameters: []
+    post:
+      summary: Void refund
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/refunds/void-by-idempotency-key:
+    parameters: []
+    post:
+      summary: Void refund by idempotency key
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/disputes:
+    parameters: []
+    get:
+      summary: List disputes
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/disputes/{{dispute_id}}:
+    parameters: []
+    get:
+      summary: Retrieve dispute
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/disputes/{{dispute_id}}/accept:
+    parameters: []
+    post:
+      summary: Accept dispute
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/disputes/{{dispute_id}}/challenge:
+    parameters: []
+    post:
+      summary: Challenge dispute
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/disputes/{{dispute_id}}/evidence:
+    parameters: []
+    get:
+      summary: List dispute evidence
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/disputes/{{dispute_id}}/evidence-text:
+    parameters: []
+    post:
+      summary: Create dispute evidence text
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/disputes/{{dispute_id}}/evidence-file:
+    parameters: []
+    post:
+      summary: Create dispute evidence file
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/disputes/{{dispute_id}}/evidence/{{evidence_id}}:
+    parameters: []
+    delete:
+      summary: Delete dispute evidence
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    get:
+      summary: Retrieve dispute evidence
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/fee-plans:
+    parameters: []
+    get:
+      summary: List fee plans
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /network/v1/fee-plans/{{fee_plan_id}}:
+    parameters: []
+    get:
+      summary: Retrieve fee plan
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+      responses: {}
+  /customer-request/v1/requests:
+    parameters: []
+    post:
+      summary: Create request (one-time)
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /customer-request/v1/requests/{{customer_request_id}}:
+    parameters: []
+    get:
+      summary: Retrieve request
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+    patch:
+      summary: Update request (one-time)
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses: {}
+  /management/v1/api-keys:
+    parameters: []
+    post:
+      summary: Create API key
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                api_key:
+                  type: object
+                  properties:
+                    scopes:
+                      type: array
+                      items:
+                        type: string
+                    reference_id:
+                      type: string
+                idempotency_key:
+                  type: string
+    get:
+      summary: List API keys
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /management/v1/api-keys/{{api_key}}:
+    parameters: []
+    get:
+      summary: Retrieve API key
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    delete:
+      summary: Delete API key
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /management/v1/webhook-endpoints:
+    parameters: []
+    post:
+      summary: Create webhook endpoint
+      parameters:
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhook_endpoint:
+                  type: object
+                  properties:
+                    event_configurations:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          event_type:
+                            type: string
+                          api_version:
+                            type: string
+                    delivery_timeout:
+                      type: integer
+                    api_key_id:
+                      type: string
+                    url:
+                      type: string
+                    reference_id:
+                      type: string
+                idempotency_key:
+                  type: string
+    get:
+      summary: List webhook endpoints
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+  /management/v1/webhook-endpoints/{{webhook_endpoint_id}}:
+    parameters: []
+    get:
+      summary: Retrieve webhook endpoint
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    delete:
+      summary: Delete webhook endpoint
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+    patch:
+      summary: Update webhook endpoint
+      parameters:
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhook_endpoint:
+                  type: object
+                  properties:
+                    event_configurations:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          event_type:
+                            type: string
+                          api_version:
+                            type: string
+                    delivery_timeout:
+                      type: integer
+                    api_key_id:
+                      type: string
+                    url:
+                      type: string
+                    reference_id:
+                      type: string
+  /management/v1/webhook-events:
+    parameters: []
+    get:
+      summary: List webhook events
+      parameters:
+        - name: Authorization
+          in: header
+          required: false
+          example: Client {{client_id}} {{api_key}}
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: X-Region
+          in: header
+          required: false
+          example: '{{x-region}}'
+          schema:
+            type: string
+        - name: X-Signature
+          in: header
+          required: false
+          example: '{{x-signature}}'
+          schema:
+            type: string
+      responses: {}

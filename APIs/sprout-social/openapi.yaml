@@ -1,0 +1,371 @@
+openapi: 3.0.0
+info:
+  title: Sprout Social API
+  version: 1.0.0
+  description: "The Sprout API provides an externally accessible API for you to access your owned social profile data so you can use that data to power dashboards and automate your reporting.\n\n🚫 \_The Sprout API does not currently include:\n\n- 🚫 \_Paid (Ad Account) data\n    \n- 🚫 \_Publishing data or capabilities\n    \n- 🚫 \_Listening data from X"
+servers:
+  - url: api.sproutsocial.com
+paths:
+  /v1/metadata/client:
+    parameters: []
+    get:
+      summary: GET Customer ID
+      parameters: []
+      responses: {}
+  /v1/{customer_id}/metadata/customer/groups:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+    get:
+      summary: GET Customer Groups
+      parameters: []
+      responses: {}
+  /v1/{customer_id}/metadata/customer/tags:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+    get:
+      summary: GET Customer Tags
+      parameters: []
+      responses: {}
+  /v1/{customer_id}/metadata/customer:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+    get:
+      summary: GET Customer Profiles
+      parameters: []
+      responses: {}
+  /v1/{customer_id}/metadata/customer/users:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+    get:
+      summary: GET Customer Users
+      parameters: []
+      responses: {}
+  /v1/{customer_id}/analytics/profiles:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+    post:
+      summary: POST Owned Profile Analytics
+      parameters: []
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filters:
+                  type: array
+                  items:
+                    type: string
+                metrics:
+                  type: array
+                  items:
+                    type: string
+                page:
+                  type: integer
+            example:
+              filters:
+                - customer_profile_id.eq(2524559, 2476132, 3375716)
+                - reporting_period.in(2023-05-01...2023-08-01)
+              metrics:
+                - impressions
+                - reactions
+              page: 1
+  /v1/{customer_id}/analytics/posts:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+    post:
+      summary: POST Post Analytics
+      parameters: []
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: array
+                  items:
+                    type: string
+                filters:
+                  type: array
+                  items:
+                    type: string
+                metrics:
+                  type: array
+                  items:
+                    type: string
+                timezone:
+                  type: string
+                page:
+                  type: integer
+            example:
+              fields:
+                - created_time
+                - perma_link
+                - text
+                - internal.tags.id
+                - internal.sent_by.id
+                - internal.sent_by.email
+                - internal.sent_by.first_name
+                - internal.sent_by.last_name
+              filters:
+                - customer_profile_id.eq(2524559, 2476132, 3375716)
+                - created_time.in(2023-04-06T00:00:00..2023-04-19T23:59:59)
+              metrics:
+                - lifetime.impressions
+                - lifetime.reactions
+              timezone: America/Chicago
+              page: 1
+  /v1/{customer_id}/messages:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+    post:
+      summary: POST Messages
+      parameters: []
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filters:
+                  type: array
+                  items:
+                    type: string
+                fields:
+                  type: array
+                  items:
+                    type: string
+                sort:
+                  type: array
+                  items:
+                    type: string
+                    format: style
+                limit:
+                  type: integer
+                timezone:
+                  type: string
+                next_cursor:
+                  type: string
+            example:
+              filters:
+                - group_id.eq(977777)
+                - customer_profile_id.eq(2524559, 2476132, 3375716)
+                - created_time.in(2021-04-06T00:00:00..2022-04-19T23:59:59)
+                - >-
+                  action_last_update_time.in(2022-12-06T00:00:00..2023-02-28T23:59:59)
+                - post_type.eq(TWEET,FACEBOOK_POST,INSTAGRAM_DIRECT_MESSAGE)
+              fields:
+                - network
+                - activity_metadata.first_like.time_elapsed
+                - created_time
+                - post_category
+                - post_type
+                - perma_link
+                - text
+                - from
+                - profile_guid
+                - internal.tags.id
+                - internal.sent_by.id
+                - internal.sent_by.email
+              sort:
+                - created_time:desc
+              limit: 50
+              timezone: America/Chicago
+              next_cursor: abcd1234==
+  /v1/{customer_id}/analytics/topics/{topic_id}/messages:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+      - name: topic_id
+        in: path
+        required: true
+        example: f9e7486c-3c47-41e8-88a7-3dc4e6c67e2b
+        schema:
+          type: string
+    post:
+      summary: POST Topic Messages
+      parameters: []
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filters:
+                  type: array
+                  items:
+                    type: string
+                    format: style
+                fields:
+                  type: string
+                metrics:
+                  type: string
+                sort:
+                  type: array
+                  items:
+                    type: string
+                    format: style
+                timezone:
+                  type: string
+                limit:
+                  type: integer
+                page:
+                  type: integer
+            example:
+              filters:
+                - created_time.in(2022-11-28..2022-12-29T23:59:59)
+                - explicit_label.exists(false), explicit_label.eq(false)
+                - >-
+                  network.eq(TWITTER,INSTAGRAM,YOUTUBE,LINKEDIN,REDDIT,TUMBLR,WWW)
+              fields: >-
+                content_category,created_time,hashtags,from.profile_picture,language,location.
+                city,location.province,location.country,visual_media,text,distribution_type,per
+                ma_link,network,guid,from.name,from.screen_name,from.guid,from.profile_url,docu
+                ment.source_reference,sentiment,source.name,source.url,document.theme_ids,perfo
+                rmed_actions
+              metrics: >-
+                dislikes,engagement_total,from.follower_count,likes,replies,shares
+              sort:
+                - created_time:desc
+              timezone: America/Chicago
+              limit: 50
+              page: 1
+  /v1/{customer_id}/analytics/topics/{topic_id}/metrics:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+      - name: topic_id
+        in: path
+        required: true
+        example: f9e7486c-3c47-41e8-88a7-3dc4e6c67e2b
+        schema:
+          type: string
+    post:
+      summary: POST Topic Metrics
+      parameters: []
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filters:
+                  type: array
+                  items:
+                    type: string
+                    format: style
+                metrics:
+                  type: array
+                  items:
+                    type: string
+                dimensions:
+                  type: array
+                  items:
+                    type: string
+                timezone:
+                  type: string
+            example:
+              filters:
+                - created_time.in(2022-11-28..2022-12-29T23:59:59)
+                - >-
+                  network.eq(TWITTER,INSTAGRAM,YOUTUBE,LINKEDIN,REDDIT,TUMBLR,WWW)
+                - sentiment.eq(positive,negative,neutral,unclassified)
+              metrics:
+                - replies
+                - shares
+                - likes
+                - dislikes
+              dimensions:
+                - sentiment
+              timezone: America/Chicago
+  /v1/{customer_id}/publishing/posts/:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+    post:
+      summary: Create Post
+      parameters: []
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            example: null
+  /v1/{customer_id}/media/:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+    post:
+      summary: Media Upload
+      parameters: []
+      responses: {}
+  /v1/{customer_id}/publishing/posts/<publishing_post_id/:
+    parameters:
+      - name: customer_id
+        in: path
+        required: true
+        example: '786987'
+        schema:
+          type: integer
+    get:
+      summary: Get Single Post Information
+      parameters: []
+      responses: {}

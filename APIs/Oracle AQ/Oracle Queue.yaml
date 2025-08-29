@@ -1,0 +1,4284 @@
+openapi: 3.0.0
+info:
+  title: Queue API
+  version: 1.0.0
+  description: >-
+    Use the Queue API to produce and consume messages, create queues, and manage
+    related items. For more information, see
+    [Queue](https://docs.oracle.com/iaas/Content/queue/overview.htm).
+servers:
+  - url: '{{baseUrl}}'
+  - url: cell-1.queue.messaging.{{region}}.oci.oraclecloud.com
+paths:
+  /queues/{queueId}/actions/changeCompartment:
+    parameters:
+      - name: queueId
+        in: path
+        required: true
+        description: (Required) The unique queue identifier.
+        example: officia enim
+        schema:
+          type: string
+    post:
+      summary: Moves a resource into a different compartment.
+      parameters:
+        - name: if-match
+          in: header
+          required: false
+          description: |
+            For optimistic concurrency control. In the PUT or DELETE call
+            for a resource, set the `if-match` parameter to the value of the
+            etag from a previous GET or POST response for that resource.
+            The resource will be updated or deleted only if the etag you
+            provide matches the resource's current etag value.
+          example: officia enim
+          schema:
+            type: string
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '202':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            opc-work-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the asynchronous request.
+                You can use this to query status of the asynchronous operation.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: text/plain
+          description: >-
+            Accepted the request. The Queue resource will be moved into a
+            different compartment.
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '409':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '412':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Precondition failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                compartmentId:
+                  type: string
+  /queues/{queueId}/actions/purge:
+    parameters:
+      - name: queueId
+        in: path
+        required: true
+        description: (Required) The unique queue identifier.
+        example: officia enim
+        schema:
+          type: string
+    post:
+      summary: Deletes all messages present in the queue at the time of invocation.
+      parameters:
+        - name: if-match
+          in: header
+          required: false
+          description: |
+            For optimistic concurrency control. In the PUT or DELETE call
+            for a resource, set the `if-match` parameter to the value of the
+            etag from a previous GET or POST response for that resource.
+            The resource will be updated or deleted only if the etag you
+            provide matches the resource's current etag value.
+          example: officia enim
+          schema:
+            type: string
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '202':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            opc-work-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the asynchronous request.
+                You can use this to query status of the asynchronous operation.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: text/plain
+          description: Accepted the request. The Queue resource will be purged.
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '409':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '412':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Precondition failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                purgeType:
+                  type: string
+  /20210201/queues/{queueId}/messages/actions/deleteMessages:
+    parameters:
+      - name: queueId
+        in: path
+        required: true
+        description: (Required) The unique queue identifier.
+        example: ocid1.queue.oc1....
+        schema:
+          type: string
+    post:
+      summary: Deletes multiple messages from the queue.
+      parameters:
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: >-
+            The request has been processed. Receiving a 200 error code does not
+            mean that all messages have been deleted. Instead you have to look
+            at the response body.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  serverFailures:
+                    type: integer
+                  clientFailures:
+                    type: integer
+                  entries:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        errorCode:
+                          type: integer
+                        errorMessage:
+                          type: string
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entries:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      receipt:
+                        type: string
+  /20210201/queues/{queueId}/messages/actions/updateMessages:
+    parameters:
+      - name: queueId
+        in: path
+        required: true
+        description: (Required) The unique queue identifier.
+        example: ocid1.queue.oc1....
+        schema:
+          type: string
+    post:
+      summary: Updates multiple messages in the queue.
+      parameters:
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: >-
+            The request has been processed. Receiving a 200 error code does not
+            mean that all messages have been updated. Instead you have to look
+            at the response body.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  serverFailures:
+                    type: integer
+                  clientFailures:
+                    type: integer
+                  entries:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        errorCode:
+                          type: integer
+                        errorMessage:
+                          type: string
+                        id:
+                          type: integer
+                        visibleAfter:
+                          type: string
+                          format: date-time
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entries:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      receipt:
+                        type: string
+                      visibilityInSeconds:
+                        type: integer
+  /20210201/queues/{queueId}/messages/{messageReceipt}:
+    parameters:
+      - name: queueId
+        in: path
+        required: true
+        description: (Required) The unique queue identifier.
+        example: ocid1.queue.oc1....
+        schema:
+          type: string
+      - name: messageReceipt
+        in: path
+        required: true
+        description: >-
+          (Required) The receipt of the message retrieved from a GetMessages
+          call.
+        example: officia enim
+        schema:
+          type: string
+    delete:
+      summary: Deletes a message from the queue.
+      parameters:
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '204':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: text/plain
+          description: The message has been deleted.
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '409':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+    put:
+      summary: Updates the visibility of a message to extend (or reduce) it.
+      parameters:
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: The visibility of the message has been updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  visibleAfter:
+                    type: string
+                    format: date-time
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '409':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                visibilityInSeconds:
+                  type: integer
+  /20210201/queues/{queueId}/messages:
+    parameters:
+      - name: queueId
+        in: path
+        required: true
+        description: (Required) The unique queue identifier.
+        example: ocid1.queue.oc1....
+        schema:
+          type: string
+    get:
+      summary: Consumes message from the queue.
+      parameters:
+        - name: visibilityInSeconds
+          in: query
+          required: false
+          description: >
+            If the `visibilityInSeconds` parameter is set, messages will be
+            hidden for `visibilityInSeconds` seconds and won't be consumable by
+            other consumers during that time.
+
+            If it isn't set it defaults to the value set at the queue level.
+
+
+            Using a `visibilityInSeconds` value of 0 effectively acts as a peek
+            functionality.
+
+            Messages retrieved that way aren't meant to be deleted because they
+            will most likely be delivered to another consumer as their
+            visibility won't change, but will still increase the delivery count
+            by one.
+          example: '29076'
+          schema:
+            type: integer
+        - name: timeoutInSeconds
+          in: query
+          required: false
+          description: >
+            If the `timeoutInSeconds parameter` isn't set or it is set to a
+            value greater than 0, the request is using the long-polling mode and
+            will only return when a message is available for consumption (it
+            does not wait for limit messages but still only returns at-most
+            limit messages) or after `timeoutInSeconds` seconds (in which case
+            it will return an empty response), whichever comes first.
+
+
+            If the parameter is set to 0, the request is using the short-polling
+            mode and immediately returns whether messages have been retrieved or
+            not.
+
+            In same rare-cases a long-polling request could be interrupted
+            (returned with empty response) before the end of the timeout.
+          example: '30'
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          required: false
+          description: |
+            The limit parameter controls how many messages is returned at-most.
+          example: '1'
+          schema:
+            type: integer
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: A list of messages.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        content:
+                          type: string
+                        receipt:
+                          type: string
+                        deliveryCount:
+                          type: integer
+                        visibleAfter:
+                          type: string
+                          format: date-time
+                        expireAfter:
+                          type: string
+                          format: date-time
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+    post:
+      summary: Puts messages in the queue.
+      parameters:
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: The messages have been published in the queue.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '409':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                messages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      content:
+                        type: string
+  /queues/{queueId}:
+    parameters:
+      - name: queueId
+        in: path
+        required: true
+        description: (Required) The unique queue identifier.
+        example: officia enim
+        schema:
+          type: string
+    delete:
+      summary: Delete a provisioned Queue
+      parameters:
+        - name: if-match
+          in: header
+          required: false
+          description: |
+            For optimistic concurrency control. In the PUT or DELETE call
+            for a resource, set the `if-match` parameter to the value of the
+            etag from a previous GET or POST response for that resource.
+            The resource will be updated or deleted only if the etag you
+            provide matches the resource's current etag value.
+          example: officia enim
+          schema:
+            type: string
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '202':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            opc-work-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the asynchronous request.
+                You can use this to query status of the asynchronous operation.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: text/plain
+          description: Accepted the request. The Queue will be deleted.
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '412':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Precondition failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+    get:
+      summary: Get Queue
+      parameters:
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            etag:
+              description: |
+                For optimistic concurrency control. See `if-match`.
+              schema:
+                type: string
+              example: officia enim
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Retrieves the Queue with the given id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  compartmentId:
+                    type: string
+                  timeCreated:
+                    type: string
+                    format: date-time
+                  timeUpdated:
+                    type: string
+                    format: date-time
+                  lifecycleState:
+                    type: string
+                  messagesEndpoint:
+                    type: string
+                  retentionInSeconds:
+                    type: integer
+                  visibilityInSeconds:
+                    type: integer
+                  timeoutInSeconds:
+                    type: integer
+                  deadLetterQueueDeliveryCount:
+                    type: integer
+                  customEncryptionKeyId:
+                    type: string
+                  definedTags:
+                    type: object
+                    properties:
+                      exb0:
+                        type: object
+                        properties:
+                          proident_67:
+                            type: object
+                          cupidatat_d:
+                            type: object
+                          aliqua_93:
+                            type: object
+                      amet_55e:
+                        type: object
+                        properties:
+                          id_ea:
+                            type: object
+                          commodo5:
+                            type: object
+                  displayName:
+                    type: string
+                  freeformTags:
+                    type: object
+                    properties:
+                      esse_0c:
+                        type: string
+                  lifecycleDetails:
+                    type: string
+                  systemTags:
+                    type: object
+                    properties:
+                      tempor5_8:
+                        type: object
+                        properties:
+                          laborum_b:
+                            type: object
+                          voluptate89:
+                            type: object
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+    put:
+      summary: Update the Queue identified by the id
+      parameters:
+        - name: if-match
+          in: header
+          required: false
+          description: |
+            For optimistic concurrency control. In the PUT or DELETE call
+            for a resource, set the `if-match` parameter to the value of the
+            etag from a previous GET or POST response for that resource.
+            The resource will be updated or deleted only if the etag you
+            provide matches the resource's current etag value.
+          example: officia enim
+          schema:
+            type: string
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '202':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            opc-work-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the asynchronous request.
+                You can use this to query status of the asynchronous operation.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: text/plain
+          description: Accepted the request. The Queue will be updated.
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '405':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '412':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Precondition failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customEncryptionKeyId:
+                  type: string
+                deadLetterQueueDeliveryCount:
+                  type: integer
+                definedTags:
+                  type: object
+                  properties:
+                    ex_05a:
+                      type: object
+                      properties:
+                        laborum_2__:
+                          type: object
+                        non__c:
+                          type: object
+                    autec:
+                      type: object
+                      properties:
+                        commodoc:
+                          type: object
+                    dolor_1b:
+                      type: object
+                      properties:
+                        in_f6:
+                          type: object
+                        et_a4f:
+                          type: object
+                    eiusmod9c:
+                      type: object
+                      properties:
+                        adipisicing7ba:
+                          type: object
+                displayName:
+                  type: string
+                freeformTags:
+                  type: object
+                  properties:
+                    voluptate7:
+                      type: string
+                    nostrudcfd:
+                      type: string
+                    deserunt0:
+                      type: string
+                timeoutInSeconds:
+                  type: integer
+                visibilityInSeconds:
+                  type: integer
+  /20210201/queues/{queueId}/stats:
+    parameters:
+      - name: queueId
+        in: path
+        required: true
+        description: (Required) The unique queue identifier.
+        example: ocid1.queue.oc1....
+        schema:
+          type: string
+    get:
+      summary: Gets the statistics for the queue and its dead letter queue.
+      parameters:
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: The stats for the queue and its dead letter queue.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  queue:
+                    type: object
+                    properties:
+                      visibleMessages:
+                        type: integer
+                      inFlightMessages:
+                        type: integer
+                      sizeInBytes:
+                        type: integer
+                  dlq:
+                    type: object
+                    properties:
+                      visibleMessages:
+                        type: integer
+                      inFlightMessages:
+                        type: integer
+                      sizeInBytes:
+                        type: integer
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+  /queues:
+    parameters: []
+    get:
+      summary: Gets a list of all Queues in a compartment
+      parameters:
+        - name: compartmentId
+          in: query
+          required: false
+          description: >-
+            The
+            [OCID](https://docs.oracle.com/iaas/Content/General/Concepts/identifiers.htm)
+            of the compartment in which to list resources.
+          example: '{{compartment_ocid}}'
+          schema:
+            type: string
+        - name: lifecycleState
+          in: query
+          required: false
+          description: >-
+            A filter to return only resources their lifecycleState matches the
+            given lifecycleState.
+          example: officia enim
+          schema:
+            type: string
+        - name: displayName
+          in: query
+          required: false
+          description: >-
+            A filter to return only resources that match the entire display name
+            given.
+          example: in Duis veniam
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          description: The unique queue identifier.
+          example: officia enim
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: >-
+            For list pagination. The maximum number of results per page, or
+            items to return in a paginated "List" call. For important details
+            about how pagination works, see [List
+            Pagination](https://docs.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+          example: '10'
+          schema:
+            type: integer
+        - name: page
+          in: query
+          required: false
+          description: >-
+            For list pagination. The value of the opc-next-page response header
+            from the previous "List" call. For important details about how
+            pagination works, see [List
+            Pagination](https://docs.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+          example: dolor minim
+          schema:
+            type: string
+        - name: sortOrder
+          in: query
+          required: false
+          description: The sort order to use, either 'asc' or 'desc'.
+          example: ASC
+          schema:
+            type: string
+        - name: sortBy
+          in: query
+          required: false
+          description: >
+            The field to sort by. Only one sort order may be provided. Default
+            order for timeCreated is descending. Default order for displayName
+            is ascending. If no value is specified timeCreated is default.
+          example: timeCreated
+          schema:
+            type: string
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            opc-next-page:
+              description: >
+                For pagination of a list of items. When paging through a list,
+                if this header appears in the response,
+
+                then a partial list might have been returned. Include this value
+                as the `page` parameter for the
+
+                subsequent GET request to get the next batch of items.
+              schema:
+                type: string
+              example: officia enim
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: A page of QueueSummary objects.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        compartmentId:
+                          type: string
+                        timeCreated:
+                          type: string
+                          format: date-time
+                        timeUpdated:
+                          type: string
+                          format: date-time
+                        lifecycleState:
+                          type: string
+                        messagesEndpoint:
+                          type: string
+                        definedTags:
+                          type: object
+                          properties:
+                            qui_3b9:
+                              type: object
+                              properties:
+                                occaecatd60:
+                                  type: object
+                                adf23:
+                                  type: object
+                            ut7:
+                              type: object
+                              properties:
+                                elit_24a:
+                                  type: object
+                                magna5:
+                                  type: object
+                                ut__:
+                                  type: object
+                        displayName:
+                          type: string
+                        freeformTags:
+                          type: object
+                          properties:
+                            consequat195:
+                              type: string
+                            mollit_73:
+                              type: string
+                        lifecycleDetails:
+                          type: string
+                        systemTags:
+                          type: object
+                          properties:
+                            id2:
+                              type: object
+                              properties:
+                                aliqua39c:
+                                  type: object
+                            consequat_6:
+                              type: object
+                              properties:
+                                ullamco_a:
+                                  type: object
+                                minimbba:
+                                  type: object
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+    post:
+      summary: Creates a new Queue
+      parameters:
+        - name: opc-retry-token
+          in: header
+          required: false
+          description: >
+            A token that uniquely identifies a request so it can be retried in
+            case of a timeout or
+
+            server error without risk of executing that same action again. Retry
+            tokens expire after 24
+
+            hours, but can be invalidated before then due to conflicting
+            operations. For example, if a resource
+
+            has been deleted and purged from the system, then a retry of the
+            original creation request
+
+            might be rejected.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '202':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            opc-work-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the asynchronous request.
+                You can use this to query status of the asynchronous operation.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: text/plain
+          description: Accepted the request. The Queue will be created.
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '409':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                displayName:
+                  type: string
+                compartmentId:
+                  type: string
+                customEncryptionKeyId:
+                  type: string
+                deadLetterQueueDeliveryCount:
+                  type: integer
+                definedTags:
+                  type: object
+                  properties:
+                    velit__:
+                      type: object
+                      properties:
+                        officia_4e:
+                          type: object
+                        Ut_9:
+                          type: object
+                        quis3:
+                          type: object
+                        in36:
+                          type: object
+                freeformTags:
+                  type: object
+                  properties:
+                    velit_6c:
+                      type: string
+                    ipsum_18:
+                      type: string
+                    Lorem_fe3:
+                      type: string
+                    exercitation_4:
+                      type: string
+                retentionInSeconds:
+                  type: integer
+                timeoutInSeconds:
+                  type: integer
+                visibilityInSeconds:
+                  type: integer
+  /workRequests/{workRequestId}:
+    parameters:
+      - name: workRequestId
+        in: path
+        required: true
+        description: (Required) The ID of the asynchronous request.
+        example: ocid1.queueworkrequest.oc1....
+        schema:
+          type: string
+    get:
+      summary: GET Work Request Status
+      parameters:
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            retry-after:
+              description: >-
+                A decimal number representing the number of seconds the client
+                should wait before polling this endpoint again.
+              schema:
+                type: integer
+              example: '54270475'
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: The detail of the work request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  operationType:
+                    type: string
+                  status:
+                    type: string
+                  id:
+                    type: string
+                  compartmentId:
+                    type: string
+                  resources:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        actionType:
+                          type: string
+                        entityType:
+                          type: string
+                        identifier:
+                          type: string
+                        entityUri:
+                          type: string
+                  percentComplete:
+                    type: number
+                  timeAccepted:
+                    type: string
+                    format: date-time
+                  timeFinished:
+                    type: string
+                    format: date-time
+                  timeStarted:
+                    type: string
+                    format: date-time
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+  /workRequests/{workRequestId}/errors:
+    parameters:
+      - name: workRequestId
+        in: path
+        required: true
+        description: (Required) The ID of the asynchronous request.
+        example: ocid1.queueworkrequest.oc1....
+        schema:
+          type: string
+    get:
+      summary: Lists work request errors
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: >-
+            For list pagination. The value of the opc-next-page response header
+            from the previous "List" call. For important details about how
+            pagination works, see [List
+            Pagination](https://docs.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+          example: dolor minim
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: >-
+            For list pagination. The maximum number of results per page, or
+            items to return in a paginated "List" call. For important details
+            about how pagination works, see [List
+            Pagination](https://docs.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+          example: '10'
+          schema:
+            type: integer
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            opc-next-page:
+              description: >
+                For pagination of a list of items. When paging through a list,
+                if this header appears in the response,
+
+                then a partial list might have been returned. Include this value
+                as the `page` parameter for the
+
+                subsequent GET request to get the next batch of items.
+              schema:
+                type: string
+              example: officia enim
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: List of work request errors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        message:
+                          type: string
+                        timestamp:
+                          type: string
+                          format: date-time
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+  /workRequests/{workRequestId}/logs:
+    parameters:
+      - name: workRequestId
+        in: path
+        required: true
+        description: (Required) The ID of the asynchronous request.
+        example: ocid1.queueworkrequest.oc1....
+        schema:
+          type: string
+    get:
+      summary: Lists work request logs
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: >-
+            For list pagination. The value of the opc-next-page response header
+            from the previous "List" call. For important details about how
+            pagination works, see [List
+            Pagination](https://docs.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+          example: dolor minim
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: >-
+            For list pagination. The maximum number of results per page, or
+            items to return in a paginated "List" call. For important details
+            about how pagination works, see [List
+            Pagination](https://docs.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+          example: '10'
+          schema:
+            type: integer
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: '{{$randomUUID}}'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            opc-next-page:
+              description: >
+                For pagination of a list of items. When paging through a list,
+                if this header appears in the response,
+
+                then a partial list might have been returned. Include this value
+                as the `page` parameter for the
+
+                subsequent GET request to get the next batch of items.
+              schema:
+                type: string
+              example: officia enim
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: List of work request logs.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message:
+                          type: string
+                        timestamp:
+                          type: string
+                          format: date-time
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+  /workRequests:
+    parameters: []
+    get:
+      summary: List Work Requests
+      parameters:
+        - name: compartmentId
+          in: query
+          required: false
+          description: >-
+            The
+            [OCID](https://docs.oracle.com/iaas/Content/General/Concepts/identifiers.htm)
+            of the compartment in which to list resources.
+          example: '{{compartment_ocid}}'
+          schema:
+            type: string
+        - name: workRequestId
+          in: query
+          required: false
+          description: The ID of the asynchronous work request.
+          example: officia enim
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: false
+          description: >-
+            For list pagination. The value of the opc-next-page response header
+            from the previous "List" call. For important details about how
+            pagination works, see [List
+            Pagination](https://docs.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+          example: dolor minim
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          description: >-
+            For list pagination. The maximum number of results per page, or
+            items to return in a paginated "List" call. For important details
+            about how pagination works, see [List
+            Pagination](https://docs.oracle.com/iaas/Content/API/Concepts/usingapi.htm#nine).
+          example: '10'
+          schema:
+            type: integer
+        - name: opc-request-id
+          in: header
+          required: false
+          description: >-
+            Unique Oracle-assigned identifier for the request. If you need to
+            contact Oracle about a particular request, please provide the
+            request ID.
+          example: officia enim
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          headers:
+            opc-next-page:
+              description: >
+                For pagination of a list of items. When paging through a list,
+                if this header appears in the response,
+
+                then a partial list might have been returned. Include this value
+                as the `page` parameter for the
+
+                subsequent GET request to get the next batch of items.
+              schema:
+                type: string
+              example: officia enim
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: The list is being retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        operationType:
+                          type: string
+                        status:
+                          type: string
+                        id:
+                          type: string
+                        compartmentId:
+                          type: string
+                        resources:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              actionType:
+                                type: string
+                              entityType:
+                                type: string
+                              identifier:
+                                type: string
+                              entityUri:
+                                type: string
+                        percentComplete:
+                          type: number
+                        timeAccepted:
+                          type: string
+                          format: date-time
+                        timeFinished:
+                          type: string
+                          format: date-time
+                        timeStarted:
+                          type: string
+                          format: date-time
+        '400':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '401':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '404':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '429':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          headers:
+            opc-request-id:
+              description: >
+                Unique Oracle-assigned identifier for the request. If you need
+                to contact
+
+                Oracle about a particular request, please provide the request
+                ID.
+              schema:
+                type: string
+              example: officia enim
+            Content-Type:
+              schema:
+                type: string
+              example: application/json
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
