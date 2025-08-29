@@ -4,10 +4,9 @@
 # But include these essential directories and files
 !APIs/
 !APIs/**
-!openapi-specs/
-!openapi-specs/**
 !apps_with_specs.json
 !missing_apps.json
+!user_apps_list.txt
 
 # Also include .gitignore itself
 !.gitignore
