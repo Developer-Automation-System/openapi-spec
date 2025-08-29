@@ -1,12 +1,12 @@
 {
   "apps_with_openapi_specifications": {
     "summary": {
-      "total_apps_with_specs": 57,
-      "total_specifications": 1105,
-      "total_apps_checked": 60,
-      "missing_apps": 3,
+      "total_apps_with_specs": 60,
+      "total_specifications": 1108,
+      "total_apps_checked": 67,
+      "missing_apps": 7,
       "last_updated": "2025-08-29",
-      "success_rate": "95.0%"
+      "success_rate": "89.6%"
     },
     "apps": {
       "ServiceNow": {
@@ -604,6 +604,53 @@
           "directory": "openapi-specs"
         },
         "note": "Integrated into Intuit ecosystem - uses QuickBooks Online API"
+      },
+      "Klaviyo": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openapi.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/klaviyo/openapi.json",
+          "file_size_bytes": 2068000,
+          "directory": "APIs"
+        },
+        "authentication": {
+          "methods": ["api_key"],
+          "primary_method": "api_key",
+          "api_key_location": "header",
+          "integration_difficulty": "easy",
+          "documentation": "https://developers.klaviyo.com/en/reference/api_overview"
+        }
+      },
+      "Sentry": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openapi.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/sentry/openapi.json",
+          "file_size_bytes": 7905,
+          "directory": "APIs"
+        },
+        "authentication": {
+          "methods": ["bearer_token", "dsn"],
+          "primary_method": "bearer_token",
+          "integration_difficulty": "easy",
+          "documentation": "https://docs.sentry.io/api/"
+        }
+      },
+      "Quickbooks": {
+        "specs_count": 1,
+        "primary_spec": {
+          "file_name": "openapi.json",
+          "file_path": "/Users/cenizas/Openapi/APIs/quickbooks/openapi.json",
+          "file_size_bytes": 440000,
+          "directory": "APIs"
+        },
+        "authentication": {
+          "methods": ["oauth2"],
+          "primary_method": "oauth2",
+          "oauth_flows": ["authorization_code"],
+          "integration_difficulty": "medium",
+          "documentation": "https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization"
+        }
       }
     },
     "categories": {
@@ -618,11 +665,12 @@
       "design_collaboration": ["Figma", "Canva", "Miro"],
       "social_media": ["Sprout Social", "Meta"],
       "development": ["GitHub", "Microsoft"],
-      "marketing": ["Mailchimp", "Meta Ads", "Meta Ads Manager"],
+      "marketing": ["Mailchimp", "Meta Ads", "Meta Ads Manager", "Klaviyo"],
       "databases": ["MongoDB", "MySQL", "Redis"],
       "banking_finance": ["Chase", "ADP", "Avalara"],
       "cryptocurrency": ["Coinbase", "CoinAPI"],
-      "reviews_ratings": ["Trustpilot"]
+      "reviews_ratings": ["Trustpilot"],
+      "error_monitoring": ["Sentry"]
     }
   }
 }
